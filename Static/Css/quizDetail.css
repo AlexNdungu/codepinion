@@ -1,0 +1,418 @@
+.newContainer {
+    width: 100%;
+    height: max-content;
+    padding-top: 200px;
+    transition: 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The owner with the question */
+
+.theQuestionItself {
+    width: 98%;
+    height: max-content;
+    min-height: 100vh;
+}
+
+
+/* The user who has posted the question */
+
+.postQuizuser {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile pic owner */
+
+.posterImage {
+    width: 110px;
+    height: 110px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.posterImage img {
+    width: 85%;
+    height: 85%;
+    border-radius: 30px;
+}
+
+/* The profile controls */
+
+.ownerCont {
+    width: 250px;
+    height: 110px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.ownerCont span {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #333682;
+}
+
+
+/* The controls */
+
+.contDetails {
+    width: 90%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+/* Individual controls */
+
+.viewProf,.sendEmail,.greeting {
+    width: 55px;
+    height: 55px;
+    background-color: #c9cbff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #292929;
+
+}
+
+
+/* This is the question styling */
+
+.owenerQuiz {
+    width: 100%;
+    height: max-content;
+    min-height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    border: 2px solid #333682;
+}
+
+.ownerQuizWrapper {
+    width: 90%;
+    min-height: 100vh;
+    height: max-content;
+} 
+
+
+/* The title and time */
+
+.detDateTime {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detDateTime span {
+    color: #292929;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.detDateTime h2 {
+    font-size: 22px;
+    color: #333682;
+}
+
+
+/* The tags and controls */
+
+.detTagsCont {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* The tags */
+
+.detTags {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Individual tags */
+
+.indDetTag {
+    width: max-content;
+    height: 50px;
+    background-color: #c9cbff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.indDetTag span {
+    font-weight: 600;
+    color: #333682;
+    padding: 15px;
+}
+
+
+/* If question is verified */
+
+.isVerified {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.isVerified svg {
+    transform: scale(1.2);
+}
+
+/* Detail question Controls */
+
+.detCont {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* The question merits */
+
+.detAnswersNo,.detAnswerViews {
+    width: max-content;
+    height: 60px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #333682;
+    color: #292929;
+}
+
+.detAnswersNo,.detAnswerViews {
+    margin-right: 10px;
+}
+
+.detAnswersNo svg,.detAnswerViews svg {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.detCount {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px;
+}
+
+
+/* Upvote */
+
+.detQusetionUpvote {
+    width: max-content;
+    height: 60px;
+    border: 3px solid #c9cbff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.vote {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #292929;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.voteNumbers {
+    margin: 10px;
+    color: #333682;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+
+/* The separating line */
+
+.detSepLine{
+    width: 100%;
+    height: 3px;
+    background-color: #c9cbff;
+    margin-bottom: 10px;
+}
+
+
+/* The body content textfield */
+
+.detContent {
+    width: 100%;
+    height: max-content;
+    min-height: 100px;
+    border: 2px solid #c9cbff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detContent p {
+    width: 90%;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #333682;
+}
+
+
+/* Body codeblock */
+
+.codeBlockBody {
+    width: 100%;
+    height: max-content;
+    min-height: 60px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+
+/* The body images */
+
+.detailImages {
+    width: 100%;
+    height: max-content;
+    position: relative;
+    z-index: 5;
+    margin-bottom: 10px;
+}
+
+.detailImages img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+.imgContName {
+    width: max-content;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #c9cbff;
+    border-radius: 10px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-weight: 600;
+    color: #333682;
+}
+
+
+.trial {
+    margin-bottom: 50px;
+}
+
+
+/* Reply Section to detail question */
+
+.loggedAnswer {
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+
+/* This is the answere section */
+
+.detailAnsweres {
+    width: 100%;
+    height: max-content;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+
+/* The container containing the wrapper of the answer */
+
+.allAnswersDet {
+    width: 98%;
+    height: max-content;
+    min-height: 100vh;
+    border-radius: 100px;
+    border: 2px solid #333682;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The wrapper */
+
+.wrapperallAnswersDet {
+    width: 90%;
+    min-height: 100vh;
+    height: max-content;
+}
+
+
+/* Vote answer and upload time */
+
+.detVoteAnDate {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detVoteAnDate span {
+    color: #292929;
+    font-weight: 700;
+    font-size: 15px;
+}

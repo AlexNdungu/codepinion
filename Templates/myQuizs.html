@@ -1,0 +1,293 @@
+<!--This page inherits from index.html-->
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+<!--The header section is bellow-->
+{% block head %}
+
+<title>codeSage ::- My Questions</title>
+
+<!--The css file-->
+<link rel="stylesheet" href="{% static '/Css/myQuizs.css' %}">
+
+{% endblock %}
+
+
+<!--This is where the rest of the content will be-->
+{% block content %}
+
+<!--This container will contain the whole middle content-->
+<div class="newContainer" id="newContainer" >
+
+    <!--All my questions will be below-->
+
+    <div class="allMyQuiz">
+
+        <!--The head section  of my questions page-->
+
+        <div class="myQuizHead">
+
+            <!--My question head-->
+
+            <h2>My Questions</h2>
+
+            <!--The controls-->
+
+            <div class="myControls">
+
+                <!--Number of questions-->
+
+                <div class="totalQuizs">
+
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m22 17.75c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75zm-18.953-1.494c-.621 0-.578.751-.06.751.108.003.371-.076.52.079.218.228.07.693-.293.693-.258 0-.349-.202-.456-.488-.123-.355-.758-.26-.758.203 0 .34.416 1.006 1.21 1.006.187 0 .358-.03.514-.09.474-.181.765-.619.765-1.054 0-.29-.129-.58-.418-.794.671-.726.046-1.562-.815-1.562-.75 0-1.162.49-1.162.864 0 .306.254.404.376.404.395 0 .329-.283.494-.482.104-.13.501-.124.501.174 0 .358-.518.306-.418.296zm18.953-2.506c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75zm-18.785-1.032c.214-.21.511-.426.8-.686.805-.713.535-2.002-.77-2.002-.813 0-1.24.596-1.24 1.028 0 .478.513.548.708.308.176-.212.152-.595.519-.595.346 0 .517.373.097.792-.065.065-1.065.825-1.258 1.246-.043.096-.071.19-.071.283 0 .159.127.438.494.438h1.597c.344 0 .434-.256.434-.404 0-.314-.284-.408-.497-.408zm18.785-2.968c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75zm-19.04-1.738c0 .226.113.497.439.497.015 0 .443.032.443-.58v-2.45c0-.335-.206-.479-.401-.479-.224 0-.272.108-.414.306-.183.254-.369.387-.631.511-.23.108-.396.181-.396.428 0 .208.173.388.378.388.18 0 .434-.169.582-.271zm19.04-2.262c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+
+                    <span>20</span>
+
+                </div>
+
+                <!--Number of vrified questions-->
+
+                <div class="totalVerif" >
+
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  style="fill: #3ea42d;" width="24" height="24"  
+                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.831 16.198.002-.003-1.113-.996-.004.004-2.468-2.202c-.144-.128-.322-.191-.5-.191-.417 0-.749.337-.749.75 0 .206.084.412.249.56l2.478 2.21-.767.873-4.71-4.202c-.144-.128-.322-.191-.5-.191-.416 0-.749.337-.749.75 0 .206.084.412.25.56l5.268 4.7c.143.128.321.191.499.191.206 0 .41-.084.559-.25l1.264-1.437 1.677 1.496c.143.128.321.191.499.191.206 0 .409-.084.558-.25l11.234-12.499c.129-.143.192-.322.192-.501 0-.419-.338-.75-.748-.75-.206 0-.411.084-.559.249l-10.735 11.943zm-.451-1.75 1.114.996 8.316-9.182c.128-.143.191-.322.191-.501 0-.419-.337-.75-.748-.75-.206 0-.411.084-.559.249z" fill-rule="nonzero"/></svg>
+
+                    <span>7</span>
+
+                </div>
+
+                <!--Total answered questions-->
+
+                <div class="totalAnswered">
+
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M9 21h-9v-2h9v2zm6.695-2.88l-3.314-3.13-1.381 1.47 4.699 4.54 8.301-8.441-1.384-1.439-6.921 7zm-6.695-1.144h-9v-2h9v2zm8-3.976h-17v-2h17v2zm7-4h-24v-2h24v2zm0-4h-24v-2h24v2z"/></svg>
+
+                    <span>17</span>
+
+                </div>
+
+                <!--Number of unswered questions-->
+
+                <div class="totalUnswered">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"  style="fill: #d93636;" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1.25 17c0 .69-.559 1.25-1.25 1.25-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25zm1.393-9.998c-.608-.616-1.515-.955-2.551-.955-2.18 0-3.59 1.55-3.59 3.95h2.011c0-1.486.829-2.013 1.538-2.013.634 0 1.307.421 1.364 1.226.062.847-.39 1.277-.962 1.821-1.412 1.343-1.438 1.993-1.432 3.468h2.005c-.013-.664.03-1.203.935-2.178.677-.73 1.519-1.638 1.536-3.022.011-.924-.284-1.719-.854-2.297z"/></svg>
+
+                    <span>3</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--This is the search bar-->
+
+        <div class="myQuizSearch">
+
+            <div class="search">
+
+                <!--The icon-->
+                <div class="search1">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M23.822 20.88l-6.353-6.354c.93-1.465 1.467-3.2 1.467-5.059.001-5.219-4.247-9.467-9.468-9.467s-9.468 4.248-9.468 9.468c0 5.221 4.247 9.469 9.468 9.469 1.768 0 3.421-.487 4.839-1.333l6.396 6.396 3.119-3.12zm-20.294-11.412c0-3.273 2.665-5.938 5.939-5.938 3.275 0 5.94 2.664 5.94 5.938 0 3.275-2.665 5.939-5.94 5.939-3.274 0-5.939-2.664-5.939-5.939z"/></svg>
+
+                </div>
+                
+                <input type="text" class="search2">
+
+            </div>
+
+        </div>
+
+
+        <!--This are the individual questions-->
+        <div class="allMyIndQuiz">
+
+            <!--My individual questions-->
+            <div class="myIndQuiz">
+
+                <!--Question title and time-->
+
+                <div class="myTitle">
+
+                    <h2>How to make a print statement in python</h2>
+
+                    <span>5hrs ago</span>
+
+                </div>
+
+                <!--The cocontrols and details-->
+
+                <div class="myContDet">
+
+                    <!--My tags-->
+
+                    <div class="myTags">
+
+                        <!--My individual tags-->
+
+                        <div class="indTags">
+
+                            <span>Python</span>
+
+                        </div>
+
+                        <div class="indTags">
+
+                            <span>Html</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!--The details contents-->
+
+                    <div class="myDetSection">
+
+                        <!--Individual conetnt-->
+
+                        <!--If this question is checked or note-->
+                        <div class="indQuizCheck">
+
+                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.831 16.198.002-.003-1.113-.996-.004.004-2.468-2.202c-.144-.128-.322-.191-.5-.191-.417 0-.749.337-.749.75 0 .206.084.412.249.56l2.478 2.21-.767.873-4.71-4.202c-.144-.128-.322-.191-.5-.191-.416 0-.749.337-.749.75 0 .206.084.412.25.56l5.268 4.7c.143.128.321.191.499.191.206 0 .41-.084.559-.25l1.264-1.437 1.677 1.496c.143.128.321.191.499.191.206 0 .409-.084.558-.25l11.234-12.499c.129-.143.192-.322.192-.501 0-.419-.338-.75-.748-.75-.206 0-.411.084-.559.249l-10.735 11.943zm-.451-1.75 1.114.996 8.316-9.182c.128-.143.191-.322.191-.501 0-.419-.337-.75-.748-.75-.206 0-.411.084-.559.249z" fill-rule="nonzero"/></svg>
+                            
+
+                        </div>
+
+                        <!--Answers attached to this question-->
+
+                        <div class="myQuizAnsweres">
+
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M24 1v16.981h-13l-7 5.02v-5.02h-4v-16.981h24zm-6 5.285l-6.622 7.715-4.378-3.852 1.319-1.489 2.879 2.519 5.327-6.178 1.475 1.285z"/></svg>
+
+                            <span>20</span>
+
+                        </div>
+
+                        <!--Views my question has received-->
+
+                        <div class="myQuizView">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"/></svg>
+
+                            <span>20</span>
+
+                        </div>
+
+
+                        <!--Votes my questions have received-->
+
+                        <div class="myQuizVotes">
+
+                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.001 10.978h-3.251c-.412 0-.75-.335-.75-.752 0-.188.071-.375.206-.518 1.685-1.775 4.692-4.945 6.069-6.396.189-.2.452-.312.725-.312.274 0 .536.112.725.312 1.377 1.451 4.385 4.621 6.068 6.396.136.143.207.33.207.518 0 .417-.337.752-.75.752h-3.251v9.02c0 .531-.47 1.002-1 1.002h-3.998c-.53 0-1-.471-1-1.002z" fill-rule="nonzero"/></svg>
+
+                            <span>20</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--My individual questions-->
+            <div class="myIndQuiz">
+
+                <!--Question title and time-->
+
+                <div class="myTitle">
+
+                    <h2>How to make a print statement in python</h2>
+
+                    <span>5hrs ago</span>
+
+                </div>
+
+                <!--The cocontrols and details-->
+
+                <div class="myContDet">
+
+                    <!--My tags-->
+
+                    <div class="myTags">
+
+                        <!--My individual tags-->
+
+                        <div class="indTags">
+
+                            <span>Python</span>
+
+                        </div>
+
+                        <div class="indTags">
+
+                            <span>Html</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!--The details contents-->
+
+                    <div class="myDetSection">
+
+                        <!--Individual conetnt-->
+
+                        <!--If this question is checked or note-->
+                        <div class="indQuizCheck">
+
+                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.831 16.198.002-.003-1.113-.996-.004.004-2.468-2.202c-.144-.128-.322-.191-.5-.191-.417 0-.749.337-.749.75 0 .206.084.412.249.56l2.478 2.21-.767.873-4.71-4.202c-.144-.128-.322-.191-.5-.191-.416 0-.749.337-.749.75 0 .206.084.412.25.56l5.268 4.7c.143.128.321.191.499.191.206 0 .41-.084.559-.25l1.264-1.437 1.677 1.496c.143.128.321.191.499.191.206 0 .409-.084.558-.25l11.234-12.499c.129-.143.192-.322.192-.501 0-.419-.338-.75-.748-.75-.206 0-.411.084-.559.249l-10.735 11.943zm-.451-1.75 1.114.996 8.316-9.182c.128-.143.191-.322.191-.501 0-.419-.337-.75-.748-.75-.206 0-.411.084-.559.249z" fill-rule="nonzero"/></svg>
+                            
+
+                        </div>
+
+                        <!--Answers attached to this question-->
+
+                        <div class="myQuizAnsweres">
+
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M24 1v16.981h-13l-7 5.02v-5.02h-4v-16.981h24zm-6 5.285l-6.622 7.715-4.378-3.852 1.319-1.489 2.879 2.519 5.327-6.178 1.475 1.285z"/></svg>
+
+                            <span>20</span>
+
+                        </div>
+
+                        <!--Views my question has received-->
+
+                        <div class="myQuizView">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"/></svg>
+
+                            <span>20</span>
+
+                        </div>
+
+
+                        <!--Votes my questions have received-->
+
+                        <div class="myQuizVotes">
+
+                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.001 10.978h-3.251c-.412 0-.75-.335-.75-.752 0-.188.071-.375.206-.518 1.685-1.775 4.692-4.945 6.069-6.396.189-.2.452-.312.725-.312.274 0 .536.112.725.312 1.377 1.451 4.385 4.621 6.068 6.396.136.143.207.33.207.518 0 .417-.337.752-.75.752h-3.251v9.02c0 .531-.47 1.002-1 1.002h-3.998c-.53 0-1-.471-1-1.002z" fill-rule="nonzero"/></svg>
+
+                            <span>20</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>    
+
+
+{% endblock %}

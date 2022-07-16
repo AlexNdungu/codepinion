@@ -1,0 +1,295 @@
+.newContainer {
+    width: 100%;
+    height: max-content;
+    padding-top: 200px;
+    transition: 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* This div contains all the questions */
+.allNewQuiz{
+    width: 98%;
+    min-height: 100vh;
+    background-color: white;
+    border-radius: 100px;
+    border: 2px solid #333682;
+}
+
+/* This is the heading of the question page  */
+
+.newQuizHead {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* This div has the no of new questions */
+
+.newNo {
+    width: max-content;
+    height: 50px;
+    background-color: #c9cbff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 100px;
+}
+
+.newQuizHead h2 {
+    font-size: 24px;
+    color: #333682;
+}
+
+.h2New {
+    margin: 100px;
+}
+
+
+/* This all the questions */
+
+.theQuestions {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* The new individual question */
+
+.indNewQuiz {
+    width: 100%;
+    height: 190px;
+    border-radius: 20px;
+    border: 3px solid #c9cbff;
+    margin-top: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.indNewQuiz:hover {
+    border: 3px solid #333682;
+}
+
+
+/*  user and time */
+
+.userTime {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* Username and image */
+
+.userNewQuiz {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 30px;
+}
+
+/* The user image */
+
+.newUserImg {
+    width: 50px;
+    height: 50px;
+}
+
+.newUserImg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+/* User name */
+
+.newQuizUserName {
+    font-size: 17px;
+    font-weight: 600;
+    color: #333682;
+}
+
+
+/* new question upload time */
+
+.hrsNew {
+    color: #292929;
+    font-size: 14px;
+    margin: 30px;
+}
+
+
+/* The new question title */
+
+.newQuizTitle {
+    width: 100%;
+    height: 60px;
+    font-size: 15px;
+    color: #292929;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.newQuizTitle h2 {
+    margin-left: 50px;
+}
+
+
+/* The tags and controls */
+
+.tagsContsNew {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* The tags */
+
+.newTags {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 50px;
+}
+
+.newIndTags {
+    width: max-content;
+    height: 50px;
+    background-color: #c9cbff;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #292929;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+
+
+/* This is the control section css */
+
+.newControls {
+    width: max-content;
+    min-width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 30px;
+    position: relative;
+}
+
+/* Checked question */
+
+.newCheck,.moreNew {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.newCheck svg,.moreNew svg {
+    fill: #292929;
+}
+
+.moreNew:hover{
+    transform: scale(1.2);
+}
+
+/* The numbers */
+
+.newAnswers,.newViews,.newVotesQuiz {
+    width: max-content;
+    min-width: 90px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.newAnswers svg,.newViews svg,.newVotesQuiz svg {
+    fill: #333682;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+.newAnswers .newNumber,.newViews .newNumber,.newVotesQuiz .newNumber {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #292929;
+    font-size: 18px;
+}
+
+
+
+/* Hide and reports */
+
+.newMore {
+    position: absolute;
+    width: 180px;
+    height: 120px;
+    border-radius: 15px;
+    background-color: #c9cbff;
+    right: 0;
+    top: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+
+/* Line separating report and hide */
+
+.repHideSep {
+    width: 80%;
+    height: 3px;
+    background-color: #292929;
+
+}
+
+
+/* The buttons */
+
+.newHide,.newRepost {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-weight: 600;
+}
+
+.newRepost {
+    color: #d93636;
+    fill: #d93636;
+}

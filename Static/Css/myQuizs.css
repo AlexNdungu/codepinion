@@ -1,0 +1,266 @@
+.newContainer {
+    width: 100%;
+    height: max-content;
+    padding-top: 200px;
+    transition: 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Thus is the white section containing all the content of my questions page */
+
+.allMyQuiz {
+    width: 98%;
+    height: max-content;
+    background-color: white;
+    border: 2px solid #333682;
+    border-radius: 100px;
+}
+
+
+/* This div contains alll the head contaent */
+
+.myQuizHead {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.myQuizHead h2 {
+    font-size: 24px;
+    color: #333682;
+    margin-left: 40px;
+}
+
+/* My questions details/controls */
+
+.myControls {
+    height: 100%;
+    width: min-content;
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+
+
+/* Individual detail control */
+
+.totalQuizs,.totalVerif,.totalAnswered,.totalUnswered {
+    width: max-content;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #c9cbff;
+    margin: 10px;
+}
+
+.totalQuizs svg,.totalVerif svg,.totalAnswered svg,.totalUnswered svg {
+    fill: #333682;
+    transform: scale(1.1);
+    margin: 10px;
+}
+
+.totalQuizs span,.totalVerif span,.totalAnswered span ,.totalUnswered span {
+    color: #292929;
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+
+/* The search bar section */
+
+.myQuizSearch {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search {
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search1 {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9cbff;
+    fill: #292929;
+}
+
+.search2 {
+    width: 340px;
+    height: 40px;
+    margin-right: 5px;
+    background-color: #c9cbff;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 17px;
+    color: #292929;
+    font-weight: 500;
+}
+
+
+
+/* All The questions */
+
+.allMyIndQuiz {
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    height: max-content;
+}
+
+
+/* My individual questions */
+
+.myIndQuiz {
+    width: 100%;
+    height: 160px;
+    border-radius: 20px;
+    border: 3px solid #c9cbff;
+    margin-top: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.myIndQuiz:hover {
+    border: 3px solid #333682;
+}
+
+/* my question title and time */
+
+.myTitle {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+
+.myTitle span {
+    font-size: 15px;
+    color: #292929;
+    font-weight: 600;
+}
+
+.myTitle h2 {
+    font-size: 22px;
+    color: #292929;
+}
+
+
+/* controls and details */
+
+.myContDet {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+
+/* The tags */
+
+.myTags {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 30px;
+}
+
+
+/* individual tags */
+
+.indTags {
+    width: max-content;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.indTags span {
+    margin: 20px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #292929;
+}
+
+
+/* The rest of my question details */
+
+.myDetSection {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/* verfied question */
+
+.indQuizCheck {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #3ea42d;
+    margin: 10px;
+}
+
+
+/* The rest of the details */
+
+.myQuizAnsweres,.myQuizView,.myQuizVotes {
+    height: 50px;
+    width: max-content;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #c9cbff;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.myQuizAnsweres svg,.myQuizView svg,.myQuizVotes svg {
+    fill: #333682;
+    margin: 10px;
+}
+
+.myQuizAnsweres span,.myQuizView span,.myQuizVotes span {
+    font-weight: 600;
+    font-size: 18px;
+    margin-right: 10px;
+}

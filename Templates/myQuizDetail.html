@@ -1,0 +1,422 @@
+<!--This page inherits from index.html-->
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+<!--The header section is bellow-->
+{% block head %}
+
+<title>codeSage ::- My Question Detail</title>
+
+<!--The css file-->
+<link rel="stylesheet" href="{% static '/Css/quizDetail.css' %}">
+<link rel="stylesheet" href="{% static '/Css/myQuizDetail.css' %}">
+
+
+{% endblock %}
+
+
+<!--This is where the rest of the content will be-->
+{% block content %}
+
+<!--It will contain the user and their question-->
+<div class="newContainer" id="newContainer" >
+
+    <!--The question and all its details-->
+    <div class="theQuestionItself">
+
+        <!--The user who posted the-->
+        <div class="postQuizuser">
+
+            <!--Owner profile picture-->
+            <div class="posterImage">
+
+                <img src="{% static '\Images\Users\user.jpg' %}" alt="theUser">
+
+            </div>
+
+            <!--owener Controls-->
+            <div class="ownerCont">
+
+                <span>theMehta</span>
+
+                <!--details Controls-->
+                <div class="contDetails">
+
+                    <!--View profile-->
+
+                    <div class="viewProf">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z"/></svg>
+
+                    </div>
+
+
+                    <!--send Email-->
+
+                    <div class="sendEmail">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 9.062s-5.188-.333-7 1.938c2-4.896 7-5.938 7-5.938v-2l5 4-5 4.019v-2.019zm-18.974 14.938h23.947l-11.973-11.607-11.974 11.607zm1.673-14l10.291-7.488 3.053 2.218c.712-.459 1.391-.805 1.953-1.054l-5.006-3.637-11.99 8.725v12.476l7.352-7.127-5.653-4.113zm15.753 4.892l6.548 6.348v-11.612l-6.548 5.264z"/></svg>
+
+                    </div>
+
+                    <!--Greetings-->
+
+                    <div class="greeting">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12.562l1.932-7.562 3.526.891-1.974 7.562-3.484-.891zm18.415.902c.125.287.187.598.155.91-.079.829-.698 1.448-1.457 1.602-.254.533-.733.887-1.285 1.002-.244.512-.722.89-1.296 1.01-.325.668-.97 1.012-1.674 1.012-.516 0-1.004-.183-1.356-.538-.928.404-1.902-.048-2.232-.863-.596-.068-1.107-.452-1.332-.997-.599-.071-1.114-.458-1.34-1.003-1.188-.138-1.848-1.44-1.198-2.495-.233-.058-.494-.104-.751-.152l.383-1.464c.524.1 1.01.219 1.453.358.913-.655 2.151-.295 2.549.679.608.069 1.116.464 1.334 1 .598.068 1.111.451 1.335.998.738.082 1.36.653 1.449 1.434l.002.225.45.402c.252.291.68.324.96.106.286-.223.324-.624.075-.909l-1.457-1.279c-.157-.139.052-.38.213-.241l1.491 1.308c.257.294.692.332.969.114.285-.22.316-.631.068-.916l-1.896-1.628c-.162-.135.048-.38.208-.242l1.944 1.669c.248.282.678.335.967.114.283-.22.349-.606-.002-.995-1.24-1.112-2.671-2.405-4.143-3.796-.355.488-2.176 1.502-3.279 1.502s-1.779-.675-1.96-1.343c-.157-.582.051-1.139.532-1.42.535-.313 1.055-.761 1.562-1.268-.789-.586-1.203-.398-2.067.013-.503.238-1.1.521-1.854.647l.437-1.67c1.327-.488 2.549-1.608 4.505-.083l.491-.552c.395-.447.911-.715 1.503-.715.436 0 .91.161 1.408.417 1.518.793 2.293 1.256 3.443 1.294l.394 1.508h-.008c-1.797.033-2.676-.508-4.516-1.47-.513-.263-.859-.318-1.1-.044-.984 1.12-2.031 2.309-3.192 3.063.573.458 2.019-.458 2.592-.92.25-.201.638-.468 1.128-.468.553 0 .955.331 1.244.619.68.68 2.57 2.389 3.407 3.142.434-.242.868-.435 1.311-.605l.383 1.467c-.319.134-.633.286-.95.461zm-11.037.875l.609-.747c.25-.3.215-.722-.08-.944-.296-.223-.737-.158-.986.14l-.61.749c-.251.298-.214.721.08.942s.737.159.987-.14zm1.328 1.006l.617-.755c.248-.297.213-.722-.082-.943-.294-.221-.734-.159-.984.142l-.616.754c-.251.3-.21.712.086.936.297.222.729.167.979-.134zm1.343.992l.608-.747c.251-.299.215-.721-.08-.944-.296-.222-.735-.157-.986.142l-.609.745c-.251.3-.213.724.082.945.293.221.734.16.985-.141zm1.865-.691c-.294-.224-.735-.159-.987.139l-.612.751c-.249.299-.213.722.082.943.295.221.735.16.986-.142l.61-.75c.253-.297.217-.72-.079-.941zm1.427 1.134l-.24-.212c-.063.239-.173.464-.332.65l-.358.441c.133.106.288.176.448.176.149 0 .295-.046.415-.138.284-.223.317-.632.067-.917zm5.201-10.889l1.974 7.562 3.484-.891-1.932-7.562-3.526.891zm-7.959-5.891l-.986.174.521 2.954.984-.174-.519-2.954zm3.82.174l-.985-.174-.521 2.954.985.174.521-2.954zm3.597 1.228l-.867-.5-1.5 2.598.867.5 1.5-2.598zm-11.133-.5l-.867.5 1.5 2.598.867-.5-1.5-2.598zm4.236 20.144l-.984-.174-.521 2.954.985.174.52-2.954zm2.779-.174l-.985.174.521 2.954.985-.174-.521-2.954zm2.618-.872l-.867.5 1.5 2.598.867-.5-1.5-2.598zm-8.133.5l-.867-.5-1.5 2.598.867.5 1.5-2.598z"/></svg>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            
+
+        </div>
+
+        <!--The question that the above user has posted-->
+        <div class="owenerQuiz">
+
+            <!--The quiz wrapper-->
+            <div class="ownerQuizWrapper">
+
+                <!--Detail Title and time-->
+                <div class="detDateTime">
+
+                    <h2>How to make print statement in python</h2>
+
+                    <span>5hrs Ago</span>
+
+                </div>
+
+                <!--Tags And controls-->
+
+                <div class="detTagsCont">
+
+                    <!--The detail tags-->
+                    <div class="detTags">
+
+                        <!--Individual tags-->
+
+                        <div class="indDetTag">
+                            <span>Python</span>
+                        </div>
+
+                        <!--Individual tags-->
+
+                        <div class="indDetTag">
+                            <span>Html</span>
+                        </div>
+
+                    </div>
+
+
+                    <!--The detail controls-->
+                    <div class="detCont">
+
+                        <!--Is this question verified-->
+                        <div class="isVerified">
+
+                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.831 16.198.002-.003-1.113-.996-.004.004-2.468-2.202c-.144-.128-.322-.191-.5-.191-.417 0-.749.337-.749.75 0 .206.084.412.249.56l2.478 2.21-.767.873-4.71-4.202c-.144-.128-.322-.191-.5-.191-.416 0-.749.337-.749.75 0 .206.084.412.25.56l5.268 4.7c.143.128.321.191.499.191.206 0 .41-.084.559-.25l1.264-1.437 1.677 1.496c.143.128.321.191.499.191.206 0 .409-.084.558-.25l11.234-12.499c.129-.143.192-.322.192-.501 0-.419-.338-.75-.748-.75-.206 0-.411.084-.559.249l-10.735 11.943zm-.451-1.75 1.114.996 8.316-9.182c.128-.143.191-.322.191-.501 0-.419-.337-.75-.748-.75-.206 0-.411.084-.559.249z" fill-rule="nonzero"/></svg>
+
+                        </div>
+
+                        <!--Number of annwers-->
+                        <div class="detAnswersNo">
+
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M24 1v16.981h-13l-7 5.02v-5.02h-4v-16.981h24zm-6 5.285l-6.622 7.715-4.378-3.852 1.319-1.489 2.879 2.519 5.327-6.178 1.475 1.285z"/></svg>
+
+                            <span class="detCount" >40</span>
+
+                        </div>
+
+                        <!--Views Details-->
+                        <div class="detAnswerViews">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"/></svg>
+
+                            <span class="detCount" >40</span>
+
+                        </div>
+
+                        <!--Upvote question detail-->
+
+                        <div class="detQusetionUpvote">
+
+                            <!--Vote the question-->
+                            <div class="vote">
+
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.998 21.995c5.517 0 9.997-4.48 9.997-9.997 0-5.518-4.48-9.998-9.997-9.998-5.518 0-9.998 4.48-9.998 9.998 0 5.517 4.48 9.997 9.998 9.997zm4.843-8.211c.108.141.157.3.157.456 0 .389-.306.755-.749.755h-8.501c-.445 0-.75-.367-.75-.755 0-.157.05-.316.159-.457 1.203-1.554 3.252-4.199 4.258-5.498.142-.184.36-.29.592-.29.23 0 .449.107.591.291z" fill-rule="nonzero"/></svg>
+
+
+                            </div>
+
+                            <span class="voteNumbers" >20</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--The separating line-->
+
+                <div class="detSepLine"></div>
+
+                <!--The body textfield content-->
+
+                <div class="body">
+
+                    <div class="detContent">
+
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
+    
+                    </div>
+    
+                    <!--Code block-->
+    
+                    <div class="codeBlockBody">
+    
+                        <p>print("Hellow World")</p>
+    
+                    </div>
+    
+                    <!--The question media-->
+    
+                    <div class="detailImages">
+    
+                        <img src="{% static '\Images\Code\code1.jpg' %}" alt="codeImage">
+    
+                        <span class="imgContName" >code1.png</span>
+    
+                    </div>
+
+                </div>
+
+                
+
+                <!--The separating line-->
+
+                <div class="detSepLine" style="margin-top: 20px;margin-bottom: 20px;" ></div>
+
+
+
+                <div class="trial">
+
+                    <div class="detContent">
+
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
+    
+                    </div>
+    
+                    <!--Code block-->
+    
+                    <div class="codeBlockBody">
+    
+                        <p>print("Hellow World")</p>
+    
+                    </div>
+    
+                    <!--The question media-->
+    
+                    <div class="detailImages">
+    
+                        <img src="{% static '\Images\Code\code2.jpg' %}" alt="codeImage">
+    
+                        <span class="imgContName" >code1.png</span>
+    
+                    </div>
+
+                </div>
+
+                <!--My detail question controls-->
+
+                <div class="myQuizCrud">
+
+                    <!--Alter and detelte-->
+                    <div class="crud">
+
+                        <!--Delete the question-->
+                        <div class="delete">
+
+                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2m3-19h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-12-2h4v-1h-4v1z"/></svg>
+
+                        </div>
+
+                        <!--Alter the question-->
+                        <div class="update">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.019 10.13c-.282-.293-.268-.751.024-1.035l2.974-2.884c.145-.14.332-.211.517-.211.188 0 .375.073.518.22l-4.033 3.91zm-4.888 7.348c-.062.059-.093.139-.093.218 0 .167.136.304.304.304.076 0 .152-.029.212-.086l.499-.486-.422-.436-.5.486zm4.219-5.617l-1.71 1.657c-.918.891-1.387 1.753-1.819 2.958l.754.779c1.217-.395 2.094-.836 3.013-1.728l1.709-1.658-1.947-2.008zm4.985-5.106l-4.402 4.27 2.218 2.29 4.402-4.269c.323-.314.485-.73.485-1.146 0-1.392-1.687-2.13-2.703-1.145z"/></svg>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--Received answers-->
+
+<div class="detailAnsweres">
+
+    <!--The user who posted the-->
+    <div class="postQuizuser" style="margin-top: 20px;margin-bottom: 20px;" >
+
+        <!--Owner profile picture-->
+        <div class="posterImage">
+
+            <img src="{% static '\Images\Users\user2.jpg' %}" alt="theUser">
+
+        </div>
+
+        <!--owener Controls-->
+        <div class="ownerCont">
+
+            <span>theMehta</span>
+
+            <!--details Controls-->
+            <div class="contDetails">
+
+                <!--View profile-->
+
+                <div class="viewProf">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09 4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z"/></svg>
+
+                </div>
+
+
+                <!--send Email-->
+
+                <div class="sendEmail">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 9.062s-5.188-.333-7 1.938c2-4.896 7-5.938 7-5.938v-2l5 4-5 4.019v-2.019zm-18.974 14.938h23.947l-11.973-11.607-11.974 11.607zm1.673-14l10.291-7.488 3.053 2.218c.712-.459 1.391-.805 1.953-1.054l-5.006-3.637-11.99 8.725v12.476l7.352-7.127-5.653-4.113zm15.753 4.892l6.548 6.348v-11.612l-6.548 5.264z"/></svg>
+
+                </div>
+
+                <!--Greetings-->
+
+                <div class="greeting">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12.562l1.932-7.562 3.526.891-1.974 7.562-3.484-.891zm18.415.902c.125.287.187.598.155.91-.079.829-.698 1.448-1.457 1.602-.254.533-.733.887-1.285 1.002-.244.512-.722.89-1.296 1.01-.325.668-.97 1.012-1.674 1.012-.516 0-1.004-.183-1.356-.538-.928.404-1.902-.048-2.232-.863-.596-.068-1.107-.452-1.332-.997-.599-.071-1.114-.458-1.34-1.003-1.188-.138-1.848-1.44-1.198-2.495-.233-.058-.494-.104-.751-.152l.383-1.464c.524.1 1.01.219 1.453.358.913-.655 2.151-.295 2.549.679.608.069 1.116.464 1.334 1 .598.068 1.111.451 1.335.998.738.082 1.36.653 1.449 1.434l.002.225.45.402c.252.291.68.324.96.106.286-.223.324-.624.075-.909l-1.457-1.279c-.157-.139.052-.38.213-.241l1.491 1.308c.257.294.692.332.969.114.285-.22.316-.631.068-.916l-1.896-1.628c-.162-.135.048-.38.208-.242l1.944 1.669c.248.282.678.335.967.114.283-.22.349-.606-.002-.995-1.24-1.112-2.671-2.405-4.143-3.796-.355.488-2.176 1.502-3.279 1.502s-1.779-.675-1.96-1.343c-.157-.582.051-1.139.532-1.42.535-.313 1.055-.761 1.562-1.268-.789-.586-1.203-.398-2.067.013-.503.238-1.1.521-1.854.647l.437-1.67c1.327-.488 2.549-1.608 4.505-.083l.491-.552c.395-.447.911-.715 1.503-.715.436 0 .91.161 1.408.417 1.518.793 2.293 1.256 3.443 1.294l.394 1.508h-.008c-1.797.033-2.676-.508-4.516-1.47-.513-.263-.859-.318-1.1-.044-.984 1.12-2.031 2.309-3.192 3.063.573.458 2.019-.458 2.592-.92.25-.201.638-.468 1.128-.468.553 0 .955.331 1.244.619.68.68 2.57 2.389 3.407 3.142.434-.242.868-.435 1.311-.605l.383 1.467c-.319.134-.633.286-.95.461zm-11.037.875l.609-.747c.25-.3.215-.722-.08-.944-.296-.223-.737-.158-.986.14l-.61.749c-.251.298-.214.721.08.942s.737.159.987-.14zm1.328 1.006l.617-.755c.248-.297.213-.722-.082-.943-.294-.221-.734-.159-.984.142l-.616.754c-.251.3-.21.712.086.936.297.222.729.167.979-.134zm1.343.992l.608-.747c.251-.299.215-.721-.08-.944-.296-.222-.735-.157-.986.142l-.609.745c-.251.3-.213.724.082.945.293.221.734.16.985-.141zm1.865-.691c-.294-.224-.735-.159-.987.139l-.612.751c-.249.299-.213.722.082.943.295.221.735.16.986-.142l.61-.75c.253-.297.217-.72-.079-.941zm1.427 1.134l-.24-.212c-.063.239-.173.464-.332.65l-.358.441c.133.106.288.176.448.176.149 0 .295-.046.415-.138.284-.223.317-.632.067-.917zm5.201-10.889l1.974 7.562 3.484-.891-1.932-7.562-3.526.891zm-7.959-5.891l-.986.174.521 2.954.984-.174-.519-2.954zm3.82.174l-.985-.174-.521 2.954.985.174.521-2.954zm3.597 1.228l-.867-.5-1.5 2.598.867.5 1.5-2.598zm-11.133-.5l-.867.5 1.5 2.598.867-.5-1.5-2.598zm4.236 20.144l-.984-.174-.521 2.954.985.174.52-2.954zm2.779-.174l-.985.174.521 2.954.985-.174-.521-2.954zm2.618-.872l-.867.5 1.5 2.598.867-.5-1.5-2.598zm-8.133.5l-.867-.5-1.5 2.598.867.5 1.5-2.598z"/></svg>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        
+
+    </div>
+
+    <!--This is thw answeres wrapper-->
+    <div class="allAnswersDet">
+
+        <!--The answere wrapper-->
+        <div class="wrapperallAnswersDet">
+
+            <!--Vote answere and date-->
+
+            <div class="detVoteAnDate">
+
+                <!--Upvote answer-->
+                <div class="detQusetionUpvote">
+
+                    <!--Vote the question-->
+                    <div class="vote">
+
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.998 21.995c5.517 0 9.997-4.48 9.997-9.997 0-5.518-4.48-9.998-9.997-9.998-5.518 0-9.998 4.48-9.998 9.998 0 5.517 4.48 9.997 9.998 9.997zm4.843-8.211c.108.141.157.3.157.456 0 .389-.306.755-.749.755h-8.501c-.445 0-.75-.367-.75-.755 0-.157.05-.316.159-.457 1.203-1.554 3.252-4.199 4.258-5.498.142-.184.36-.29.592-.29.23 0 .449.107.591.291z" fill-rule="nonzero"/></svg>
+
+
+                    </div>
+
+                    <span class="voteNumbers" >20</span>
+
+                </div>
+
+
+                <!--When the answere was uploaded-->
+
+                <span>5hrs Ago</span>
+
+            </div>
+
+
+            <!--The individual answer section-->
+
+            <div class="itAnswer">
+
+                <div class="detContent">
+
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
+
+                </div>
+
+                <!--Code block-->
+
+                <div class="codeBlockBody">
+
+                    <p>print("Hellow World")</p>
+
+                </div>
+
+                <!--The question media-->
+
+                <div class="detailImages">
+
+                    <img src="{% static '\Images\Code\code2.jpg' %}" alt="codeImage">
+
+                    <span class="imgContName" >code1.png</span>
+
+                </div>
+
+            </div>
+
+
+            <!--Verify answerer-->
+            
+            <div class="meVerAns">
+
+                <!--Press to verify-->
+                <div class="verfiyIt">
+
+                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m9.831 16.198.002-.003-1.113-.996-.004.004-2.468-2.202c-.144-.128-.322-.191-.5-.191-.417 0-.749.337-.749.75 0 .206.084.412.249.56l2.478 2.21-.767.873-4.71-4.202c-.144-.128-.322-.191-.5-.191-.416 0-.749.337-.749.75 0 .206.084.412.25.56l5.268 4.7c.143.128.321.191.499.191.206 0 .41-.084.559-.25l1.264-1.437 1.677 1.496c.143.128.321.191.499.191.206 0 .409-.084.558-.25l11.234-12.499c.129-.143.192-.322.192-.501 0-.419-.338-.75-.748-.75-.206 0-.411.084-.559.249l-10.735 11.943zm-.451-1.75 1.114.996 8.316-9.182c.128-.143.191-.322.191-.501 0-.419-.337-.75-.748-.75-.206 0-.411.084-.559.249z" fill-rule="nonzero"/></svg>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+
+<!--This is where the js links will be held-->
+{% block below %}
+
+<!--The js file-->
+<script src="{% static 'Js/quizDetail.js' %}"></script>
+
+{% endblock %}
