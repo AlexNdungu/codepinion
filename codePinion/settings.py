@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'codeSage.urls'
+ROOT_URLCONF = 'codePinion.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'codeSage.wsgi.application'
+WSGI_APPLICATION = 'codePinion.wsgi.application'
 
 
 # Database
