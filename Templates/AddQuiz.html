@@ -1,0 +1,503 @@
+<!--This page inherits from index.html-->
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+<!--The header section is bellow-->
+{% block head %}
+
+<title>codePinion ::- My Question Detail</title>
+
+<!--The css file-->
+<link rel="stylesheet" href="{% static '/Css/add.css' %}">
+
+
+{% endblock %}
+
+
+<!--This is where the rest of the content will be-->
+{% block content %}
+
+<!--This container will contain the whole middle content-->
+<div class="newContainer" id="newContainer" >
+
+    <!--The add Question section-->
+
+    <div class="addQuiz">
+
+        <!--Add Questions Heading-->
+        <div class="QuizHead">
+
+            <h2 class="secHead" >Add Question</h2>
+
+        </div>
+
+        <!--Selecting Tags section-->
+        <div class="tags">
+
+            <!--Containing Tags lable and tags count-->
+            <div class="tagHead">
+
+                <h3 class="head" >Tags</h3>
+
+            </div>
+
+            <!--Choose Tags sectio-->
+            <div class="theTags" id="theTags" >
+
+                {% for tag in tags %}
+
+                <!--Individual Tags-->
+                <div class="indTag" data-bs-toggle="collapse" data-bs-target="#tg{{tag.lang_name}}" aria-expanded="true" aria-controls="tg{{tag.lang_name}}" >
+
+                    <!--Tag Image-->
+                    <div class="tagImg">
+                        <img src="{{tag.language_url}}" alt="">
+                    </div>
+
+                    <!--Tag Name-->
+                    <div class="tagName">
+                    <span>{{tag.lang_name}}</span>
+                    </div>
+
+                    <!--Is selected-->
+                    <div class="isSelect">
+
+                        <div class="selIt">
+
+                            <!--Tag is checked-->
+                            <div class="tagTick">
+
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+
+                            </div>
+                            <!--Tag is not checked-->
+                            <div class="tagUncheck">
+
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+                                
+                            </div>
+
+                            
+
+                        </div>
+                        
+
+                    </div>
+
+                    <input type="checkbox" class="tagStatus" id="{{tag.lang_name}}" >
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+
+        </div>
+
+
+        <!--The framework will be here-->
+        <div class="frames">
+
+            <!--The Frameworks Heading-->
+            <div class="frameHead">
+
+                <h3 class="head" >FrameWorks</h3>
+
+            </div>
+
+            <!--
+
+                {% for key, value in frame.items  %}
+                    <tr>
+                        <td>{{key.lang_name}} </td> 
+                        <td>{{ value }} </td>
+                    </tr>
+                {% endfor %}
+
+            -->
+
+            <!--Use the dictionary to loop through this sectiobn-->
+
+            <div id="clickFrames">
+
+                {% for key, value in frame.items  %}
+
+                {% if value %}
+
+                <!--the section holding the individual language sections-->
+                <div class="frameSection" >
+
+                    <!--This div will contain the language connected to the frameworks-->
+                    <div class="nameLang">
+
+                        <div class="langImFr">
+                            <img src="{{key.language_url}}" alt="">
+                        </div>
+
+                        <span>{{key.lang_name}}</span>
+                    </div>
+
+                    <!--Thsi sections contains all The frame works-->
+                    <div class="allFrames collapse" id="tg{{key.lang_name}}" >
+
+                        {% for i in value %}
+
+                        <!--This are Individual frameworks-->
+                        <div class="frameInd">
+
+                            <!--Frame Image-->
+                            <div class="frameImg">
+                                <img src="{{i.frame_icon.url}}" alt="">
+                            </div>
+
+                            <!--Tag Name-->
+                            <div class="tagNameFrame">
+                                <span>{{i.frame_name}}</span>
+                            </div>
+
+                            <!--Is selected-->
+                            <div class="isSelectFrame">
+
+                                <div class="selItFrame">
+
+                                    <!--Tag is checked-->
+                                    <div class="tagTickFrame">
+
+                                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+
+                                    </div>
+                                    <!--Tag is not checked-->
+                                    <div class="tagUncheckFrame">
+
+                                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+                                        
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <input type="checkbox" class="tagStatusFrame" id="{{i.frame_name}}" >
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+
+        </div>
+
+
+        <!--Here is where the title will be-->
+
+        <div class="title">
+
+            <div class="titleHead">
+                <h2>Title</h2>
+            </div>
+
+            <input type="text" id="title">
+
+        </div>
+
+
+        <!--The body of the question-->
+
+        <div class="body">
+
+            <!--This is the body head-->
+            <div class="bodyHead">
+
+                <h2>Body</h2>
+
+            </div>
+
+            <div class="bodyText">
+
+                <!--options-->
+                <div class="options">
+
+                    <!--this are all the button-->
+
+                    <!--undo-->
+                    <button class="btnOption" data-command="undo" ><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19.885 5.515c-4.617-4.618-12.056-4.676-16.756-.195l-2.129-2.258v7.938h7.484l-2.066-2.191c2.82-2.706 7.297-2.676 10.074.1 2.992 2.993 2.664 7.684-.188 10.319l3.314 3.5c4.716-4.226 5.257-12.223.267-17.213z"/></svg>
+
+                    </i></button>
+
+                    <!--redo-->
+                    <button class="btnOption" data-command="redo" ><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.115 5.515c4.617-4.618 12.056-4.676 16.756-.195l2.129-2.258v7.938h-7.484l2.066-2.191c-2.819-2.706-7.297-2.676-10.074.1-2.992 2.993-2.664 7.684.188 10.319l-3.314 3.5c-4.716-4.226-5.257-12.223-.267-17.213z"/></svg>
+
+                    </i></button>
+
+                    <!--bold-->
+                    <button class="btnOption" data-command="bold" ><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.287 11.121c1.588-1.121 2.713-3.018 2.713-5.093 0-2.946-1.918-5.951-7.093-6.028h-11.907v2.042c1.996 0 3 .751 3 2.683v14.667c0 1.689-.558 2.608-3 2.608v2h11.123c6.334 0 8.877-3.599 8.877-7.038 0-2.538-1.417-4.67-3.713-5.841zm-8.287-8.121h2.094c2.357 0 4.126 1.063 4.126 3.375 0 2.035-1.452 3.625-3.513 3.625h-2.707v-7zm2.701 18h-2.701v-8h2.781c2.26.024 3.927 1.636 3.927 3.667 0 2.008-1.226 4.333-4.007 4.333z"/></svg>
+
+                    </i></button>
+
+                    <!--italic-->
+                    <button class="btnOption" data-command="italic" ><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.565 20.827c-.361.732-.068 1.173.655 1.173h1.78v2h-9v-2h.897c1.356 0 1.673-.916 2.157-1.773l8.349-16.89c.403-.852-.149-1.337-.855-1.337h-1.548v-2h9v2h-.84c-1.169 0-1.596.646-2.06 1.516l-8.535 17.311z"/></svg>
+
+                    </i></button>
+
+                    <!--undeline-->
+                    <button class="btnOption" data-command="underline"><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 24h-16v-2h16v2zm-5-24v1.973c1.619 0 2 .926 2 1.497v9.056c0 2.822-2.161 4.507-5 4.507s-5-1.685-5-4.507v-9.056c0-.571.381-1.497 2-1.497v-1.973h-7v1.973c1.66 0 2 .575 2 1.497v8.828c0 5.175 3.096 7.702 8 7.702 4.899 0 8-2.527 8-7.702v-8.828c0-.922.34-1.497 2-1.497v-1.973h-7z"/></svg>
+
+                    </i></button>
+
+                    <!--strickthrough-->
+                    <button class="btnOption" data-command="strikeThrough"><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19.271 14.521c.358.74.728 1.803.728 2.818 0 4.658-4 6.661-8.498 6.661-2.183 0-4.483-.472-6.5-1.341v-4.659h2c.227 1.809 1.875 3 4.444 3 2.503 0 4.415-1.046 4.63-3.28.127-1.321-.65-2.451-1.653-3.199h4.849zm-4.583-3.521c-3.124-1.398-6.281-2.75-5.639-5.669.714-3.244 7.265-3.206 7.951.669h1.979v-5.109c-2.028-.604-3.936-.891-5.649-.891-4.927 0-8.252 2.375-8.252 6.454 0 1.899.862 3.554 2.113 4.546h-7.191v2h24v-2h-9.312z"/></svg>
+
+                    </i></button>
+
+                    <!--H1-->
+                    <button class="btnOption" data-command="formatBlock"  data-block="H1" ><i>
+                        H1
+                    </i></button>
+
+                    <!--H2-->
+                    <button class="btnOption" data-command="formatBlock" data-block="H2"  ><i>
+                        H2
+                    </i></button>
+
+                    <!--H3-->
+                    <button class="btnOption" data-command="formatBlock" data-block="H3"  ><i>
+                        H3
+                    </i></button>
+
+                    <!--List-->
+                    <button class="btnOption" data-command="insertUnorderedList"  ><i>
+
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m22 17.75c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm-18.25-2.75c.966 0 1.75.784 1.75 1.75s-.784 1.75-1.75 1.75-1.75-.784-1.75-1.75.784-1.75 1.75-1.75zm18.25-1.25c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm-18.25-3.75c.966 0 1.75.784 1.75 1.75s-.784 1.75-1.75 1.75-1.75-.784-1.75-1.75.784-1.75 1.75-1.75zm18.25-.25c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm-18.25-4.75c.966 0 1.75.784 1.75 1.75s-.784 1.75-1.75 1.75-1.75-.784-1.75-1.75.784-1.75 1.75-1.75zm18.25.75c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+
+                    </i></button>
+
+                    <!--text align left-->
+                    <button class="btnOption" data-command="justifyLeft"  ><i>
+
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"   width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m17 17.75c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm5-4c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm-9-4c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm7-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+
+                    </i></button>
+
+                    <!--text align rign-->
+                    <button class="btnOption" data-command="justifyRight"  ><i>
+
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"   width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m7 17.75c0-.414.336-.75.75-.75h13.5c.414 0 .75.336.75.75s-.336.75-.75.75h-13.5c-.414 0-.75-.336-.75-.75zm-5-4c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm9-4c0-.414.336-.75.75-.75h9.5c.414 0 .75.336.75.75s-.336.75-.75.75h-9.5c-.414 0-.75-.336-.75-.75zm-7-4c0-.414.336-.75.75-.75h16.5c.414 0 .75.336.75.75s-.336.75-.75.75h-16.5c-.414 0-.75-.336-.75-.75z" fill-rule="nonzero"/></svg>
+
+                    </i></button>
+
+                    <!--text center-->
+                    <button class="btnOption" data-command="justifyCenter"  ><i>
+
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 17.75c0-.414.336-.75.75-.75h10.5c.414 0 .75.336.75.75s-.336.75-.75.75h-10.5c-.414 0-.75-.336-.75-.75zm-4-4c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm0-4c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm4-4c0-.414.336-.75.75-.75h10.5c.414 0 .75.336.75.75s-.336.75-.75.75h-10.5c-.414 0-.75-.336-.75-.75z" fill-rule="nonzero"/></svg>
+
+                    </i></button>
+
+                    <!--all-->
+                    <button class="btnOption" data-command="justifyFull"  ><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 1h24v2h-24v-2zm0 7h24v-2h-24v2zm0 5h24v-2h-24v2zm0 5h24v-2h-24v2zm0 5h24v-2h-24v2z"/></svg>
+
+                    </i></button>
+
+                    <button class="btnOption" data-command="createLink" ><i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.723 18.654l-3.61 3.609c-2.316 2.315-6.063 2.315-8.378 0-1.12-1.118-1.735-2.606-1.735-4.188 0-1.582.615-3.07 1.734-4.189l4.866-4.865c2.355-2.355 6.114-2.262 8.377 0 .453.453.81.973 1.089 1.527l-1.593 1.592c-.18-.613-.5-1.189-.964-1.652-1.448-1.448-3.93-1.51-5.439-.001l-.001.002-4.867 4.865c-1.5 1.499-1.5 3.941 0 5.44 1.517 1.517 3.958 1.488 5.442 0l2.425-2.424c.993.284 1.791.335 2.654.284zm.161-16.918l-3.574 3.576c.847-.05 1.655 0 2.653.283l2.393-2.389c1.498-1.502 3.94-1.5 5.44-.001 1.517 1.518 1.486 3.959 0 5.442l-4.831 4.831-.003.002c-1.438 1.437-3.886 1.552-5.439-.002-.473-.474-.785-1.042-.956-1.643l-.084.068-1.517 1.515c.28.556.635 1.075 1.088 1.528 2.245 2.245 6.004 2.374 8.378 0l4.832-4.831c2.314-2.316 2.316-6.062-.001-8.377-2.317-2.321-6.067-2.313-8.379-.002z"/></svg>
+
+                    </i></button>
+
+
+                </div>
+
+                <!--the editable section-->
+                <div class="richEdit" contenteditable="true" id="richEdit" >
+
+                </div>
+
+                
+            </div>
+
+        </div>
+
+
+        <!--The code section-->
+        <div class="code">
+
+            <!--This is the code head-->
+            <div class="codeHead">
+                <h2>Code</h2>
+            </div>
+
+            <!--Code Body-->
+
+            <div class="codeBody">
+
+                <!--Code section one-->
+                <div class="code_1" id="code_1" >
+
+                    <!--Boostrap drop code section-->
+                    <div class="dropCodeSec">
+
+                        <button class="enable" id="enable">
+                            <span id="code1ChangeSpan" >DISABLED</span>
+
+                            <!--Code section is available-->
+
+                            <div class="codeSecState">
+
+                                <div class="codeAvail" id="codeAvail" >
+
+                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+    
+                                </div>
+    
+                                <!--Code section is unavailable-->
+                                <div class="codeUnavail" id="codeUnavail" >
+    
+                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+    
+                                </div>
+
+
+                            </div>
+
+
+                        </button>
+
+                        <span id="codeTellState" >Code1 section is DISABLED</span>
+                        
+                    </div>
+
+                    <!--Toggle language-->
+
+                    <div id="togLang">
+
+                         <!--Select language and mode-->
+                        <div class="lang_mode" id="lang_mode" >
+
+                            <!--Select language-->
+                            <div class="langCode">
+
+                                <!--Select the language you want-->
+                                <div class="selLang">
+
+                                    <!--The input and arrow-->
+                                    <div class="langInput">
+
+                                        <input type="text" class="code_1_lang" id="code_1_lang" >
+
+                                        <div class="langArrow" id="langArrow" >
+
+                                            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/></svg>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--Language drop down-->
+                                    <div class="langDrop" id="langDrop" >
+
+                                        {% for tag in tags %}
+
+                                        <!--Single languages-->
+                                        <div class="drpSing">
+
+                                            <!--The image-->
+                                            <div class="droImg">
+                                                <img src="{{tag.language_url}}" alt="">
+                                            </div>
+
+                                            <span  class="lang_value" >{{tag.lang_name}}</span>
+                                        </div>
+
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--Mode-->
+                            <div class="codeMode" id="codeMode" >
+
+                                <!--lightMode-->
+                                <div class="modeLight" id="modeLight" >
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"/></svg>
+
+                                </div>
+                                <!--dark mode-->
+                                <div class="modeDark" id="modeDark" >
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12-12 5.373-12 12zm2 0c0-5.292 4.113-9.612 9.315-9.965-3.205 2.154-5.315 5.813-5.315 9.965s2.11 7.811 5.315 9.965c-5.202-.353-9.315-4.673-9.315-9.965z"/></svg>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!--The code body-->
+
+                        <div class="code_1_body" id="editor">
+
+                        </div>
+                        
+                    </div>
+
+                   
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>    
+
+{% endblock %}
+
+
+
+<!--This is where the js links will be held-->
+{% block below %}
+
+<!--The js file-->
+<script src="{% static 'Js/Add/add.js' %}"></script>
+<script src="{% static 'Js/Add/rich.js' %}"></script>
+<script src="{% static 'Js/Add/code.js' %}"></script>
+
+<script src="{% static 'Js/lib/ace.js' %}"></script>
+<script src="{% static 'Js/lib/theme-monokai.js' %}"></script>
+
+
+
+{% endblock %}

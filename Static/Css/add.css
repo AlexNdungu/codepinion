@@ -1,0 +1,667 @@
+.newContainer {
+    width: 100%;
+    height: max-content;
+    padding-top: 200px;
+    transition: 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9cbff;
+}
+
+/* This div contains all the questions */
+.addQuiz{
+    width: 98%;
+    min-height: 100vh;
+    background-color: white;
+    border-radius: 100px;
+    border: 2px solid #333682;
+}
+
+/* This is the heading of the question page  */
+
+.QuizHead {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secHead {
+    font-size: 24px;
+    color: #333682;
+    font-weight: 600;
+}
+
+
+/* The tags sections */
+
+.tags {
+    width: 100%;
+    height: min-content;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid #c9cbff;
+}
+
+/* The tags Heading */
+
+.tagHead {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333682;
+}
+
+.theTags {
+    width: 80%;
+    height: min-content;
+    min-height: 50px;
+    border-radius: 20px;
+    border: 1px solid #c9cbff;
+    display: flex;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* individual Tags */
+
+.indTag,.frameInd {
+    width: max-content;
+    height: 50px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #292929;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.indTag:hover,.frameInd:hover {
+    background-color: #333682;
+    color: #c9cbff;
+}
+
+.active {
+    background-color: #333682;
+    color: #c9cbff;
+}
+
+.tagImg,.frameImg {
+    width: 50px;
+    height: 50px;
+}
+
+.tagImg img,.frameImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.tagName,.tagNameFrame {
+    margin: 10px;
+}
+
+
+/* the selected section */
+
+.isSelect,.isSelectFrame {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.isSelect svg,.isSelectFrame svg {
+    transform: scale(1.2);
+}
+
+.tagTick,.tagTickFrame {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    fill: #3ea42d;
+}
+
+.tagUncheck,.tagUncheckFrame {
+    width: 100%;
+    height: 100%;
+    fill: #d93636;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Dispaly none the checkbox */
+
+.tagStatus {
+    display: none;
+}
+
+
+/* The frameworks */
+
+
+.frames {
+    width: 100%;
+    height: min-content;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid #c9cbff;
+    margin-top: 10px;
+}
+
+/* The tags Heading */
+
+.frameHead {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333682;
+}
+
+.frameSection {
+    width: 80%;
+    height: min-content;
+    min-height: 70px;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.head {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+
+/* This section contains the name of the language */
+
+.nameLang {
+    width: 100%;
+    height: 70px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: #333682;
+}
+
+/* This image is the language image */
+
+.langImFr {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.langImFr img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+}
+
+
+/* All Frameworks */
+
+.allFrames {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
+
+.tagNameFrame {
+    min-width: max-content;
+}
+
+
+/* contains all frames */
+
+#clickFrames {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* check box for frames */
+
+.tagStatusFrame {
+    display: none;
+}
+
+
+/* The title section */
+
+.title {
+    width: 100%;
+    height: min-content;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid #c9cbff;
+    margin-top: 10px;
+}
+
+.titleHead {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333682;
+}
+
+.titleHead h2 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* The input */
+
+.title input {
+    width: 80%;
+    height: 50px;
+    margin-bottom: 20px;
+    border: 2px solid #c9cbff;
+    outline-color: #333682;
+    border-radius: 10px;
+    color: #333682;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px;
+    text-transform: capitalize;
+}
+
+
+/* The body section */
+
+.body {
+    width: 100%;
+    height: min-content;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 2px solid #c9cbff;
+    margin-top: 10px;
+}
+
+.bodyHead {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333682;
+}
+
+.bodyHead h2 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* ckeditor section */
+
+.bodyText {
+    width: 80%;
+    height: max-content;
+    min-height: 400px;
+    border-radius: 10px;
+    border: 2px solid #c9cbff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+.options {
+    width: 98%;
+    height: max-content;
+    min-height: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.options button {
+    min-width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: none;
+    border-radius: 10px;
+    outline: none;
+    border: 2px solid #c9cbff;
+    fill: #c9cbff;
+    color: #c9cbff;
+}
+
+.options button:hover {
+    color: #333682;
+    fill: #333682;
+    border: 2px solid #333682;
+}
+
+
+/* the editable class */
+
+.richEdit {
+    width: 98%;
+    height: 400px;
+    border-radius: 10px;
+    border: 2px solid #c9cbff;
+    margin-bottom: 10px;
+    outline-color: #333682;
+    padding: 20px;
+    color: #333682;
+}
+
+.richEdit u {
+    text-decoration: underline;
+}
+
+.richEdit strike {
+    text-decoration: line-through;
+}
+
+.richEdit ul {
+    list-style: circle outside;
+}
+
+/* The code section */
+
+.code {
+    width: 100%;
+    height: max-content;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    border: 2px solid #c9cbff;
+    margin-top: 10px;
+}
+
+.codeHead {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #333682;
+}
+
+.codeHead h2 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* the code body */
+
+.codeBody {
+    width: 100%;
+    height: max-content;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* bog select lang section */
+
+.selLang {
+    position: relative;
+    width: max-content;
+    height: max-content;
+}
+
+
+/* the provide code sections */
+
+.code_1 {
+    width: 80%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #c9cbff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: 0.5s ease-in-out;
+}
+
+
+/* disable and enable code section */
+
+.dropCodeSec {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1px;
+}
+
+.enable {
+    width: 170px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: none;
+    transition: 0.2s ease-in-out;
+    margin-left: 10px;
+    color: #d93636;
+    fill: #d93636;
+    font-weight: 600;
+}
+
+.enable:hover{
+    background-color: #333682;
+    color: #c9cbff;
+    fill: #c9cbff;
+}
+
+.codeSecState {
+    transform: scale(1.2);
+}
+
+#codeTellState {
+    color: #d93636;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+
+/* this section holds code and drop down */
+
+#togLang {
+    width: 100%;
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* the code section mode and language */
+
+.langCode {
+    margin-left: 10px;
+}
+
+.langInput {
+    width: 230px;
+    height: 50px;
+    border: 2px solid #c9cbff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.2s ease-in;
+}
+
+.langInput:hover {
+    border: 2px solid #333682;
+}
+
+.langInput input {
+    width: 160px;
+    height: 100%;
+    margin-left: 10px;
+    color: #333682;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.lang_mode {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* arrow icon */
+
+.langArrow {
+    transform: scale(1.2);
+    margin-right: 10px;
+    fill: #c9cbff;
+    cursor: pointer;
+    transform: rotate(180deg);
+    transition: 0.2s ease-in-out;
+}
+
+.langArrow:hover {
+    fill: #333682;
+}
+
+/* the languag e drop down */
+
+.langDrop {
+    position: absolute;
+    top: 120%;
+    width: 100%;
+    min-height: 45px;
+    height: max-content;
+    background-color: #c9cbff;
+    border-radius: 10px;
+    z-index: 100;
+}
+
+
+/* the language itself */
+
+.drpSing {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid #c9cbff;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.drpSing:hover {
+    border: 2px solid #333682;
+}
+
+.drpSing span {
+    color: #333682;
+    font-weight: 500;
+}
+
+.droImg {
+    width: 40px;
+    height: 40px;
+    margin: 20px;
+}
+
+.droImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* the editor */
+
+.code_1_body {
+    width: 98%;
+    height: 80%;
+}
+
+
+/* styling the light and dark mode */
+
+.codeMode {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9cbff;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.modeLight,.modeDark {
+    transform: scale(1.2);
+}
+
+.modeLight {
+    fill: #333682;
+}
+
+.modeDark {
+    fill: #292929;
+}

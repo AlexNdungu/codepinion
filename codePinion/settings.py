@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Code1',
+    'Quiz1',
+
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +80,11 @@ WSGI_APPLICATION = 'codePinion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Opinion',
+        'USER': 'postgres',
+        'PASSWORD': '1294',
+        'HOST': 'localhost'
     }
 }
 
@@ -102,6 +108,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#ckeditor
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'height': 300, 
+        'width': 'full', 
+    },
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -124,6 +139,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'Static')
 ]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
