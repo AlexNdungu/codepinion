@@ -509,7 +509,7 @@
     transform: scale(1.2);
 }
 
-#codeTellState {
+#codeTellState,#codeTellState1,#codeTellState2,#codeTellState3 {
     color: #d93636;
     font-size: 16px;
     font-weight: 600;
@@ -519,7 +519,7 @@
 
 /* this section holds code and drop down */
 
-#togLang {
+#togLang,#togLang1,#togLang2,#togLang3 {
     width: 100%;
     height: calc(100% - 70px);
     display: flex;
@@ -599,7 +599,7 @@
 
 /* the language itself */
 
-.drpSing {
+.drpSing,.drpSing1,.drpSing2,.drpSing3 {
     width: 100%;
     height: 50px;
     display: flex;
@@ -610,11 +610,11 @@
     z-index: 100;
 }
 
-.drpSing:hover {
+.drpSing:hover,.drpSing1:hover,.drpSing2:hover,.drpSing3:hover {
     border: 2px solid #333682;
 }
 
-.drpSing span {
+.drpSing span,.drpSing1 span,.drpSing2 span,.drpSing3 {
     color: #333682;
     font-weight: 500;
 }
