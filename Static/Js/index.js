@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+    $('#mainBody').css('background-color','#c9cbff');
+
     //This is the drop down menu logic
 
     let dropStatus = false;
@@ -13,15 +15,15 @@ $(document).ready(function(){
 
         if(dropStatus == false){
             //Main Nav
-            $('#navigation').css("height","300px")
+            $('#navigation').css("height","300px");
             //White Nav
-            $('#navig').css("height","260px")
+            $('#navig').css("height","260px");
             //The new nav
-            $('#midNav').show(400)
+            $('#midNav').show(400);
             //The new content div
-            $('#newContainer').css("padding-top","300px")
+            $('#newContainer').css("padding-top","300px");
             //Rotating arrow
-            $('#dropMenu svg').css("transform","rotate(180deg)")
+            $('#dropMenu svg').css("transform","rotate(180deg)");
 
             dropStatus = true;
 
