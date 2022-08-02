@@ -10,15 +10,15 @@ urlpatterns = [
     path('Ask/', views.Ask, name='Add_Question'),
 
     #This is the new questions url
-    path('New Questions/', views.newQuiz, name='New_questions'),
+    path('New_Questions/', views.newQuiz, name='New_questions'),
 
     #This is the question detail path
-    path('Question Details/',views.quizDetail, name='question_detail'),
+    path('Question_Details/',views.quizDetail, name='question_detail'),
 
     #This is my questions url
-    path('My questions/', views.myQuizs, name='my_questions'),
+    path('My_Questions/', views.myQuizs, name='my_questions'),
 
     #This is my questions details
-    path('My Questions Details/', views.myQuizDetail, name='mt_quiz_details')
+    path('My_Questions_Details/', views.myQuizDetail, name='mt_quiz_details')
 
 ]
