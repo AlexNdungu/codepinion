@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+#QUESTION MODEL
+
 class Question(models.Model):
 
     quiz_id = models.AutoField(primary_key=True)
@@ -16,6 +18,9 @@ class Question(models.Model):
 
     #one question many tags
     tags = models.ManyToManyField(Language, blank=True)
+
+    #one question many frameworks
+    frames = models.ManyToManyField(Framework, blank=True)
 
     #This is the question titles
     quiz_title = models.CharField(max_length=100, verbose_name='Question Title')
@@ -28,35 +33,17 @@ class Question(models.Model):
 
 
     #Code Block Sections
-    code_1 = models.TextField(verbose_name='CodeBlock 1')
-    code_2 = models.TextField(verbose_name='CodeBlock 2')
-    code_3 = models.TextField(verbose_name='CodeBlock 3')
-    code_4 = models.TextField(verbose_name='CodeBlock 4')
-    code_5 = models.TextField(verbose_name='CodeBlock 5')
+    code_1_type = models.CharField(max_length=12, verbose_name='Code 1 Lang', null=True, blank=True)
+    code_1 = models.TextField(verbose_name='CodeBlock 1', null=True, blank=True)
 
+    code_2_type = models.CharField(max_length=12, verbose_name='Code 2 Lang', null=True, blank=True)
+    code_2 = models.TextField(verbose_name='CodeBlock 2', null=True, blank=True)
 
-    #Images sections
+    code_3_type = models.CharField(max_length=12, verbose_name='Code 3 Lang', null=True, blank=True)
+    code_3 = models.TextField(verbose_name='CodeBlock 3', null=True, blank=True)
 
-    body_media = models.ImageField(upload_to='Tried', verbose_name='Body Media')
-
-    #WHAT THE USER HAS TRIED
-
-    #The tried body
-
-    tried_body = RichTextField()
-
-    #Code Block Sections
-    code_11 = models.TextField(verbose_name='CodeBlock 11')
-    code_22 = models.TextField(verbose_name='CodeBlock 22')
-    code_33 = models.TextField(verbose_name='CodeBlock 33')
-    code_44 = models.TextField(verbose_name='CodeBlock 44')
-    code_55 = models.TextField(verbose_name='CodeBlock 55')
-
-
-    #The tried media
-
-    tried_media = models.ImageField(upload_to='Tried', verbose_name='Tried Media')
-
+    code_4_type = models.CharField(max_length=12, verbose_name='Code 4 Lang', null=True, blank=True)
+    code_4 = models.TextField(verbose_name='CodeBlock 4', null=True, blank=True)
 
     #Users That Have Viewed The Question
     quiz_views = models.ManyToManyField(Profile, blank=True, related_name="views", verbose_name='Question Views')
@@ -65,3 +52,24 @@ class Question(models.Model):
 
     update = models.DateTimeField(auto_now=True)
     created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.quiz_title
+
+
+#QUESTION GALLERY
+
+class Gallery(models.Model):
+
+    gallery_id = models.AutoField(primary_key=True)
+
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+    body_media = models.ImageField(upload_to='Tried', verbose_name='Media')
+
+    #update and create date
+    update = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.question.quiz_title

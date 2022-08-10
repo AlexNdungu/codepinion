@@ -9,6 +9,9 @@ urlpatterns = [
     #Ask question page
     path('Ask/', views.Ask, name='Add_Question'),
 
+    #This will handle the posting of question
+    path('greatForm/', views.greatForm, name='greatForm'),
+
     #This is the new questions url
     path('New_Questions/', views.newQuiz, name='New_questions'),
 

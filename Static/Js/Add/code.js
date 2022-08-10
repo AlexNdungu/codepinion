@@ -1,3 +1,123 @@
+//Here we disable the language inputs
+document.getElementById('code_1_lang').disabled = true;
+document.getElementById('code_1_lang1').disabled = true;
+document.getElementById('code_1_lang2').disabled = true;
+document.getElementById('code_1_lang3').disabled = true;
+
+
+//Here we disable the view codes if the code area is not activated
+$('#revCode1').hide();
+$('#revCode2').hide();
+$('#revCode3').hide();
+$('#revCode4').hide();
+
+
+
+//Here is the editor value
+//Now lets deal with the editor
+
+export let editor;
+export let editor2;
+export let editor3;
+export let editor4;
+
+export let editor1Value;
+export let editor2Value;
+export let editor3Value;
+export let editor4Value;
+
+
+window.onload = function(){
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.session.setMode("ace/mode/python");
+
+
+    //This options belong to editor one
+
+    editor.setOptions({
+        fontSize: "15px",
+        fontFamily: "Inconsolata",
+    });
+
+    //This section willl populate the review page code
+    editor.session.on('change', function(delta) {
+        // delta.start, delta.end, delta.lines, delta.action
+
+        editor1Value = editor.getValue();
+
+        //console.log(editor1Value)
+
+    });
+
+    //This options belong to editor 2
+
+    editor2 = ace.edit("editor1");
+    editor2.setTheme("ace/theme/tomorrow");
+    editor2.session.setMode("ace/mode/python");
+
+    editor2.setOptions({
+        fontSize: "15px",
+        fontFamily: "Inconsolata",
+    });
+
+    editor2.session.on('change', function(delta){
+
+        editor2Value = editor2.getValue();
+
+       // console.log(editor2Value)
+
+    });
+
+
+    //This option populate the editor 3
+
+    editor3 = ace.edit("editor2");
+    editor3.setTheme("ace/theme/tomorrow");
+    editor3.session.setMode("ace/mode/python");
+
+    editor3.setOptions({
+        fontSize: "15px",
+        fontFamily: "Inconsolata",
+    });
+
+    editor3.session.on('change', function(delta){
+
+        editor3Value = editor3.getValue();
+
+        console.log(editor3Value)
+
+    });
+
+
+    editor4 = ace.edit("editor3");
+    editor4.setTheme("ace/theme/tomorrow");
+    editor4.session.setMode("ace/mode/python");
+
+    editor4.setOptions({
+        fontSize: "15px",
+        fontFamily: "Inconsolata",
+    });
+
+    editor4.session.on('change', function(delta){
+
+        editor4Value = editor4.getValue();
+
+        console.log(editor4Value)
+
+    });
+}
+
+
+
+//Lets disable all the buttons
+
+document.getElementById('enable1').disabled = true;
+document.getElementById('enable2').disabled = true;
+document.getElementById('enable3').disabled = true;
+
+
+
 //Here we will change thevalue of the custom drop down
 
 //This are the languages values
@@ -95,6 +215,13 @@ enable.addEventListener('click', () => {
 
         code1Enabled = true;
 
+        document.getElementById('enable1').disabled = false;
+
+
+        //Here we show the code 1 review space
+        $('#revCode1').show();
+
+
     }
     else{
 
@@ -116,27 +243,29 @@ enable.addEventListener('click', () => {
 
         code1Enabled = false;
 
+        $('#revCode1').hide();
+
+
+        if(document.getElementById('code1ChangeSpan1').innerHTML == 'ENABLED'){
+
+            document.getElementById('enable1').click();
+
+
+        }
+
+        setTimeout(function(){
+
+            document.getElementById('enable1').disabled = true;
+            
+        },100);
+
+
+        //Here we set the value of the editor to null
+        editor.setValue("");
 
     }
 
 });
-
-//Now lets deal with the editor
-
-let editor;
-let editor2;
-
-window.onload = function(){
-    editor = ace.edit("editor");
-    editor.setTheme("ace/theme/tomorrow");
-    editor.session.setMode("ace/mode/python");
-
-    editor2 = ace.edit("editor1");
-
-    editor3 = ace.edit("editor2");
-
-    editor4 = ace.edit("editor3");
-}
 
 //Now lets set the light and dark mode
 
@@ -193,7 +322,7 @@ let langButtons1 = document.querySelectorAll('.drpSing1');
 //this is the input we will change the value
 let inputValue1 = document.getElementById('code_1_lang1');
 
-let dropState1 = false;
+//let dropState1 = false;
 //This is the action
 
 for(let val = 0; val < langButtons1.length; val++){
@@ -282,6 +411,11 @@ enable1.addEventListener('click', () => {
 
         code1Enabled1 = true;
 
+        document.getElementById('enable2').disabled = false;
+
+        $('#revCode2').show();
+
+
     }
     else{
 
@@ -302,6 +436,25 @@ enable1.addEventListener('click', () => {
         $("#code_2").css('height', '70px')
 
         code1Enabled1 = false;
+
+        $('#revCode2').hide();
+
+
+        if(document.getElementById('code1ChangeSpan2').innerHTML == 'ENABLED'){
+
+            document.getElementById('enable2').click();
+
+
+        }
+
+        setTimeout(function(){
+
+            document.getElementById('enable2').disabled = true;
+            
+        },100);
+
+        //Set value of editor
+        editor2.setValue("");
 
 
     }
@@ -376,7 +529,6 @@ let langButtons2 = document.querySelectorAll('.drpSing2');
 //this is the input we will change the value
 let inputValue2 = document.getElementById('code_1_lang2');
 
-let dropState2 = false;
 //This is the action
 
 for(let val = 0; val < langButtons2.length; val++){
@@ -389,7 +541,7 @@ for(let val = 0; val < langButtons2.length; val++){
 
         inputValue2.value = languagesValues2[val].innerHTML;
 
-        document.getElementById('langArrow1').click();
+        document.getElementById('langArrow2').click();
 
 
     });
@@ -464,6 +616,10 @@ enable2.addEventListener('click', () => {
 
         code1Enabled2 = true;
 
+        $('#revCode3').show();
+
+        document.getElementById('enable3').disabled = false;
+
     }
     else{
 
@@ -484,6 +640,25 @@ enable2.addEventListener('click', () => {
         $("#code_3").css('height', '70px')
 
         code1Enabled2 = false;
+
+        $('#revCode3').hide();
+
+
+        if(document.getElementById('code1ChangeSpan3').innerHTML == 'ENABLED'){
+
+            document.getElementById('enable3').click();
+
+
+        }
+
+        setTimeout(function(){
+
+            document.getElementById('enable3').disabled = true;
+            
+        },100);
+
+        //Set value of editor
+        editor3.setValue("");
 
 
     }
@@ -632,6 +807,9 @@ enable3.addEventListener('click', () => {
 
         code1Enabled3 = true;
 
+        $('#revCode4').show();
+
+
     }
     else{
 
@@ -652,6 +830,12 @@ enable3.addEventListener('click', () => {
         $("#code_4").css('height', '70px')
 
         code1Enabled3 = false;
+
+        $('#revCode4').hide();
+
+
+        //Set value of editor
+        editor4.setValue("");
 
 
     }

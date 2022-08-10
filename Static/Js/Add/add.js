@@ -22,7 +22,7 @@ tags.forEach((item,index) => {
     })
 });
 
-let tagsArray = []
+export let tagsArray = []
 
 checkCheck.forEach((item,index) => {
     item.addEventListener('click', ()=> {
@@ -99,7 +99,7 @@ frameworks.forEach((item,index) => {
     })
 });
 
-let framesArray = []
+export let framesArray = []
 
 checkCheckFrame.forEach((item,index) => {
     item.addEventListener('change', ()=> {

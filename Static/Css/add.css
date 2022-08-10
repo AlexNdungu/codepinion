@@ -4,15 +4,32 @@
     padding-top: 200px;
     transition: 0.5s ease-in-out;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #c9cbff;
+    overflow-x: hidden;
+}
+
+.revUj {
+    min-width: 100%;
 }
 
 /* This div contains all the questions */
 .addQuiz{
-    width: 98%;
+    min-width: 98%;
     min-height: 100vh;
+    margin-left: 1%;
+    margin-right: 1%;
+    background-color: white;
+    border-radius: 100px;
+    border: 2px solid #333682;
+}
+
+.addQuizReview {
+    min-width: 98%;
+    min-height: 100vh;
+    height: min-content;
+    margin-left: 1%;
+    margin-right: 1%;
     background-color: white;
     border-radius: 100px;
     border: 2px solid #333682;
@@ -67,8 +84,10 @@
     border-radius: 20px;
     border: 1px solid #c9cbff;
     display: flex;
-    padding: 10px;
+    padding-left: 5px;
+    padding-bottom: 5px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 /* individual Tags */
@@ -76,6 +95,10 @@
 .indTag,.frameInd {
     width: max-content;
     height: 50px;
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
     background-color: #c9cbff;
     display: flex;
     align-items: center;
@@ -393,17 +416,34 @@
     outline-color: #333682;
     padding: 20px;
     color: #333682;
+    overflow-x: auto;
 }
 
-.richEdit u {
+.richEdit h1,#BodyFill h1 {
+    font-size: 29px !important ;
+    font-weight: 800;
+}
+
+.richEdit h2, #BodyFill h2 {
+    font-size: 24px !important ;
+    font-weight: 700;
+}
+
+.richEdit h3,#BodyFill h3 {
+    font-size: 22px !important ;
+    font-weight: 600;
+}
+
+
+.richEdit u,#BodyFill u{
     text-decoration: underline;
 }
 
-.richEdit strike {
+.richEdit strike,#BodyFill strike {
     text-decoration: line-through;
 }
 
-.richEdit ul {
+.richEdit ul,#BodyFill ul {
     list-style: circle outside;
 }
 
@@ -665,3 +705,191 @@
 .modeDark {
     fill: #292929;
 }
+
+
+
+/* The drop zone section */
+
+.customDropZone {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 2px solid #c9cbff;
+}
+
+
+.dropZoneHead {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333682;
+}
+
+.dropZoneHead h2 {
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 0;
+}
+
+.theZone {
+    width: 80%;
+    min-height: 250px;
+    height: max-content;
+    border-radius: 20px;
+    margin-bottom: 70px;
+    background-color: #c9cbff;
+}
+
+/* toggle max show  */
+
+.dropMax {
+    width: 80%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    background-color: #d93636;
+    color: white;
+    border-radius: 20px;
+}
+
+
+/* The container containing the images */
+
+#images {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* This is the drop welcome */
+
+.remImages {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+}
+
+
+.remImages span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333682;
+}
+
+.remImages svg {
+    fill: #333682;
+    transform: scale(4);
+}
+
+.actDrImg {
+    height: 230px;
+    width: 230px;
+    margin: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.actDrImg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* show delete image */
+
+.delImShow {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+
+.delImShow:hover > svg {
+    visibility: visible;
+}
+
+.delImShow svg {
+    fill: #ea7b7b;
+    transform: scale(3);
+    visibility: hidden;
+}
+
+
+/* the input */
+
+#myInputDrop {
+    display: none;
+}
+
+/* the messsge zone */
+
+#messageZone {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+
+
+/* The review question button */
+
+.reviewQuiz {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The button */
+.revBtn {
+    height: 60px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    outline: none;
+    border: none;
+    background-color: #c9cbff;
+    border-radius: 20px;
+    font-size: 19px;
+    font-weight: 500;
+    color: #292929;
+    fill: #292929;
+    transition: 0.2s ease-in;
+}
+
+.revBtn:hover {
+    color: #c9cbff;
+    fill: #c9cbff;
+    background-color: #333682;
+    transform: scale(1.1);
+}
+
+.revBtn svg {
+    transform: scale(1.5);
+}
+
