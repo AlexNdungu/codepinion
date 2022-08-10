@@ -1,6 +1,6 @@
 from multiprocessing import context
 from django.shortcuts import render
-from requests import request
+#from requests import request
 from .models import *
 from Code1.models import *
 from .models import *
