@@ -36,7 +36,7 @@ window.onload = function(){
     //This options belong to editor one
 
     editor.setOptions({
-        fontSize: "15px",
+        fontSize: "17px",
         fontFamily: "Inconsolata",
     });
 

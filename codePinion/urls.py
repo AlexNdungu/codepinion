@@ -21,8 +21,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('',include('Code1.urls')),
-    path('quiz/',include('Quiz1.urls')),
+    path('Profile/',include('Code1.urls')),
+    path('',include('Quiz1.urls')),
+    #Social Auth
+    path('social-auth/', include('social_django.urls', namespace='social'))
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

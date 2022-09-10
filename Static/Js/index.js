@@ -51,7 +51,7 @@ $(document).ready(function(){
 
     //This is is the authentication toggle
 
-    //$('#auth').hide();
+    $('#auth').hide();
 
     
     $('#authTog').click(function(){

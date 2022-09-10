@@ -11,9 +11,13 @@
 /* The owner with the question */
 
 .theQuestionItself {
-    width: 98%;
+    width: 100%;
     height: max-content;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -96,7 +100,7 @@
 /* This is the question styling */
 
 .owenerQuiz {
-    width: 100%;
+    width: 98%;
     height: max-content;
     min-height: 100vh;
     background-color: white;
@@ -122,6 +126,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.detDateTime h2 {
+    font-size: 22px !important;
+    font-weight: 700;
 }
 
 .detDateTime span {
@@ -315,6 +324,14 @@
     padding-left: 20px;
 }
 
+/* The highlight */
+
+pre {
+    margin-bottom: 10px !important; 
+    margin-top: 10px !important;
+    font-size: 16px !important;
+}
+
 
 /* The body images */
 
@@ -357,12 +374,120 @@
 
 /* Reply Section to detail question */
 
+.trickSee {
+    min-width: 100%;
+    height: max-content;
+    display: flex;
+    overflow-x: hidden;
+}
+
 .loggedAnswer {
-    width: 100%;
+    min-width: 100%;
     min-height: 100vh;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.loggedAnswer form {
+    width: 100%;
 }
 
 
+/* The input containing question id */
+
+#quizID {
+    display: none;
+}
+
+/* The answer body */
+
+.answerBody {
+    width: 98%;
+    min-height: 200px;
+    height: max-content;
+    border-radius: 100px;
+    border: 2px solid #333682;
+    background-color: white;
+}
+
+/* The profile pic section */
+
+.ansProfPic {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The actual picture section */
+
+.ansThePic {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.ansThePic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+
+/* The status of the answer post */
+
+.answerSee {
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.answerSee span {
+    color: rgb(238, 238, 238);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.anSucc {
+    background-color: #2CC63C;
+}
+
+
+.unFail {
+    background-color: #D93636;
+}
+
+
+#return {
+    display: none;
+}
+
+/* Review answer section */
+
+.reviewAnswer {
+    min-width: 100%;
+    height: 1660px;
+    margin-top: 20px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.innerRev {
+    width: 98%;
+    height: max-content;
+    border-radius: 100px;
+    background-color: white;
+    border: 2px solid #333682;
+}
 
 /* This is the answere section */
 
@@ -415,4 +540,10 @@
     color: #292929;
     font-weight: 700;
     font-size: 15px;
+}
+
+/* Ace editor */
+
+.ace_editor * {
+    font-family: 'Inconsolata', monospace;
 }

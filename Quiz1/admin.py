@@ -5,3 +5,5 @@ from .models import *
 
 admin.site.register(Question)
 admin.site.register(Gallery)
+admin.site.register(Answer)
+admin.site.register(Answergallery)

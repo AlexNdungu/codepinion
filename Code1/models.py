@@ -62,6 +62,8 @@ class Profile(models.Model):
     profile_id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=20, verbose_name='Full Name')
 
+    bio = models.TextField(verbose_name='Bio')
+
     profile_pic = models.ImageField(upload_to = 'profiles')
     info_picture = models.ImageField(upload_to = 'infoPicture')
 
@@ -70,6 +72,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    @property
+    def profile_url(self):
+        if self.profile_pic and hasattr(self.profile_pic, 'url'):
+            return self.profile_pic.url  
+
+    @property
+    def info_url(self):
+        if self.info_picture and hasattr(self.info_picture, 'url'):
+            return self.info_picture.url            
 
 #Experience Class
 

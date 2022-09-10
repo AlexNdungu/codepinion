@@ -893,3 +893,8 @@
     transform: scale(1.5);
 }
 
+/* This button submits the answer and question form */
+
+#submitGreatForm {
+    display: none;
+}

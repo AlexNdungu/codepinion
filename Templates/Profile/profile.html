@@ -1,0 +1,308 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codePinion ::- {{request.user.username}}</title>
+
+     <!--Font is poppins-->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+ 
+     <!--The ajax link-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+     <!--The css file-->
+     <link rel="stylesheet" href="{% static '/Css/profile.css' %}">
+ 
+     <!--Bootstrap css link-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+ 
+
+    
+</head>
+<body>
+
+    <!--This will show up after update-->
+    <div class="message" id="message" >
+
+        <div id="innerMess" class="prSuccess" >
+            <span id="isMess"></span>
+        </div>
+
+    </div>
+
+
+    <div id="proFuja">
+
+        {% csrf_token %}
+
+        <!--The Big Div-->
+        <div class="profile">
+            
+
+            <!--The profile place images-->
+            <div class="profImg">
+
+                <!--The Info Image-->
+                <div class="infoImg">
+
+                    <img src="{{request.user.profile.info_url}}" alt="infomation" id="infoSee" >
+
+                    <!--Change image-->
+                    <div class="change changeHover" id="changeInfo" >
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.994 9.095l2.974-2.884c.144-.14.331-.211.516-.211.188 0 .375.073.518.22l-4.032 3.911c-.283-.294-.268-.752.024-1.036zm-4.49 8.819c-.06.057-.136.086-.212.086-.168 0-.304-.137-.304-.304 0-.079.031-.159.093-.218l.5-.485.422.436-.499.485zm4.034-2.386c-.919.891-1.796 1.333-3.013 1.728l-.754-.779c.433-1.205.901-2.067 1.819-2.958l1.71-1.657 1.946 2.009-1.708 1.657zm6.965-6.483l-4.402 4.269-2.218-2.29 4.402-4.27c1.016-.984 2.703-.246 2.703 1.146 0 .416-.162.832-.485 1.145z"/></svg>
+
+                    </div>
+
+                </div>
+
+                <!--profile picture-->
+                <div class="profePic">
+
+                    <div class="thePicPr">
+
+                        <img src="{{request.user.profile.profile_url}}" alt="seeProfile" id="showProfile" >
+
+                        <div class="changePr" id="changePr" >
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.994 9.095l2.974-2.884c.144-.14.331-.211.516-.211.188 0 .375.073.518.22l-4.032 3.911c-.283-.294-.268-.752.024-1.036zm-4.49 8.819c-.06.057-.136.086-.212.086-.168 0-.304-.137-.304-.304 0-.079.031-.159.093-.218l.5-.485.422.436-.499.485zm4.034-2.386c-.919.891-1.796 1.333-3.013 1.728l-.754-.779c.433-1.205.901-2.067 1.819-2.958l1.71-1.657 1.946 2.009-1.708 1.657zm6.965-6.483l-4.402 4.269-2.218-2.29 4.402-4.27c1.016-.984 2.703-.246 2.703 1.146 0 .416-.162.832-.485 1.145z"/></svg>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--Account Info-->
+            <div class="accInfo">
+
+                <!--The personal info-->
+                <div class="myInfoP">
+
+                    <!--The inputs-->
+                    <div class="infoSmall">
+
+                        <!--Username-->
+                        <div class="username">
+
+                            <!--Iner section-->
+                            <input type="text" value="{{request.user.username}}" disabled>
+
+                            <!--The user place icon-->
+                            <div class="userIc" >
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-3.123 0-5.914-1.441-7.749-3.69.259-.588.783-.995 1.867-1.246 2.244-.518 4.459-.981 3.393-2.945-3.155-5.82-.899-9.119 2.489-9.119 3.322 0 5.634 3.177 2.489 9.119-1.035 1.952 1.1 2.416 3.393 2.945 1.082.25 1.61.655 1.871 1.241-1.836 2.253-4.628 3.695-7.753 3.695z"/></svg>
+
+                            </div>
+
+                        </div>
+
+                        <!--Username-->
+                        <div class="username">
+
+                            <!--Iner section-->
+                            <input type="text" value="{{request.user.email}}" disabled>
+
+                            <!--The user place icon-->
+                            <div class="userIc">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/></svg>
+                            </div>
+
+                        </div>
+
+                        <!--Username-->
+                        <div class="username">
+
+                            <!--Iner section-->
+                            <input type="text" id="userNameChange" value="{{request.user.profile.full_name}}" disabled>
+
+                            <!--Enable editting-->
+                            <div class="userEdit " id="activeFName" >
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.994 9.095l2.974-2.884c.144-.14.331-.211.516-.211.188 0 .375.073.518.22l-4.032 3.911c-.283-.294-.268-.752.024-1.036zm-4.49 8.819c-.06.057-.136.086-.212.086-.168 0-.304-.137-.304-.304 0-.079.031-.159.093-.218l.5-.485.422.436-.499.485zm4.034-2.386c-.919.891-1.796 1.333-3.013 1.728l-.754-.779c.433-1.205.901-2.067 1.819-2.958l1.71-1.657 1.946 2.009-1.708 1.657zm6.965-6.483l-4.402 4.269-2.218-2.29 4.402-4.27c1.016-.984 2.703-.246 2.703 1.146 0 .416-.162.832-.485 1.145z"/></svg>
+
+                            </div>
+
+                            <!--The user place icon-->
+                            <div class="userIc">
+
+                                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M7 16.488l1.526-.723c1.792-.81 2.851-.344 4.349.232 1.716.661 2.365.883 3.077 1.164 1.278.506.688 2.177-.592 1.838-.778-.206-2.812-.795-3.38-.931-.64-.154-.93.602-.323.818 1.106.393 2.663.79 3.494 1.007.831.218 1.295-.145 1.881-.611.906-.72 2.968-2.909 2.968-2.909.842-.799 1.991-.135 1.991.72 0 .23-.083.474-.276.707-2.328 2.793-3.06 3.642-4.568 5.226-.623.655-1.342.974-2.204.974-.442 0-.922-.084-1.443-.25-1.825-.581-4.172-1.313-6.5-1.6v-5.662zm-1 6.538h-4v-8h4v8zm1-7.869v-1.714c-.006-1.557.062-2.447 1.854-2.861 1.963-.453 4.315-.859 3.384-2.577-2.761-5.092-.787-7.979 2.177-7.979 2.907 0 4.93 2.78 2.177 7.979-.904 1.708 1.378 2.114 3.384 2.577 1.799.415 1.859 1.311 1.853 2.879 0 .13-.011 1.171 0 1.665-.483-.309-1.442-.552-2.187.106-.535.472-.568.504-1.783 1.629-1.75-.831-4.456-1.883-6.214-2.478-.896-.304-2.04-.308-2.962.075l-1.683.699z"/></svg>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--The text filed-->
+                    <div class="infoSmall">
+
+                        <!--Username-->
+                        <div class="username">
+
+                            <!--Iner section-->
+                            <textarea id="textInfo" disabled >{{request.user.profile.bio}}</textarea>
+
+                            <!--Enable editting-->
+                            <div class="userEdit" id="enableTextIn" >
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.994 9.095l2.974-2.884c.144-.14.331-.211.516-.211.188 0 .375.073.518.22l-4.032 3.911c-.283-.294-.268-.752.024-1.036zm-4.49 8.819c-.06.057-.136.086-.212.086-.168 0-.304-.137-.304-.304 0-.079.031-.159.093-.218l.5-.485.422.436-.499.485zm4.034-2.386c-.919.891-1.796 1.333-3.013 1.728l-.754-.779c.433-1.205.901-2.067 1.819-2.958l1.71-1.657 1.946 2.009-1.708 1.657zm6.965-6.483l-4.402 4.269-2.218-2.29 4.402-4.27c1.016-.984 2.703-.246 2.703 1.146 0 .416-.162.832-.485 1.145z"/></svg>
+
+                            </div>
+
+                            <!--The user place icon-->
+                            <div class="userIc">
+
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m2 4v16.002c0 .385.22.735.567.902.346.166.758.119 1.058-.121l4.725-3.781h12.65c.552 0 1-.448 1-1v-12.002c0-.552-.448-1-1-1h-18c-.552 0-1 .448-1 1zm9.998 5.002c.414 0 .75.336.75.75v3.5c0 .414-.336.75-.75.75s-.75-.336-.75-.75v-3.5c0-.414.336-.75.75-.75zm.002-3c.552 0 1 .448 1 1s-.448 1-1 1-1-.448-1-1 .448-1 1-1z" fill-rule="nonzero"/></svg>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--The tags section-->
+            <div class="tags">
+
+                <!--The small tags-->
+                <div class="smallTgs">
+
+                    <!--The search-->
+                    <div class="theSearch">
+
+                        <!--The search ic-->
+                        <div class="searchIc">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
+
+                        </div>
+
+                        <input type="text" placeholder="Search Tag">
+
+                    </div>
+
+                    <!--The tags-->
+                    <div class="allTags">
+
+                
+                        {% for tag in tags %}
+
+                        <!--Individula tag-->
+                        <div class="meTag old">
+
+                            <!--The tag image-->
+                            <div class="tagImg">
+                                <img src="{{tag.lang_icon.url}}" alt="">
+                            </div>
+
+                            <!--name-->
+                            <span class="Lang" >{{tag.lang_name}}</span>
+
+                            <!--This is where the tags will change check or not checked-->
+                            <div class="myTagState">
+
+                                <!--It is added-->
+                                <div class="addedT">
+
+                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+
+                                </div>
+
+                                <!--Its is not a users tag-->
+                                <div class="removedT">
+
+                                    <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"
+                                    width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+
+                                </div>
+
+                            </div>
+
+                            <input class="check" type="checkbox">
+
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--Here are the controls-->
+
+            <div class="contProf">
+
+                <!--The wrapper-->
+
+                <div class="contInner">
+
+                    <div class="submit" id="discharge" ><span>Discharge</span></div>
+
+                    <div id="formFomm" class="submit" type="submit" ><span>Submit</span></div>
+
+                    <button type="submit" id="subNow" >submit</button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!--Holding the info picture-->
+        <input type="file" id="updateInfoPic" accept="image/*" onchange="previewImage(event)">
+
+        <!--The script to review the info picture-->
+        <script>
+            const previewImage = e => {
+            const reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload = () => {
+                const preview = document.getElementById('infoSee');
+                preview.src = reader.result;
+            };
+            };
+        </script>
+
+        <!--Hold the profile picture-->
+        <input type="file" id="updateProPic" accept="image/*" onchange="previewImage1(event)">
+
+        <!--This is to review the profile prcture-->
+        <script>
+            const previewImage1 = e => {
+            const reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload = () => {
+                const preview = document.getElementById('showProfile');
+                preview.src = reader.result;
+            };
+
+            console.log(document.getElementById('updateProPic').files[0])
+            };
+        </script>
+
+    </div>
+
+
+    
+</body>
+
+<!--The js file-->
+<script src="{% static 'Js/profile.js' %}"></script>
+
+</html>

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'Quiz1',
 
     'ckeditor',
+    #social authentication
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +69,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                #social auth
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -106,6 +112,30 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+
+    #Github
+    'social_core.backends.github.GithubOAuth2',
+    #linked in
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
+#Here we add the secret and key
+SOCIAL_AUTH_GITHUB_KEY = '83f7f852751e2f77134f'
+SOCIAL_AUTH_GITHUB_SECRET = '002b0fa77de0cf61d459ee3ffb935293a3770e52'
+
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '77h8c4y9p08163'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'caycmELVra8TdY9f'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 #ckeditor

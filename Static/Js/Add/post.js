@@ -178,7 +178,7 @@ submitGreatForm.addEventListener('click', ()=> {
 
             $.ajax({
                 type:'POST',
-                url:'/quiz/greatForm/',
+                url:'/greatForm/',
                 data: formData,
                 processData: false,
                 contentType: false,

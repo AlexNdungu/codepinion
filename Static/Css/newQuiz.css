@@ -32,7 +32,7 @@
 
 .newNo {
     width: max-content;
-    height: 50px;
+    height: max-content;
     background-color: #c9cbff;
     padding: 10px;
     display: flex;
@@ -42,9 +42,14 @@
     margin: 100px;
 }
 
+.newNo h2{
+    margin-top: 5px;
+}
+
 .newQuizHead h2 {
     font-size: 24px;
     color: #333682;
+    font-weight: 700;
 }
 
 .h2New {
@@ -136,15 +141,17 @@
 .newQuizTitle {
     width: 100%;
     height: 60px;
-    font-size: 15px;
     color: #292929;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
+
 .newQuizTitle h2 {
     margin-left: 50px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 

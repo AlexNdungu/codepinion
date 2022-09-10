@@ -9,8 +9,20 @@
 
 <title>codePinion ::- Question Detail</title>
 
+
+<!--Highlight js link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/google-light.min.css" integrity="sha512-nzMhN+KUSkxA5L9h2BKKpaFw19+a1JufkYL6GEwKPxrsf5YFO8TBbI1Qppd72zZbHAA6RG2htrd2q7sHvcb4Ew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!--The css file-->
 <link rel="stylesheet" href="{% static '/Css/quizDetail.css' %}">
+<link rel="stylesheet" href="{% static '/Css/add.css' %}">
+<link rel="stylesheet" href="{% static '/Css/review.css' %}">
+
+
+
+<!--Google fonts-->
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 
 {% endblock %}
 
@@ -30,14 +42,14 @@
             <!--Owner profile picture-->
             <div class="posterImage">
 
-                <img src="{% static '\Images\Users\user.jpg' %}" alt="theUser">
+                <img src="{{QDetail.profile.profile_pic.url}}" alt="theUser">
 
             </div>
 
             <!--owener Controls-->
             <div class="ownerCont">
 
-                <span>theMehta</span>
+                <span>{{QDetail.profile.full_name}}</span>
 
                 <!--details Controls-->
                 <div class="contDetails">
@@ -84,9 +96,9 @@
                 <!--Detail Title and time-->
                 <div class="detDateTime">
 
-                    <h2>How to make print statement in python</h2>
+                    <h2>{{QDetail.quiz_title}}</h2>
 
-                    <span>5hrs Ago</span>
+                    <span>{{QDetail.created}}</span>
 
                 </div>
 
@@ -99,15 +111,13 @@
 
                         <!--Individual tags-->
 
-                        <div class="indDetTag">
-                            <span>Python</span>
-                        </div>
-
-                        <!--Individual tags-->
+                        {% for tag in QDetail.tags.all %}
 
                         <div class="indDetTag">
-                            <span>Html</span>
+                            <span>{{tag}}</span>
                         </div>
+
+                        {% endfor %}
 
                     </div>
 
@@ -168,68 +178,76 @@
 
                 <div class="body">
 
-                    <div class="detContent">
+                    <div class="detContent">{{QDetail.body | safe}}</div>
 
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
+                    <!--The code block section-->
+
+                    {% if QDetail.code_1 != 'undefined' %}
     
-                    </div>
-    
-                    <!--Code block-->
+                    <!--Code block 1-->
     
                     <div class="codeBlockBody">
     
-                        <p>print("Hellow World")</p>
+                        <pre><code class="language-{{QDetail.code_1_type}}">{{QDetail.code_1}}</code></pre>
     
                     </div>
+
+                    {% endif %}
+
+                    {% if QDetail.code_2 != 'undefined' %}
+
+                    <!--Code block 2-->
+    
+                    <div class="codeBlockBody">
+    
+                        <pre><code class="language-{{QDetail.code_2_type}}">{{QDetail.code_2}}</code></pre>
+    
+                    </div>
+
+                    {% endif %}
+
+                    {% if QDetail.code_3 != 'undefined' %}
+
+                    <!--Code block 3-->
+    
+                    <div class="codeBlockBody">
+    
+                        <pre><code class="language-{{QDetail.code_3_type}}">{{QDetail.code_3}}</code></pre>
+    
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if QDetail.code_4 != 'undefined' %}
+
+                    <!--Code block 4-->
+    
+                    <div class="codeBlockBody">
+    
+                        <pre><code class="language-{{QDetail.code_4_type}}">{{QDetail.code_4}}</code></pre>
+    
+                    </div>
+
+                    {% endif %}
+
+                    
     
                     <!--The question media-->
+
+                    {% for image in the_gallery.all %}
     
                     <div class="detailImages">
     
-                        <img src="{% static '\Images\Code\code1.jpg' %}" alt="codeImage">
+                        <img src="{{image.gallery_url}}" alt="codeImage">
     
                         <span class="imgContName" >code1.png</span>
     
                     </div>
 
-                </div>
-
-                
-
-                <!--The separating line-->
-
-                <div class="detSepLine" style="margin-top: 20px;margin-bottom: 20px;" ></div>
-
-
-
-                <div class="trial">
-
-                    <div class="detContent">
-
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
-    
-                    </div>
-    
-                    <!--Code block-->
-    
-                    <div class="codeBlockBody">
-    
-                        <p>print("Hellow World")</p>
-    
-                    </div>
-    
-                    <!--The question media-->
-    
-                    <div class="detailImages">
-    
-                        <img src="{% static '\Images\Code\code2.jpg' %}" alt="codeImage">
-    
-                        <span class="imgContName" >code1.png</span>
-    
-                    </div>
+                    {% endfor %}
 
                 </div>
-
 
             </div>
 
@@ -242,14 +260,932 @@
 
 <!--Answer Detail question section-->
 
-<div class="loggedAnswer">
+<div class="trickSee" id="trickSee" >
+
+    <div class="loggedAnswer" id="reviewAnswer" >
+
+            <!--The answer body-->
+    
+            <div class="answerBody">
+
+                {% csrf_token %}
+
+                <input id="quizID" type="text" value="{{QDetail.quiz_id}}">
+        
+                <!--The user logged in profile picture-->
+                <div class="ansProfPic">
+
+
+        
+                    <!--The actual image-->
+                    <div class="ansThePic">
+        
+                        <img src="{{request.user.profile.profile_url}}" alt="Current_user">
+                        
+        
+                    </div>
+        
+                </div>
+
+                <!--Success or failure-->
+                <div class="answerSee" id="answerSee" >
+
+                    <span id="ansSeeMess" ></span>
+
+                </div>
+        
+                <!--The body of the Answer-->
+            
+                <div class="body">
+            
+                    <!--This is the body head-->
+                    <div class="bodyHead">
+        
+                        <h2>Body</h2>
+        
+                    </div>
+        
+                    <div class="bodyText">
+        
+                        <!--options-->
+                        <div class="options">
+        
+                            <!--this are all the button-->
+        
+                            <!--undo-->
+                            <button class="btnOption" data-command="undo" ><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19.885 5.515c-4.617-4.618-12.056-4.676-16.756-.195l-2.129-2.258v7.938h7.484l-2.066-2.191c2.82-2.706 7.297-2.676 10.074.1 2.992 2.993 2.664 7.684-.188 10.319l3.314 3.5c4.716-4.226 5.257-12.223.267-17.213z"/></svg>
+        
+                            </i></button>
+        
+                            <!--redo-->
+                            <button class="btnOption" data-command="redo" ><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.115 5.515c4.617-4.618 12.056-4.676 16.756-.195l2.129-2.258v7.938h-7.484l2.066-2.191c-2.819-2.706-7.297-2.676-10.074.1-2.992 2.993-2.664 7.684.188 10.319l-3.314 3.5c-4.716-4.226-5.257-12.223-.267-17.213z"/></svg>
+        
+                            </i></button>
+        
+                            <!--bold-->
+                            <button class="btnOption" data-command="bold" ><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18.287 11.121c1.588-1.121 2.713-3.018 2.713-5.093 0-2.946-1.918-5.951-7.093-6.028h-11.907v2.042c1.996 0 3 .751 3 2.683v14.667c0 1.689-.558 2.608-3 2.608v2h11.123c6.334 0 8.877-3.599 8.877-7.038 0-2.538-1.417-4.67-3.713-5.841zm-8.287-8.121h2.094c2.357 0 4.126 1.063 4.126 3.375 0 2.035-1.452 3.625-3.513 3.625h-2.707v-7zm2.701 18h-2.701v-8h2.781c2.26.024 3.927 1.636 3.927 3.667 0 2.008-1.226 4.333-4.007 4.333z"/></svg>
+        
+                            </i></button>
+        
+                            <!--italic-->
+                            <button class="btnOption" data-command="italic" ><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.565 20.827c-.361.732-.068 1.173.655 1.173h1.78v2h-9v-2h.897c1.356 0 1.673-.916 2.157-1.773l8.349-16.89c.403-.852-.149-1.337-.855-1.337h-1.548v-2h9v2h-.84c-1.169 0-1.596.646-2.06 1.516l-8.535 17.311z"/></svg>
+        
+                            </i></button>
+        
+                            <!--undeline-->
+                            <button class="btnOption" data-command="underline"><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20 24h-16v-2h16v2zm-5-24v1.973c1.619 0 2 .926 2 1.497v9.056c0 2.822-2.161 4.507-5 4.507s-5-1.685-5-4.507v-9.056c0-.571.381-1.497 2-1.497v-1.973h-7v1.973c1.66 0 2 .575 2 1.497v8.828c0 5.175 3.096 7.702 8 7.702 4.899 0 8-2.527 8-7.702v-8.828c0-.922.34-1.497 2-1.497v-1.973h-7z"/></svg>
+        
+                            </i></button>
+        
+                            <!--strickthrough-->
+                            <button class="btnOption" data-command="strikeThrough"><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19.271 14.521c.358.74.728 1.803.728 2.818 0 4.658-4 6.661-8.498 6.661-2.183 0-4.483-.472-6.5-1.341v-4.659h2c.227 1.809 1.875 3 4.444 3 2.503 0 4.415-1.046 4.63-3.28.127-1.321-.65-2.451-1.653-3.199h4.849zm-4.583-3.521c-3.124-1.398-6.281-2.75-5.639-5.669.714-3.244 7.265-3.206 7.951.669h1.979v-5.109c-2.028-.604-3.936-.891-5.649-.891-4.927 0-8.252 2.375-8.252 6.454 0 1.899.862 3.554 2.113 4.546h-7.191v2h24v-2h-9.312z"/></svg>
+        
+                            </i></button>
+        
+                            <!--H1-->
+                            <button class="btnOption" data-command="formatBlock"  data-block="H1" ><i>
+                                H1
+                            </i></button>
+        
+                            <!--H2-->
+                            <button class="btnOption" data-command="formatBlock" data-block="H2"  ><i>
+                                H2
+                            </i></button>
+        
+                            <!--H3-->
+                            <button class="btnOption" data-command="formatBlock" data-block="H3"  ><i>
+                                H3
+                            </i></button>
+        
+                            <!--List-->
+                            <button class="btnOption" data-command="insertUnorderedList"  ><i>
+        
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m22 17.75c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm-18.25-2.75c.966 0 1.75.784 1.75 1.75s-.784 1.75-1.75 1.75-1.75-.784-1.75-1.75.784-1.75 1.75-1.75zm18.25-1.25c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm-18.25-3.75c.966 0 1.75.784 1.75 1.75s-.784 1.75-1.75 1.75-1.75-.784-1.75-1.75.784-1.75 1.75-1.75zm18.25-.25c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm-18.25-4.75c.966 0 1.75.784 1.75 1.75s-.784 1.75-1.75 1.75-1.75-.784-1.75-1.75.784-1.75 1.75-1.75zm18.25.75c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+        
+                            </i></button>
+        
+                            <!--text align left-->
+                            <button class="btnOption" data-command="justifyLeft"  ><i>
+        
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"   width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m17 17.75c0-.414-.336-.75-.75-.75h-13.5c-.414 0-.75.336-.75.75s.336.75.75.75h13.5c.414 0 .75-.336.75-.75zm5-4c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm-9-4c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm7-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+        
+                            </i></button>
+        
+                            <!--text align rign-->
+                            <button class="btnOption" data-command="justifyRight"  ><i>
+        
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"   width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m7 17.75c0-.414.336-.75.75-.75h13.5c.414 0 .75.336.75.75s-.336.75-.75.75h-13.5c-.414 0-.75-.336-.75-.75zm-5-4c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm9-4c0-.414.336-.75.75-.75h9.5c.414 0 .75.336.75.75s-.336.75-.75.75h-9.5c-.414 0-.75-.336-.75-.75zm-7-4c0-.414.336-.75.75-.75h16.5c.414 0 .75.336.75.75s-.336.75-.75.75h-16.5c-.414 0-.75-.336-.75-.75z" fill-rule="nonzero"/></svg>
+        
+                            </i></button>
+        
+                            <!--text center-->
+                            <button class="btnOption" data-command="justifyCenter"  ><i>
+        
+                                <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m6 17.75c0-.414.336-.75.75-.75h10.5c.414 0 .75.336.75.75s-.336.75-.75.75h-10.5c-.414 0-.75-.336-.75-.75zm-4-4c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm0-4c0-.414.336-.75.75-.75h18.5c.414 0 .75.336.75.75s-.336.75-.75.75h-18.5c-.414 0-.75-.336-.75-.75zm4-4c0-.414.336-.75.75-.75h10.5c.414 0 .75.336.75.75s-.336.75-.75.75h-10.5c-.414 0-.75-.336-.75-.75z" fill-rule="nonzero"/></svg>
+        
+                            </i></button>
+        
+                            <!--all-->
+                            <button class="btnOption" data-command="justifyFull"  ><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 1h24v2h-24v-2zm0 7h24v-2h-24v2zm0 5h24v-2h-24v2zm0 5h24v-2h-24v2zm0 5h24v-2h-24v2z"/></svg>
+        
+                            </i></button>
+        
+                            <button class="btnOption" data-command="createLink" ><i>
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.723 18.654l-3.61 3.609c-2.316 2.315-6.063 2.315-8.378 0-1.12-1.118-1.735-2.606-1.735-4.188 0-1.582.615-3.07 1.734-4.189l4.866-4.865c2.355-2.355 6.114-2.262 8.377 0 .453.453.81.973 1.089 1.527l-1.593 1.592c-.18-.613-.5-1.189-.964-1.652-1.448-1.448-3.93-1.51-5.439-.001l-.001.002-4.867 4.865c-1.5 1.499-1.5 3.941 0 5.44 1.517 1.517 3.958 1.488 5.442 0l2.425-2.424c.993.284 1.791.335 2.654.284zm.161-16.918l-3.574 3.576c.847-.05 1.655 0 2.653.283l2.393-2.389c1.498-1.502 3.94-1.5 5.44-.001 1.517 1.518 1.486 3.959 0 5.442l-4.831 4.831-.003.002c-1.438 1.437-3.886 1.552-5.439-.002-.473-.474-.785-1.042-.956-1.643l-.084.068-1.517 1.515c.28.556.635 1.075 1.088 1.528 2.245 2.245 6.004 2.374 8.378 0l4.832-4.831c2.314-2.316 2.316-6.062-.001-8.377-2.317-2.321-6.067-2.313-8.379-.002z"/></svg>
+        
+                            </i></button>
+        
+        
+                        </div>
+        
+                        <!--the editable section-->
+                        <div class="richEdit" contenteditable="true" id="richEdit" ></div>
+        
+                        
+                    </div>
+        
+                </div>
+        
+                <!--The code section-->
+                <div class="code">
+            
+                    <!--This is the code head-->
+                    <div class="codeHead">
+                        <h2>Code</h2>
+                    </div>
+        
+                    <!--Code Body-->
+        
+                    <div class="codeBody">
+        
+                        <!--Code section one-->
+                        <div class="code_1" id="code_1" >
+        
+                            <!--Boostrap drop code section-->
+                            <div class="dropCodeSec">
+        
+                                <button class="enable" id="enable">
+                                    <span id="code1ChangeSpan" >DISABLED</span>
+        
+                                    <!--Code section is available-->
+        
+                                    <div class="codeSecState">
+        
+                                        <div class="codeAvail" id="codeAvail" >
+        
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+            
+                                        </div>
+            
+                                        <!--Code section is unavailable-->
+                                        <div class="codeUnavail" id="codeUnavail" >
+            
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+            
+                                        </div>
+        
+        
+                                    </div>
+        
+        
+                                </button>
+        
+                                <span id="codeTellState" >Code1 section is DISABLED</span>
+                                
+                            </div>
+        
+                            <!--Toggle language-->
+        
+                            <div id="togLang">
+        
+                                <!--Select language and mode-->
+                                <div class="lang_mode" id="lang_mode" >
+        
+                                    <!--Select language-->
+                                    <div class="langCode">
+        
+                                        <!--Select the language you want-->
+                                        <div class="selLang">
+        
+                                            <!--The input and arrow-->
+                                            <div class="langInput">
+        
+                                                <input type="text" class="code_1_lang" id="code_1_lang" >
+        
+                                                <div class="langArrow" id="langArrow" >
+        
+                                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/></svg>
+        
+                                                </div>
+        
+                                            </div>
+        
+                                            <!--Language drop down-->
+                                            <div class="langDrop" id="langDrop" >
+        
+                                                {% for tag in QDetail.tags.all %}
+        
+                                                <!--Single languages-->
+                                                <div class="drpSing">
+        
+                                                    <!--The image-->
+                                                    <div class="droImg">
+                                                        <img src="{{tag.language_url}}" alt="">
+                                                    </div>
+        
+                                                    <span  class="lang_value" >{{tag.lang_name}}</span>
+                                                </div>
+        
+                                                {% endfor %}
+        
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                    <!--Mode-->
+                                    <div class="codeMode" id="codeMode" >
+        
+                                        <!--lightMode-->
+                                        <div class="modeLight" id="modeLight" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"/></svg>
+        
+                                        </div>
+                                        <!--dark mode-->
+                                        <div class="modeDark" id="modeDark" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12-12 5.373-12 12zm2 0c0-5.292 4.113-9.612 9.315-9.965-3.205 2.154-5.315 5.813-5.315 9.965s2.11 7.811 5.315 9.965c-5.202-.353-9.315-4.673-9.315-9.965z"/></svg>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                </div>
+        
+                                <!--The code body-->
+        
+                                <div class="code_1_body" id="editor">
+        
+                                </div>
+                                
+                            </div>
+        
+                        
+        
+                        </div>
+        
+                        <!--Code section one-->
+                        <div class="code_1" id="code_2" >
+        
+                            <!--Boostrap drop code section-->
+                            <div class="dropCodeSec">
+        
+                                <button class="enable" id="enable1">
+                                    <span id="code1ChangeSpan1" >DISABLED</span>
+        
+                                    <!--Code section is available-->
+        
+                                    <div class="codeSecState">
+        
+                                        <div class="codeAvail" id="codeAvail1" >
+        
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+            
+                                        </div>
+            
+                                        <!--Code section is unavailable-->
+                                        <div class="codeUnavail" id="codeUnavail1" >
+            
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+            
+                                        </div>
+        
+        
+                                    </div>
+        
+        
+                                </button>
+        
+                                <span id="codeTellState1" >Code2 section is DISABLED</span>
+                                
+                            </div>
+        
+                            <!--Toggle language-->
+        
+                            <div id="togLang1">
+        
+                                <!--Select language and mode-->
+                                <div class="lang_mode" id="lang_mode1" >
+        
+                                    <!--Select language-->
+                                    <div class="langCode">
+        
+                                        <!--Select the language you want-->
+                                        <div class="selLang">
+        
+                                            <!--The input and arrow-->
+                                            <div class="langInput">
+        
+                                                <input type="text" class="code_1_lang" id="code_1_lang1" >
+        
+                                                <div class="langArrow" id="langArrow1" >
+        
+                                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/></svg>
+        
+                                                </div>
+        
+                                            </div>
+        
+                                            <!--Language drop down-->
+                                            <div class="langDrop" id="langDrop1" >
+        
+                                                {% for tag in QDetail.tags.all %}
+        
+                                                <!--Single languages-->
+                                                <div class="drpSing1">
+        
+                                                    <!--The image-->
+                                                    <div class="droImg">
+                                                        <img src="{{tag.language_url}}" alt="">
+                                                    </div>
+        
+                                                    <span  class="lang_value1" >{{tag.lang_name}}</span>
+                                                </div>
+        
+                                                {% endfor %}
+        
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                    <!--Mode-->
+                                    <div class="codeMode" id="codeMode1" >
+        
+                                        <!--lightMode-->
+                                        <div class="modeLight" id="modeLight1" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"/></svg>
+        
+                                        </div>
+                                        <!--dark mode-->
+                                        <div class="modeDark" id="modeDark1" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12-12 5.373-12 12zm2 0c0-5.292 4.113-9.612 9.315-9.965-3.205 2.154-5.315 5.813-5.315 9.965s2.11 7.811 5.315 9.965c-5.202-.353-9.315-4.673-9.315-9.965z"/></svg>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                </div>
+        
+                                <!--The code body-->
+        
+                                <div class="code_1_body" id="editor1">
+        
+                                </div>
+                                
+                            </div>
+        
+                        
+        
+                        </div>
+        
+        
+                        <!--Code section one-->
+                        <div class="code_1" id="code_3" >
+        
+                            <!--Boostrap drop code section-->
+                            <div class="dropCodeSec">
+        
+                                <button class="enable" id="enable2">
+                                    <span id="code1ChangeSpan2" >DISABLED</span>
+        
+                                    <!--Code section is available-->
+        
+                                    <div class="codeSecState">
+        
+                                        <div class="codeAvail" id="codeAvail2" >
+        
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+            
+                                        </div>
+            
+                                        <!--Code section is unavailable-->
+                                        <div class="codeUnavail" id="codeUnavail2" >
+            
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+            
+                                        </div>
+        
+        
+                                    </div>
+        
+        
+                                </button>
+        
+                                <span id="codeTellState2" >Code3 section is DISABLED</span>
+                                
+                            </div>
+        
+                            <!--Toggle language-->
+        
+                            <div id="togLang2">
+        
+                                <!--Select language and mode-->
+                                <div class="lang_mode" id="lang_mode2" >
+        
+                                    <!--Select language-->
+                                    <div class="langCode">
+        
+                                        <!--Select the language you want-->
+                                        <div class="selLang">
+        
+                                            <!--The input and arrow-->
+                                            <div class="langInput">
+        
+                                                <input type="text" class="code_1_lang" id="code_1_lang2" >
+        
+                                                <div class="langArrow" id="langArrow2" >
+        
+                                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/></svg>
+        
+                                                </div>
+        
+                                            </div>
+        
+                                            <!--Language drop down-->
+                                            <div class="langDrop" id="langDrop2" >
+        
+                                                {% for tag in QDetail.tags.all %}
+        
+                                                <!--Single languages-->
+                                                <div class="drpSing2">
+        
+                                                    <!--The image-->
+                                                    <div class="droImg">
+                                                        <img src="{{tag.language_url}}" alt="">
+                                                    </div>
+        
+                                                    <span  class="lang_value2" >{{tag.lang_name}}</span>
+                                                </div>
+        
+                                                {% endfor %}
+        
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                    <!--Mode-->
+                                    <div class="codeMode" id="codeMode2" >
+        
+                                        <!--lightMode-->
+                                        <div class="modeLight" id="modeLight2" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"/></svg>
+        
+                                        </div>
+                                        <!--dark mode-->
+                                        <div class="modeDark" id="modeDark2" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12-12 5.373-12 12zm2 0c0-5.292 4.113-9.612 9.315-9.965-3.205 2.154-5.315 5.813-5.315 9.965s2.11 7.811 5.315 9.965c-5.202-.353-9.315-4.673-9.315-9.965z"/></svg>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                </div>
+        
+                                <!--The code body-->
+        
+                                <div class="code_1_body" id="editor2">
+        
+                                </div>
+                                
+                            </div>
+        
+                        
+        
+                        </div>
+        
+                        <!--Code section one-->
+                        <div class="code_1" id="code_4" >
+        
+                            <!--Boostrap drop code section-->
+                            <div class="dropCodeSec">
+        
+                                <button class="enable" id="enable3">
+                                    <span id="code1ChangeSpan3" >DISABLED</span>
+        
+                                    <!--Code section is available-->
+        
+                                    <div class="codeSecState">
+        
+                                        <div class="codeAvail" id="codeAvail3" >
+        
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+            
+                                        </div>
+            
+                                        <!--Code section is unavailable-->
+                                        <div class="codeUnavail" id="codeUnavail3" >
+            
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+            
+                                        </div>
+        
+        
+                                    </div>
+        
+        
+                                </button>
+        
+                                <span id="codeTellState3" >Code4 section is DISABLED</span>
+                                
+                            </div>
+        
+                            <!--Toggle language-->
+        
+                            <div id="togLang3">
+        
+                                <!--Select language and mode-->
+                                <div class="lang_mode" id="lang_mode3" >
+        
+                                    <!--Select language-->
+                                    <div class="langCode">
+        
+                                        <!--Select the language you want-->
+                                        <div class="selLang">
+        
+                                            <!--The input and arrow-->
+                                            <div class="langInput">
+        
+                                                <input type="text" class="code_1_lang" id="code_1_lang3" >
+        
+                                                <div class="langArrow" id="langArrow3" >
+        
+                                                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/></svg>
+        
+                                                </div>
+        
+                                            </div>
+        
+                                            <!--Language drop down-->
+                                            <div class="langDrop" id="langDrop3" >
+        
+                                                {% for tag in QDetail.tags.all %}
+        
+                                                <!--Single languages-->
+                                                <div class="drpSing3">
+        
+                                                    <!--The image-->
+                                                    <div class="droImg">
+                                                        <img src="{{tag.language_url}}" alt="">
+                                                    </div>
+        
+                                                    <span  class="lang_value3" >{{tag.lang_name}}</span>
+                                                </div>
+        
+                                                {% endfor %}
+        
+                                            </div>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                    <!--Mode-->
+                                    <div class="codeMode" id="codeMode3" >
+        
+                                        <!--lightMode-->
+                                        <div class="modeLight" id="modeLight3" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"/></svg>
+        
+                                        </div>
+                                        <!--dark mode-->
+                                        <div class="modeDark" id="modeDark3" >
+        
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12-12 5.373-12 12zm2 0c0-5.292 4.113-9.612 9.315-9.965-3.205 2.154-5.315 5.813-5.315 9.965s2.11 7.811 5.315 9.965c-5.202-.353-9.315-4.673-9.315-9.965z"/></svg>
+        
+                                        </div>
+        
+                                    </div>
+        
+                                </div>
+        
+                                <!--The code body-->
+        
+                                <div class="code_1_body" id="editor3">
+        
+                                </div>
+                                
+                            </div>
+        
+                        
+        
+                        </div>
+        
+                    </div>
+        
+                </div>
+        
+                <!--Custom Dropzone-->
+                <div class="customDropZone">
+            
+                    <!--The drop zone head-->
+                    <div class="dropZoneHead">
+                        <h2>Images</h2>
+                        
+                    </div>
+        
+                    <!--Toggle maximum reached-->
+                    <div class="dropMax" id="dropMax" >
+                        <span id="messageZone" >Dropzone Max Reached</span>
+                    </div>
+        
+                    <!--The actual dropzone-->
+                    <div class="theZone" id="theZone" >
+                        <div id="images">
+        
+                            <!--Drop Down Message-->
+                            <div class="remImages" id="remImages" >
+        
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 10h-4.083l1.271-1.396.812.396.676-.862 1.324 1.862zm.88 3h-7.88v-8h9.204c.739 1.612 2.024 1.696 3.796 2.509v4.648c-1.638-.182-3.985-.26-5.12.843zm.12-6h-6v4h6v-4zm9.17-1.833c-.806-1.165-5.031-1.924-6.742-2.167-.169.727.111 1.643.859 2.076.729.422 2.847 1.078 3.473 1.702.812.808 2.026 4.668.028 7.282-2.076-.589-4.24-.527-5.415-.048-1.153.47-1.013 1.908.189 2.045 3.42.39 7.587 1.161 10.322 4.943 0 0 1.821-1.885 4.115-4.426-3.668-3.053-4.198-7.606-6.829-11.407zm-13.92 2.833c-.138 0-.25.112-.25.25s.112.25.25.25c.139 0 .25-.112.25-.25s-.111-.25-.25-.25z"/></svg>
+        
+                                <span>Max Of 4 Images</span>
+                            </div>
+        
+                        </div>
+                    </div>
+        
+                    <!--The input-->
+                    <input type="file" id="myInputDrop" multiple>
+        
+                    
+                </div>
+
+                <!--This button will submit the data-->
+                <button type="submit" id="submitGreatForm" >Submit</button>
+
+                <!--This button will toggle to the review page-->
+        
+                <div class="reviewQuiz">
+        
+                    <button class="revBtn" id="revBtn" >
+                        <span>Review Answer</span>
+        
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.5 11c2.484 0 4.5 2.016 4.5 4.5s-2.016 4.5-4.5 4.5-4.5-2.016-4.5-4.5 2.016-4.5 4.5-4.5zm-5.979 5c.043.522.153 1.025.321 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm3.704-.024 1.442 1.285c.095.085.215.127.333.127.136 0 .271-.055.37-.162l2.441-2.669c.088-.096.131-.217.131-.336 0-.274-.221-.499-.5-.499-.136 0-.271.055-.37.162l-2.108 2.304-1.073-.956c-.096-.085-.214-.127-.333-.127-.277 0-.5.224-.5.499 0 .137.056.273.167.372zm-2.598-3.976c-.328.456-.594.96-.785 1.5h-9.092c-.414 0-.75-.336-.75-.75s.336-.75.75-.75zm7.373-3.25c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75zm0-4c0-.414-.336-.75-.75-.75h-16.5c-.414 0-.75.336-.75.75s.336.75.75.75h16.5c.414 0 .75-.336.75-.75z" fill-rule="nonzero"/></svg>
+        
+                    </button>
+        
+                </div>
+
+
+                <a id="btGoRev" href="#goReviewArea">Go</a>
+
+                <script>
+
+                    document.getElementById('btGoRev').addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+
+
+                    
+
+                </script>
+        
+            </div>
 
     
+    </div>
+
+    <!--The review question section-->
+
+    <div class="reviewAnswer" >`
+
+        <div class="innerRev">
+
+            <!--The Body section-->
+            <div class="reveiwTags BodyRev" id="goReviewArea" >
+
+                <!--This is the review body heading-->
+                <div class="revTagHead">
+
+                    <h3 class="head" >Body</h3>
+
+                </div>
+
+                <!--This is where thr title will appear-->
+                <div class="titlePlaceRev" id="BodyFill">
+                    
+                </div>
+
+            </div>
+
+            <!--The code section-->
+            <div class="reveiwTags codeRev">
+
+                <!--This is the review title heading-->
+                <div class="revTagHead">
+
+                    <h3 class="head" >Code</h3>
+
+                </div>
+
+                <!--The code 1 section-->
+                <div class="revCode1" id="revCode1" >
+
+                    <!--The heading of each code section-->
+                    <div class="headCode1">
+                        <span class="codeLangRev" id="codeLangRev" >Undefined</span>
+                    </div>
+
+                    <!--The actual code section-->
+                    <div class="revActCode">
+
+                        <!--The section that the highlight.js will change-->
+
+                        <div class="codeRevChange" >
+
+                            <pre><code id="codeRevChange"></code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--The code 2 section-->
+                <div class="revCode1" id="revCode2" >
+
+                    <!--The heading of each code section-->
+                    <div class="headCode1">
+                        <span class="codeLangRev" id="codeLangRev1" >Undefined</span>
+                    </div>
+
+                    <!--The actual code section-->
+                    <div class="revActCode">
+
+                        <!--The section that the highlight.js will change-->
+
+                        <div class="codeRevChange" >
+
+                            <pre><code id="codeRevChange1" ></code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--The code 3 section-->
+                <div class="revCode1" id="revCode3" >
+
+                    <!--The heading of each code section-->
+                    <div class="headCode1">
+                        <span class="codeLangRev" id="codeLangRev2" >Undefined</span>
+                    </div>
+
+                    <!--The actual code section-->
+                    <div class="revActCode">
+
+                        <!--The section that the highlight.js will change-->
+
+                        <div class="codeRevChange" >
+
+                            <pre><code id="codeRevChange2"></code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--The code 3 section-->
+                <div class="revCode1" id="revCode4" >
+
+                    <!--The heading of each code section-->
+                    <div class="headCode1">
+                        <span class="codeLangRev" id="codeLangRev3" >Undefined</span>
+                    </div>
+
+                    <!--The actual code section-->
+                    <div class="revActCode">
+
+                        <!--The section that the highlight.js will change-->
+
+                        <div class="codeRevChange" >
+
+                            <pre><code id="codeRevChange3"></code></pre>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--This is the image section-->
+            <div class="reveiwTags revImg">
+
+                <!--This is the review title heading-->
+                <div class="revTagHead">
+
+                    <h3 class="head" >Images</h3>
+
+                </div>
+
+
+                <!--This container will contain all the images-->
+
+                <div id="contImRev"></div>
+
+            </div>
+
+            <!--This will hold the submit button and edit button-->
+            <div class="submitEdit">
+
+                <!--Edit question-->
+                <button class="actBtn" id="editAnswer">
+
+                    <span>Edit Answer</span>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.424 12.282l4.402 4.399-5.826 1.319 1.424-5.718zm15.576-6.748l-9.689 9.804-4.536-4.536 9.689-9.802 4.536 4.534zm-6 8.916v6.55h-16v-12h6.743l1.978-2h-10.721v16h20v-10.573l-2 2.023z"/></svg>
+
+                </button>
+
+
+                <!--Edit question-->
+                <button class="actBtn" id="createForm" >
+
+                    <span>Post Answer</span>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 22v-20h16v11.543c0 4.107-6 2.457-6 2.457s1.518 6-2.638 6h-7.362zm18-7.614v-14.386h-20v24h10.189c3.163 0 9.811-7.223 9.811-9.614zm-10.967.614c2.258-4.05 3.826-6.13 5.967-7.999l-.278-.641c-2.596 1.616-3.993 2.833-6.106 5.231-1.125-.802-1.76-1.169-2.76-1.654l-.856.792c1.711 1.585 2.64 2.631 4.033 4.271z"/></svg>
+
+                </button>
+
+                
+                <a  id="return" href="#reviewAnswer">Go</a>
+
+                <script>
+
+                   
+                    document.getElementById('return').addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        console.log('hello')
+
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                
+                        
+                    });
+
+                </script>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
 
 </div>
 
+<input type="text" id="currentUser" value="{{request.user}}" >
 
 <!--Received answers-->
+
+{% for answer in answers %}
 
 <div class="detailAnsweres">
 
@@ -259,14 +1195,14 @@
         <!--Owner profile picture-->
         <div class="posterImage">
 
-            <img src="{% static '\Images\Users\user2.jpg' %}" alt="theUser">
+            <img src="{{answer.profile.profile_url}}" alt="theUser">
 
         </div>
 
         <!--owener Controls-->
         <div class="ownerCont">
 
-            <span>theMehta</span>
+            <span>{{answer.profile.full_name}}</span>
 
             <!--details Controls-->
             <div class="contDetails">
@@ -332,7 +1268,7 @@
 
                 <!--When the answere was uploaded-->
 
-                <span>5hrs Ago</span>
+                <span>{{answer.created}}</span>
 
             </div>
 
@@ -341,29 +1277,73 @@
 
             <div class="itAnswer">
 
-                <div class="detContent">
-
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
-
-                </div>
+                <div class="detContent">{{answer.body | safe}}</div>
 
                 <!--Code block-->
 
+                {% if answer.code_1 != 'undefined' %}
+
+                <!--Code block 1-->
+
                 <div class="codeBlockBody">
 
-                    <p>print("Hellow World")</p>
+                    <pre><code class="language-{{answer.code_1_type}}">{{answer.code_1}}</code></pre>
 
                 </div>
 
+                {% endif %}
+
+                {% if answer.code_2 != 'undefined' %}
+
+                <!--Code block 2-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{answer.code_2_type}}">{{answer.code_2}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+                {% if answer.code_3 != 'undefined' %}
+
+                <!--Code block 3-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{answer.code_3_type}}">{{answer.code_3}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if answer.code_4 != 'undefined' %}
+
+                <!--Code block 4-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{answer.code_4_type}}">{{answer.code_4}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+                   
                 <!--The question media-->
+
+                {% for image in answer.Answerimages.all %}
 
                 <div class="detailImages">
 
-                    <img src="{% static '\Images\Code\code2.jpg' %}" alt="codeImage">
+                    <img src="{{image.answer_gallery_url}}" alt="codeImage">
 
                     <span class="imgContName" >code1.png</span>
 
                 </div>
+
+                {% endfor %}
 
             </div>
 
@@ -375,6 +1355,13 @@
 </div>
 
 
+{% endfor %}
+
+<!--Highlight js lauch-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
 {% endblock %}
 
 
@@ -384,5 +1371,15 @@
 
 <!--The js file-->
 <script src="{% static 'Js/quizDetail.js' %}"></script>
+<script type="module" src="{% static 'Js/Add/rich.js' %}"></script>
+<script type="module" src="{% static 'Js/Add/code.js' %}"></script>
+<script type="module" src="{% static 'Js/Add/drop.js' %}"></script>
+<script type="module" src="{% static 'Js/Add/reviewAnswer.js' %}"></script>
+<script type="module" src="{% static 'Js/Add/postAnswer.js' %}"></script>
+
+
+<script src="{% static 'Js/lib/ace.js' %}"></script>
+<script src="{% static 'Js/lib/theme-monokai.js' %}"></script>
+
 
 {% endblock %}
