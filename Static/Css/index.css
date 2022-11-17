@@ -244,160 +244,466 @@ body {
 /* Authentification part */
 
 .auth {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color: rgba(201,203,255, 0.8);
     position: fixed;
     top: 0;
     z-index: 10;
-}
-
-.closeAuth {
-    width: 100%;
-    height: 100px;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.exx {
-    width: 80px;
-    height: 80px;
-    border-radius: 100%;
-    border: 5px solid #333682;
-    cursor: pointer;
-    transform: scale(0.4);
-    margin-right: 20px;
-    transition: 0.1s ease-in;
-}
-
-.exx svg {
-    transform: scale(0.7);
-    fill: #333682;
-}
-
-.exx:hover {
-    transform: scale(0.5);
-}
-
-/* The big div auth */
-
-.theAuth {
-    width: 100%;
-    height: max-content;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-/* The line separating login and signin */
+/* The big inner div */
+.authSeparate {
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    border-radius: 20px;
+    background-color: white;
+}
 
-.sepLogSig {
-    width: 3px;
-    height: 50px;
+/* The login items details */
+
+.contLogItems {
+    width: 50%;
+    height: 100%;
+}
+
+/* The logo */
+
+.logLogo {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.innerSeeLog {
+    width: 70px;
+    height: 70px;
+}
+
+
+.innerSeeLog img {
+    width: 100%;
+    height: 100%;
+}
+/* The log heading */
+
+.logHeadSee {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logHeadSee h2 {
+    font-size: 27px;
+    font-weight: 700;
+    color: #292929;
+}
+
+
+/* The auth section */
+
+.seeAuthLog {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.innerLogSeeAuth {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 2px solid #cbcbcb;
+}
+
+.seeAuthLog a {
+    text-decoration: none;
+}
+
+#logUser {
+    display: none;
+}
+
+
+/* The actual login links */
+
+.authSeeLink {
+    width: 340px;
+    height: 60px;
+    border-radius: 10px;
+    padding-right: 10px;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+    color: #292929;
+    border: 2px solid #292929;
+    transition: 0.1s ease-in-out;
+}
+
+.authSeeLink:hover {
+    transform: scale(1.2);
+    border: 2px solid #333682;
+    color: #333682;
+}
+
+
+.linkImg {
+    width: 55px;
+    height: 55px;
+}
+
+.linkImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* The mage */
+
+.divLogImg {
+    width: 50%;
+    height: 100%;
+    position: relative;
+}
+
+.divLogImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logCovImg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0.4);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+/* The notification section */
+
+.notiication {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 20;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* The handshake section white */
+
+.handshakes {
+    width: 700px;
+    height: 800px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+/* The two divs */
+
+.receivedHands {
+    min-width: 100%;
+    height: 100%;
+}
+
+
+/* The section containing the x and heading */
+
+.notHead {
+    width: 100%;
+    height: max-content;
+}
+
+.topXNot {
+    width: 100%;
+    height: 80px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topXNot h2 {
+    font-size: 25px;
+    font-weight: 600;
+    color: #333682;
+}
+
+/* The x */
+
+.hideX {
+    fill: #333682;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+
+/* The small navigation section */
+
+.changeHeadNav {
+    width: 100%;
+    height: max-content;
+    border-bottom: 2px solid #c9cbff;
+    background-color: white;
+    display: flex;
+}
+
+.changeHeadNav a {
+    text-decoration: none;
+}
+
+/* Received section */
+
+.goReceived {
+    width: max-content;
+    min-width: 200px;
+    height: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.1s ease-in-out;
+}
+
+.goReceived:hover {
+    border-bottom: 2px solid #333682;
+}
+
+.goReceived:hover > span {
+    color: #333682;
+}
+
+.goReceived:hover > .recNumber {
     background-color: #333682;
 }
 
 
-/* Below are the slide sections */
-
-.mainAuth {
-    width: 500px;
-    height: max-content;
-    background-color: white;
-    border: 2px solid #333682;
-    border-radius: 60px;
-    display: flex;
-    overflow: hidden;
+.slideNotAct {
+    border-bottom: 2px solid #333682;
 }
 
-/* Login slide */
+.slideNotAct > .recNumber {
+    background-color: #333682;
+}
 
-.showLog,.showSign {
+
+.goReceived span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #939393;
+    margin: 20px;
+}
+
+.slideNotAct > span {
+    color: #333682;
+}
+
+.recNumber {
+    width: max-content;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #939393;
+    color: white;
+}
+
+.recNumber span {
+    color: white;
+}
+
+/* The section containing the notifications */
+
+.notPlace {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: hidden;
+}
+
+/* The 2 sections */
+
+
+.notRec,.notSent {
     min-width: 100%;
     height: 100%;
+}
+
+
+/* The individual notification */
+
+.recNotOne {
+    width: 100%;
+    height: 110px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    
-}
-
-.showLog h2,.showSign h2 {
-    color: #292929;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 30px;
+    justify-content: center;
 }
 
 
-/* The github and linkedin authentication */
+/* The inner section */
 
-.authLinks {
-    width: 400px;
-    height: 150px;
-    margin: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.authLinks a {
-    text-decoration: none;
-    color: #292929;
-}
-
-
-
-.github,.linkedin {
-    width: 400px;
-    height: 60px;
-    border-radius: 10px;
-    border: 2px solid #292929;
+.innerRecPlace {
+    width: 94%;
+    height: 90%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom: 2px solid #cbcbcb;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: 0.2s ease-in-out;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
 }
 
-.github:hover,.linkedin:hover {
-    transform: scale(1.1);
-    border: 2px solid #333682;
-    color: #333682;
-}
-
-.authImg {
-    width: 50px;
-    height: 50px;
-    margin: 10px;
+.innerRecPlace:hover {
+    background-color: #ececec;
 }
 
 
+/* The profile pic */
 
-.authImg img {
+.imgNot {
+    width: 80px;
+    height: 80px;
+}
+
+.imgNot img{
     width: 100%;
     height: 100%;
-}
-
-.github span,.linkedin span {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 30px;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
 
-/* The links to shift to auth */ 
+/* Name and time */
 
-.shiftAuth {
-    margin: 40px;
-    font-size: 17px;
-    text-decoration: none;
+.recNameTime {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.recNameTime h4 {
     color: #333682;
-    transition: 0.1 ease-in;
+    font-weight: 600;
+    font-size: 20px;
 }
 
-.shiftAuth:hover {
+.recNameTime span {
+    color: #808080;
+    font-size: 15px;
+}
+
+
+/* The control section */
+
+.recControls {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.recDec {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #cbcbcb;
+    transition: 0.2s ease-in;
+}
+
+.recDec svg {
+    transform: scale(1.4);
+}
+
+.recDec:nth-child(1):hover {
     transform: scale(1.1);
+    background-color: #338238;
+    fill: #cbcbcb;
+}
+
+.recDec:nth-child(2):hover {
+    transform: scale(1.1);
+    background-color: #982d2d;
+    fill: #cbcbcb;
+}
+
+.recDec:nth-child(3):hover {
+    transform: scale(1.1);
+    background-color: #333682;
+    fill: #cbcbcb;
+}
+
+.recAccAct {
+    transform: scale(1.1);
+    background-color: #338238;
+    fill: #cbcbcb;
+    pointer-events: none;
+}
+
+.recDecAct {
+    transform: scale(1.1);
+    background-color: #982d2d;
+    fill: #cbcbcb;
+    pointer-events: none;
+}
+
+.reId,#acceptClick {
+    display: none;
+}
+
+/* sent  */
+
+/* sattus */
+
+.sendStatusS {
+    width: max-content;
+    height: 60px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #cbcbcb;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333682;
 }

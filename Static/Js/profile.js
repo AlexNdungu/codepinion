@@ -335,10 +335,26 @@ submitNow.addEventListener('click', ()=> {
         formData.append('Bio',bio.value);
     
         //The profile picture
-        formData.append('ProfilePicture',profilePicture.files[0]);
+        if(profilePicture.value != ''){
+
+            formData.append('ProfilePicture',profilePicture.files[0]);
+
+        }
+        else{
+            console.log('no profile value');
+        }
     
         //The infomation picture
-        formData.append('InfoPicture',infoPicture.files[0]);
+        if(infoPicture.value != ''){
+
+            formData.append('InfoPicture',infoPicture.files[0]);
+
+        }
+        else{
+
+            console.log('no info pic value');
+
+        }
     
         //formData.append('medias',inputDrop.files);
         formData.append('csrfmiddlewaretoken', csrf[0].value);

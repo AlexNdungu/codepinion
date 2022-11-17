@@ -309,3 +309,19 @@
 #showStat {
     display: none;
 }
+
+
+/* Here let us deal with the ml part */
+
+.mlSearch {
+    width: 100%;
+    height: 200px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.mlSearch input {
+    width: 600px;
+    height: 50px;
+}

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-a5l*h3exp)t%6(=sx++5h%fo_xnlp7x3lhoxhoqil_!@1hcmub
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["codepinion.com", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["codepinion.com", "localhost", "127.0.0.1","192.168.100.12","192.168.100.59"]
 
 
 # Application definition
@@ -40,10 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Code1',
     'Quiz1',
+    'Room',
 
     'ckeditor',
     #social authentication
     'social_django',
+
+    #For chat
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +83,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'codePinion.wsgi.application'
+ASGI_APPLICATION = 'codePinion.asgi.application'
+
+
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database
@@ -120,6 +132,8 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     #linked in
     'social_core.backends.linkedin.LinkedinOAuth2',
+    #Google
+    'social_core.backends.google.GoogleOAuth2',
     
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -130,9 +144,11 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_GITHUB_KEY = '83f7f852751e2f77134f'
 SOCIAL_AUTH_GITHUB_SECRET = '002b0fa77de0cf61d459ee3ffb935293a3770e52'
 
-
 SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '77h8c4y9p08163'
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'caycmELVra8TdY9f'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '359078294146-vi7eekbeknc742b5kptjvrfdukanbsj9.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
@@ -152,7 +168,7 @@ CKEDITOR_CONFIGS = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 

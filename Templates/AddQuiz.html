@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/google-light.min.css" integrity="sha512-nzMhN+KUSkxA5L9h2BKKpaFw19+a1JufkYL6GEwKPxrsf5YFO8TBbI1Qppd72zZbHAA6RG2htrd2q7sHvcb4Ew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <!--The css file-->
+<link rel="stylesheet" href="{% static '/Css/newQuiz.css' %}">
 <link rel="stylesheet" href="{% static '/Css/add.css' %}">
 <link rel="stylesheet" href="{% static '/Css/review.css' %}">
 
@@ -26,6 +27,44 @@
 
 <!--This is where the rest of the content will be-->
 {% block content %}
+
+
+<!--This is the modal that will appraer with example questions-->
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Other Similar Questions</h1>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+
+            <div class="modal-body" id="allQuiz">
+                ...
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Posting Question</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 
 <!--This container will contain the whole middle content-->
 <div class="newContainer" id="newContainer" >
@@ -1182,6 +1221,27 @@
 </div>    
 
 
+
+<!--This will perfrm the search-->
+
+<div class="mlSearch">
+
+    <form method="post" id="mlSearchForm">
+
+        {% csrf_token %}
+
+        <input type="text"  id="inputMlSearch">
+
+        <button id="seeMl" type="submit" >Send</button>
+    </form>
+
+    <button id="activeModalSearch" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Searhc
+    </button>
+
+</div>
+
+
 <!--Highlight js scr-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js" integrity="sha512-gU7kztaQEl7SHJyraPfZLQCNnrKdaQi5ndOyt4L4UPL/FHDd/uB9Je6KDARIqwnNNE27hnqoWLBq+Kpe4iHfeQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -1201,7 +1261,7 @@
 <script type="module" src="{% static 'Js/Add/drop.js' %}"></script>
 <script type="module" src="{% static 'Js/Add/post.js' %}"></script>
 <script type="module" src="{% static 'Js/Add/review.js' %}"></script>
-
+<script type="module" src="{% static 'Js/Add/ml.js' %}"></script>
 
 
 <script src="{% static 'Js/lib/ace.js' %}"></script>

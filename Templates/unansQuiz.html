@@ -1,0 +1,82 @@
+<!--This page inherits from index.html-->
+{% extends 'index.html' %}
+
+{% load static %}
+
+
+<!--The header section is bellow-->
+{% block head %}
+
+<title>codePinion ::- Unanswered Questions</title>
+
+<!--The css file-->
+<link rel="stylesheet" href="{% static '/Css/newQuiz.css' %}">
+
+{% endblock %}
+
+
+<!--This is where the rest of the content will be-->
+{% block content %}
+
+<!--This container will contain the whole middle content-->
+<div class="newContainer" id="newContainer" >
+
+    <!--This div contains all new questions-->
+    <div class="allNewQuiz">
+
+        <!--This is the heading of the new quiz-->
+        <div class="newQuizHead">
+
+            <!--Title-->
+            <h2 class="h2New" >Unanswered Questions</h2>
+
+            <div class="newNo">
+                <h2>{{Questions}}</h2>
+            </div>
+
+        </div>
+
+
+        <!--Here lets create a loading animation-->
+
+        <div class="loading" id="loading" >
+
+            <div class="innerLoad">
+
+            </div>
+
+        </div>
+
+
+        <!--No questions available-->
+
+        <div class="noQuiz"  id="noQuiz">
+
+            <img src="{% static '\Images\Icon\empty.png' %}" alt="">
+
+        </div>
+
+
+        <!--The questions-->
+
+        <div class="theQuestions" id="allQuiz" >
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+
+
+
+<!--This is where the js links will be held-->
+{% block below %}
+
+<!--The js file-->
+<script src="{% static 'Js/unansQuiz.js' %}"></script>
+
+{% endblock %}

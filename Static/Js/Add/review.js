@@ -119,11 +119,17 @@ let title = document.getElementById('title');
 
 let titleView = document.getElementById('titleFill');
 
+let inputMlSearch = document.getElementById('inputMlSearch');
+
+
 title.addEventListener('input', ()=>{
 
     console.log('change');
 
     titleView.innerText = title.value;
+
+    //kets see
+    inputMlSearch.value = title.value;
 
 });
 

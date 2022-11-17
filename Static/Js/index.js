@@ -51,24 +51,49 @@ $(document).ready(function(){
 
     //This is is the authentication toggle
 
-    $('#auth').hide();
+    //$('#auth').hide();
+
+    //Here we either show or hide the auth place
+    let logUser = document.getElementById('logUser');
+
+    //Lets either hide or show
+    if(logUser.value == 'AnonymousUser'){
+        $('#auth').show();
+    }
+    else{
+        $('#auth').hide();
+    }
+    
+
 
     
-    $('#authTog').click(function(){
+    /* Here we deal with the notification section */
 
-        $('#auth').show(400);
-        
+    $('#notiication').hide()
+
+    let showNotBtn = document.getElementById('hideX');
+
+    let seeNewShakes = document.getElementById('seeNewShakes');
+
+    
+    seeNewShakes.addEventListener('click', ()=> {
+
+        $('#notiication').show(400);
+
+            
+    });
+    
+
+    showNotBtn.addEventListener('click', ()=> {
+
+        $('#notiication').hide(400);
+
+            
     });
 
-
-    //This will close tha div
-
-    $('#logToggle').click(function(){
-
-        $('#auth').hide(400);
-        
-    });
 
 });
+
+
 
 

@@ -1,0 +1,529 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* The big chat section */
+
+.chat {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+
+/* The chat navigation */
+
+.chatNav {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9cbff;
+}
+
+/* Inner chat */
+
+.innerNav {
+    width: 80px;
+    height: 95%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
+/* The icon section */
+
+.icon {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icImg {
+    width: 70px;
+    height: 70px;
+}
+
+.icImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icImg img:nth-child(2) {
+    border-radius: 100%;
+}
+
+
+/* The actual navigation */
+
+.actNav {
+    width: 100%;
+    height: calc(100% - 200px);
+    padding-top: 100px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* The svg */
+
+.navSvgs {
+    transform: scale(1.3);
+    fill: #292929;
+}
+
+
+/* The chat list section */
+
+.chatList {
+    width: 350px;
+    height: 100%;
+    background-color: aquamarine;
+}
+
+/* The list search section */
+
+.lstSearch {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9cbff;
+}
+
+/* The actual search */
+
+.theSearch {
+    width: 100%;
+    height: 60px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.theSearch input {
+    width: 80%;
+    height: 90%;
+    font-size: 17px;
+    padding-left: 10px;
+    color: #333682;
+    outline: none;
+    border: none;
+}
+
+.theSearch input::placeholder {
+    color: #333682;
+}
+
+.theSearch svg {
+    fill: #333682;
+}
+
+
+/* The user list chat */
+
+.biggerlist{
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: #c9cbff;
+}
+
+.userList {
+    width: 100%;
+    padding-top: 10px;
+    height: calc(100% - 25px);
+    border-radius: 20px;
+    background-color: white;
+}
+
+
+/* The actual user in list */
+
+.actUserList {
+    width: 100%;
+    height: 90px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    margin-bottom: 10px;
+}
+
+.actUserList:hover {
+    background-color: #ececec;
+}
+
+/* The user icon */
+
+.listUserIc {
+    width: 65px;
+    height: 65px;
+    margin-left: 10px;
+}
+
+.listUserIc img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* The user name and last message */
+
+.listMessName {
+    width: 50%;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #939393;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.listMessName h4 {
+    font-size: 18px;
+    color: #333682;
+}
+
+.listMessName span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #939393;
+}
+
+.timeList {
+    width: 90px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-right: 10px;
+}
+
+.timeList span {
+    font-size: 16px;
+    color: #333682;
+    font-weight: 600;
+}
+
+.listNot {
+    background-color: #333682;
+    height: 45px;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.listNot p {
+    font-size: 15px;
+    color: white;
+}
+
+
+/* The convo */
+
+.convo {
+    width: calc(100% - 800px);
+    background-color: rebeccapurple;
+}
+
+
+/* The video icon section */
+.video {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #333682;
+}
+
+.video svg {
+    transform: scale(1.5);
+}
+
+
+/* The chat section heading */
+
+.oneToOne {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#c9cbff;
+}
+
+
+.oneInnerC {
+    width: 97%;
+    height: 110px;
+    display: flex;
+    border-radius: 20px;
+    background-color: white;
+}
+
+/* The user and status */
+
+.oneUser {
+    width: 50%;
+    height: 100%;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.oneIC {
+    width: 80px;
+    height: 80px;
+}
+
+.oneIC img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+
+/* the name and statuc */
+
+.oneUserStatus {
+    margin-left: 20px;
+}
+
+.oneUserStatus h4 {
+    font-size: 20px;
+    color: #333682;
+}
+
+.oneUserStatus span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3ea42d;
+}
+
+
+/* The icon controls */
+
+.oneControls {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+/* The actual icon */
+
+.contIndUc {
+    fill: #808080;
+    transform: scale(1.2);
+    margin: 15px;
+}
+
+
+/* The chat section */
+
+.chatSecPlace {
+    width: 100%;
+    height: calc(100% - 150px);
+    display: flex;
+    justify-content: center;
+    background-color: #c9cbff;
+}
+
+/* The inner section */
+
+.innerConvoPlace {
+    width: 97%;
+    height: calc(100% - 25px);
+    border-radius: 20px;
+    background-color: #ececec;
+}
+
+/* The place chats will display */
+
+.placeChat {
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow-y: auto;
+}
+
+
+/* The chat section */
+
+.smallChat {
+    width: 100%;
+    height: max-content;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.left {
+    justify-content: start;
+    color: #333682;
+    padding-left: 20px;
+}
+
+.left > .innerSmallChat {
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+.right {
+    justify-content: end;
+    color: white;
+    padding-right: 20px;
+}
+
+.right > .innerSmallChat {
+    background-color: #333682;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+/* The inner chat */
+
+.innerSmallChat {
+    width: max-content;
+    height: max-content;
+    min-height: 50px;
+    min-width: 200px;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.innerSmallChat p {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+
+/* The send chat section */
+
+.sendChat {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* The form section */
+
+#sendMessage {
+    width: 98%;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.formInput {
+    margin-left: 20px;
+    width: 70%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    color: #333682;
+}
+
+.formInput::placeholder {
+    color: #333682;
+}
+
+
+/* The control form */
+
+.formControls {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.formControls button {
+    width: 50px;
+    height: 50px;
+    background-color: #ececec;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #292929;
+}
+
+.formControls button:nth-child(3){
+    fill: #333682;
+}
+
+
+
+/* No chat selected */
+
+.noChat {
+    width: calc(100% - 450px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c9cbff;
+}
+
+.noChatInner {
+    width: 98%;
+    height: calc(100% - 50px);
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* see username */
+
+.seeUser {
+    display: none;
+}

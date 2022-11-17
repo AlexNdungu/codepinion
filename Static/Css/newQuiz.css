@@ -300,3 +300,57 @@
     color: #d93636;
     fill: #d93636;
 }
+
+/* Removing the underline */
+
+a {
+    text-decoration: none;
+}
+
+
+/* Lets create a loading animation  */
+
+.loading {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.innerLoad {
+    width: 100px;
+    height: 100px;
+    border: 15px solid #c9cbff;
+    border-top-color: #333682;
+    border-radius: 50%;
+    animation: spin 0.7s infinite linear;
+}
+
+@keyframes spin {
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Questions not found */
+
+.noQuiz {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.noQuiz img {
+    width: 350px;
+}
+
+
+/* Remove the unserline */
+
+.removeUnder {
+    text-decoration: none;
+}

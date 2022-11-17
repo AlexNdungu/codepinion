@@ -1,0 +1,223 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* The main vido section */
+
+.mainVideoSec {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    background-color: #C9CBFF;
+}
+
+/* The other vieo chatter */
+
+.otherVideo {
+    width: 97%;
+    height: 97%;
+    background-color: white;
+    border-radius: 20px;
+    position: relative;
+}
+
+.otherVideo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.vidContAndMe {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+}
+
+
+/* The user and time */
+
+.vidUserTime {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.themUse,.vidTime,.meTagVid {
+    width: max-content;
+    height: 45px;
+    margin: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0,0.3);
+}
+
+.themUse span,.vidTime span,.meTagVid span {
+    font-weight: 500;
+    font-size: 19px;
+    margin: 10px;
+    color: #333682;
+}
+
+
+
+/* Current user video */
+
+.meVidCont {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* My section */
+
+.mevidContSee {
+    position: relative;
+    width: 320px;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #C9CBFF;
+}
+
+.mevidContSee img {
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+}
+
+
+.innerVid {
+    width: 100%;
+    height: 100%;
+}
+
+#my-local-video,#them-local-video {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: #252525;
+}
+
+.theMeContNew {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* The top section */
+
+.meTopVid {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+
+/* My contols */
+.meBotConts {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audMe,.vidMe {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: #3EA42D;
+    background-color: rgba(0, 0, 0,0.3);
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+/* The main videochat controls */
+
+.otherContVid {
+    width: 400px;
+    height: 100%;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+/* The video icons */
+.mainVidAud {
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainVidAud svg {
+    transform: scale(1.5);
+    fill: #3EA42D;
+}
+
+/* End meeting */
+
+.emdMeet,.strMeet {
+    cursor: pointer;
+    width: 200px;
+    height: 70px;
+    margin-left: 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CBCBCB;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.emdMeet {
+    background-color: #C63B3B;
+}
+
+.strMeet {
+    background-color: #358a26;
+}

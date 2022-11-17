@@ -18,6 +18,11 @@ def Me(request):
 
     return render(request, 'Profile/profile.html', context)
 
+#Here we share our screen
+
+def shareScreen(request):
+    
+    return render(request, 'share.html')
 
 def getTags(request):
 
@@ -62,17 +67,29 @@ def profileForm(request):
 
         userBio = request.POST.get('Bio')
 
-        profilePicture = request.FILES.get('ProfilePicture')
+        #Check if there is any profile image being posted from the front end
 
-        infoPicture = request.FILES.get('InfoPicture')
+        if request.FILES.get('ProfilePicture') != None:
+
+            profilePicture = request.FILES.get('ProfilePicture')
+
+        #Check if there is any info picture being sent from the front end
+
+        if request.FILES.get('InfoPicture') != None:
+
+            infoPicture = request.FILES.get('InfoPicture')
 
         #Now let use upload the the db
 
 
         profile.full_name = fullName
         profile.bio = userBio
-        profile.profile_pic = profilePicture
-        profile.info_picture = infoPicture
+
+        if request.FILES.get('ProfilePicture') != None:
+            profile.profile_pic = profilePicture
+
+        if request.FILES.get('InfoPicture') != None:    
+            profile.info_picture = infoPicture
         #now we save
         profile.save()
 
@@ -106,3 +123,4 @@ def profileForm(request):
 
 
     return JsonResponse({'status':'success'})    
+

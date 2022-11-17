@@ -21,8 +21,10 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Profile/',include('Code1.urls')),
     path('',include('Quiz1.urls')),
+    path('Profile/',include('Code1.urls')),
+    path('Room/',include('Room.urls')),
+
     #Social Auth
     path('social-auth/', include('social_django.urls', namespace='social'))
 ]

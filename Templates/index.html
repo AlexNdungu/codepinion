@@ -70,11 +70,16 @@
 
                 {% if request.user.is_authenticated %}
 
-                <div class="user inSpace">
+                <a href="{% url 'profile' %}">
+                    <div class="user inSpace">
 
-                    <img src="{{request.user.profile.profile_url}}" alt="">
 
-                </div>
+                        <img src="{{request.user.profile.profile_url}}" alt="profile">
+    
+    
+                    </div>
+                </a>
+
 
                 {% else %}
 
@@ -113,31 +118,41 @@
 
             <!--New Quiz-->
 
-            <div class="newQuiz">
+            <a href="{% url 'New_questions' %}">
+                <div class="newQuiz">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.351 6.493c-.08-.801.55-1.493 1.351-1.493s1.431.692 1.351 1.493l-.801 8.01c-.029.282-.266.497-.55.497s-.521-.215-.55-.498l-.801-8.009zm1.351 12.757c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg>
-
-                <div class="meNot">
-                    <span>12</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.351 6.493c-.08-.801.55-1.493 1.351-1.493s1.431.692 1.351 1.493l-.801 8.01c-.029.282-.266.497-.55.497s-.521-.215-.55-.498l-.801-8.009zm1.351 12.757c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg>
+    
+                    <div class="meNot">
+                        <span>12</span>
+                    </div>
+    
                 </div>
+            </a>
 
-            </div>
+            
 
             <!--Answered Quiz-->
+            <a href="{% url 'all_ans_quiz' %}">
 
-            <div class="ansQuiz">
+                <div class="ansQuiz">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.673 18.837l-1.847 1.165c-.074-.721-.358-1.391-.826-1.948-.469-.557-6.115-7.376-7.523-9.178-.469-.601-.575-1.246-.295-1.817.268-.549.842-.918 1.43-.918.919 0 1.408.655 1.549 1.215.16.641-.035 1.231-.623 1.685l1.329 1.624 6.088-3.472 1.759 2.036c.564-.407 1.193-.73 1.872-.94-.729-.84-1.402-1.615-1.855-2.131 1.362-1.063 1.739-2.957.862-4.452-.618-1.053-1.759-1.706-2.978-1.706-1.188 0-.793-.016-9.565 4.475-1.234.591-2.05 1.787-2.05 3.202 0 .87.308 1.756.889 2.487 1.427 1.794 7.561 9.185 7.616 9.257.371.493.427 1.119.15 1.673-.277.555-.812.886-1.429.886-.919 0-1.408-.655-1.549-1.216-.156-.629.012-1.208.604-1.654l-1.277-1.545c-.822.665-1.277 1.496-1.377 2.442-.232 2.205 1.525 3.993 3.613 3.993.596 0 1.311-.177 1.841-.51l5.257-3.316c-.627-.351-1.188-.805-1.665-1.337zm-1.653-16.685c.188-.087.398-.134.609-.134.532 0 .997.281 1.243.752.312.596.226 1.469-.548 1.912l-5.097 2.888c-.051-1.089-.579-2.081-1.455-2.732l5.248-2.686zm6.48 7.848c-2.486 0-4.5 2.015-4.5 4.5s2.014 4.5 4.5 4.5c2.484 0 4.5-2.015 4.5-4.5s-2.016-4.5-4.5-4.5zm-.469 6.484l-1.688-1.637.695-.697.992.94 2.115-2.169.697.696-2.811 2.867z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.673 18.837l-1.847 1.165c-.074-.721-.358-1.391-.826-1.948-.469-.557-6.115-7.376-7.523-9.178-.469-.601-.575-1.246-.295-1.817.268-.549.842-.918 1.43-.918.919 0 1.408.655 1.549 1.215.16.641-.035 1.231-.623 1.685l1.329 1.624 6.088-3.472 1.759 2.036c.564-.407 1.193-.73 1.872-.94-.729-.84-1.402-1.615-1.855-2.131 1.362-1.063 1.739-2.957.862-4.452-.618-1.053-1.759-1.706-2.978-1.706-1.188 0-.793-.016-9.565 4.475-1.234.591-2.05 1.787-2.05 3.202 0 .87.308 1.756.889 2.487 1.427 1.794 7.561 9.185 7.616 9.257.371.493.427 1.119.15 1.673-.277.555-.812.886-1.429.886-.919 0-1.408-.655-1.549-1.216-.156-.629.012-1.208.604-1.654l-1.277-1.545c-.822.665-1.277 1.496-1.377 2.442-.232 2.205 1.525 3.993 3.613 3.993.596 0 1.311-.177 1.841-.51l5.257-3.316c-.627-.351-1.188-.805-1.665-1.337zm-1.653-16.685c.188-.087.398-.134.609-.134.532 0 .997.281 1.243.752.312.596.226 1.469-.548 1.912l-5.097 2.888c-.051-1.089-.579-2.081-1.455-2.732l5.248-2.686zm6.48 7.848c-2.486 0-4.5 2.015-4.5 4.5s2.014 4.5 4.5 4.5c2.484 0 4.5-2.015 4.5-4.5s-2.016-4.5-4.5-4.5zm-.469 6.484l-1.688-1.637.695-.697.992.94 2.115-2.169.697.696-2.811 2.867z"/></svg>
+    
+                </div>
 
-            </div>
+            </a>
 
             <!--Unanswered quiz-->
+            <a href="{% url 'all_unans_quiz' %}">
 
-            <div class="unanswQuiz">
+                <div class="unanswQuiz">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25s-.559 1.25-1.25 1.25zm1.961-5.928c-.904.975-.947 1.514-.935 2.178h-2.005c-.007-1.475.02-2.125 1.431-3.468.573-.544 1.025-.975.962-1.821-.058-.805-.73-1.226-1.365-1.226-.709 0-1.538.527-1.538 2.013h-2.01c0-2.4 1.409-3.95 3.59-3.95 1.036 0 1.942.339 2.55.955.57.578.865 1.372.854 2.298-.016 1.383-.857 2.291-1.534 3.021z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 18.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25s-.559 1.25-1.25 1.25zm1.961-5.928c-.904.975-.947 1.514-.935 2.178h-2.005c-.007-1.475.02-2.125 1.431-3.468.573-.544 1.025-.975.962-1.821-.058-.805-.73-1.226-1.365-1.226-.709 0-1.538.527-1.538 2.013h-2.01c0-2.4 1.409-3.95 3.59-3.95 1.036 0 1.942.339 2.55.955.57.578.865 1.372.854 2.298-.016 1.383-.857 2.291-1.534 3.021z"/></svg>
+    
+                </div>
 
-            </div>
+            </a>
 
             <!--Search question-->
 
@@ -149,11 +164,14 @@
 
             <!--Ask Quiz-->
 
-            <div class="askQuiz">
+            <a href="{% url 'Add_Question' %}">
+                <div class="askQuiz">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 1c-6.338 0-12 4.226-12 10.007 0 2.05.738 4.063 2.047 5.625.055 1.83-1.023 4.456-1.993 6.368 2.602-.47 6.301-1.508 7.978-2.536 9.236 2.247 15.968-3.405 15.968-9.457 0-5.812-5.701-10.007-12-10.007zm0 15c-.565 0-1.024-.459-1.024-1.025 0-.565.459-1.024 1.024-1.024.566 0 1.024.459 1.024 1.024 0 .566-.458 1.025-1.024 1.025zm1.606-4.858c-.74.799-.775 1.241-.766 1.785h-1.643c-.006-1.208.016-1.742 1.173-2.842.469-.446.84-.799.788-1.493-.047-.66-.599-1.004-1.117-1.004-.581 0-1.261.432-1.261 1.649h-1.646c0-1.966 1.155-3.237 2.941-3.237.849 0 1.592.278 2.09.783.468.473.709 1.125.7 1.883-.013 1.134-.704 1.878-1.259 2.476z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 1c-6.338 0-12 4.226-12 10.007 0 2.05.738 4.063 2.047 5.625.055 1.83-1.023 4.456-1.993 6.368 2.602-.47 6.301-1.508 7.978-2.536 9.236 2.247 15.968-3.405 15.968-9.457 0-5.812-5.701-10.007-12-10.007zm0 15c-.565 0-1.024-.459-1.024-1.025 0-.565.459-1.024 1.024-1.024.566 0 1.024.459 1.024 1.024 0 .566-.458 1.025-1.024 1.025zm1.606-4.858c-.74.799-.775 1.241-.766 1.785h-1.643c-.006-1.208.016-1.742 1.173-2.842.469-.446.84-.799.788-1.493-.047-.66-.599-1.004-1.117-1.004-.581 0-1.261.432-1.261 1.649h-1.646c0-1.966 1.155-3.237 2.941-3.237.849 0 1.592.278 2.09.783.468.473.709 1.125.7 1.883-.013 1.134-.704 1.878-1.259 2.476z"/></svg>
+    
+                </div>
+            </a>
 
-            </div>
 
             <!--My Quiz-->
 
@@ -174,19 +192,22 @@
 
             <!--Notifications-->
 
-            <div class="messages">
+            <a href="{% url 'rooms' %}">
+                <div class="messages">
 
-                <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M20 9.999v-2h4v12.001h-3v4l-5.333-4h-7.667v-4h12v-6.001zm-2 4.001h-9.667l-5.333 4v-4h-3v-14.001h18v14.001z"/></svg>
-
-                <div class="meNot">
-                    <span>12</span>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M20 9.999v-2h4v12.001h-3v4l-5.333-4h-7.667v-4h12v-6.001zm-2 4.001h-9.667l-5.333 4v-4h-3v-14.001h18v14.001z"/></svg>
+    
+                    <div class="meNot">
+                        <span>12</span>
+                    </div>
+    
                 </div>
+            </a>
 
-            </div>
 
             <!--Hand Shakes-->
 
-            <div class="handShake">
+            <div class="handShake" id="seeNewShakes" >
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.152 18.614c.314.229.383.671.15.984l-.807 1.092c-.215.294-.682.374-.986.151-.314-.231-.383-.672-.152-.986l.809-1.092c.229-.31.67-.382.986-.149zm-4.929-1.046l.807-1.087c.23-.314.164-.755-.152-.987-.316-.232-.756-.163-.986.151l-.806 1.088c-.23.313-.163.756.151.987.298.218.768.146.986-.152zm2.516.158l-.805 1.086c-.231.315-.162.757.151.988.301.221.77.145.987-.151l.805-1.088c.231-.313.163-.755-.151-.987-.313-.23-.753-.163-.987.152zm3.563 2.117c-.128.302-.472.726-.707 1.044.155.08.309.113.451.113.542 0 .902-.511.415-.998l-.159-.159zm-4.986-3.157l-.812 1.096c-.23.314-.157.746.156.978.308.225.768.15.981-.143l.812-1.097c.232-.312.163-.755-.152-.986-.315-.23-.755-.161-.985.152zm12.746-.811l2.938-.781-1.583-6.094-2.979.896 1.624 5.979zm-2.482-5.322c-1.453.106-2.834-.429-4.351-1.212-.334-.172-.719-.312-1.095-.312-.346 0-.685.119-.969.441-1.024 1.161-1.619 2.187-2.839 2.898-.601.351.104 1.45 1.396.999.658-.231 1.55-.827 2.277-1.413.572-.461.914-.394 1.41.102.928.929 4.053 4.013 4.053 4.013.483-.298.95-.539 1.413-.746l-1.295-4.77zm-14.018-.657l-2.979-.896-1.583 6.094 2.938.781 1.624-5.979zm13.406 7.126c-.484-.535-3.737-3.733-4.315-4.31-.981.736-2.273 1.761-3.521 1.761-.943 0-1.752-.557-1.968-1.354-.173-.635.093-1.285.66-1.616.71-.414 1.181-.981 1.755-1.691-1.754-1.108-3.25.692-5.149.709l-1.273 4.685c.556.132 1.04.272 1.489.441l.44-.595c.792-1.081 2.444-.857 2.95.351.64.056 1.186.469 1.424 1.04.619.054 1.174.447 1.422 1.039.936.081 1.7.93 1.53 1.972l.654.654c.275.276.723.275.997 0 .276-.276.276-.723 0-.999l-1.264-1.265c-.069-.069-.069-.183.003-.252.069-.066.179-.065.247.002l1.523 1.524c.275.276.723.276.998 0 .276-.276.276-.722 0-.998l-1.875-1.876c-.072-.071-.069-.188.006-.255.069-.063.178-.062.243.005l2.025 2.025c.275.276.723.276.998 0 .276-.275.276-.721.001-.997zm-7.386-14.022l-.984.174.521 2.954.984-.174-.521-2.954zm3.82.174l-.984-.174-.521 2.954.986.174.519-2.954zm3.598 1.228l-.867-.5-1.5 2.598.867.5 1.5-2.598zm-11.133-.5l-.867.5 1.5 2.598.867-.5-1.5-2.598z"/></svg>
 
@@ -237,113 +258,315 @@
     <div class="theAuth">
         <!--The toggle pages-->
 
-        <div class="mainAuth">
+        <div class="authSeparate">
 
-            <!--Login section-->
-            <div class="showLog" id="showLog" >
+            <!--The div containing the login buttons-->
+            <div class="contLogItems">
 
-                <h2>LOGIN</h2>
-
-                <!--Below are the auth links-->
-
-                <div class="authLinks">
-
-                    <!--The githib-->
-                    <a href="{% url "social:begin" "github" %}">
-
-                        <div class="github">
-
-                            <div class="authImg">
-                                <img src="{% static '\Images\Auth\github.png' %}" alt="github">
-                            </div>
-    
-                            <span>Continue With GitHub</span>
-    
-                        </div>
-
-                    </a>
-
-                    <!--The Linked in-->
-                    <a href="{% url "social:begin" "linkedin-oauth2" %}">
-                        <div class="linkedin">
-
-                            <div class="authImg">
-                                <img src="{% static '\Images\Auth\linkedin.png' %}" alt="github">
-                            </div>
-
-                            <span>Continue With Linked-In</span>
-
-                        </div>
-                    </a>
-
+                <div class="logLogo">
+                    <div class="innerSeeLog">
+                        <img src="{% static '\Images\Icon\csIcon.jpg' %}" alt="">
+                    </div>
                 </div>
 
+                <!--The heading-->
+                <div class="logHeadSee">
+                    <h2>Welcome To CodePinion</h2>
+                </div>
 
-                <a class="shiftAuth" href="#showSign">I Dont Have An Account</a>
+                <!--The auth secion-->
+                <div class="seeAuthLog">
+
+                    <!--The link-->
+                    <div class="innerLogSeeAuth">
+
+                        <!--google-->
+                        <a  href="{% url "social:begin" "google-oauth2" %}">
+                            <div class="authSeeLink">
+                                <!--The link image-->
+                                <div class="linkImg">
+                                    <img src="{% static '\Images\Auth\google.png' %}" alt="">
+                                </div>
+
+                                <span>Continue With Google</span>
+                            </div>
+                        </a>
+
+                        <!--Gitgub-->
+                        <a  href="{% url "social:begin" "github" %}">
+                            <div class="authSeeLink">
+                                <!--The link image-->
+                                <div class="linkImg">
+                                    <img src="{% static '\Images\Auth\github.png' %}" alt="">
+                                </div>
+
+                                <span>Continue With GitHub</span>
+                            </div>
+                        </a>
+
+                        <!--Linked In-->
+                        <a  href="{% url "social:begin" "linkedin-oauth2" %}">
+                            <div class="authSeeLink">
+                                <!--The link image-->
+                                <div class="linkImg">
+                                    <img src="{% static '\Images\Auth\linkedin.png' %}" alt="">
+                                </div>
+
+                                <span>Continue With LinkedIn</span>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    
+
+                    <input id="logUser" type="text" value="{{request.user}}" >
+                    
+
+                </div>
 
             </div>
 
-            <!--Sighnin section-->
-            <div class="showSign" id="showSign" >
+            <!--The div containing the image-->
+            <div class="divLogImg">
+                <img src="{% static '\Images\Code\code1.jpg' %}" alt="welcome">
 
-                <h2>SIGNIN</h2>
-
-                <!--Below are the auth links-->
-
-                <div class="authLinks">
-
-                    <!--The githib-->
-                    <a href="{% url "social:begin" "github" %}">
-                        <div class="github">
-
-                            <div class="authImg">
-                                <img src="{% static '\Images\Auth\github.png' %}" alt="github">
-                            </div>
-
-                            <span>Continue With GitHub</span>
-
-                        </div>
-                    </a>    
-
-                    <!--The Linked in-->
-                    <a href="{% url "social:begin" "linkedin-oauth2" %}">
-                        <div class="linkedin">
-
-                            <div class="authImg">
-                                <img src="{% static '\Images\Auth\linkedin.png' %}" alt="github">
-                            </div>
-
-                            <span>Continue With Linked-In</span>
-
-                        </div>
-                    </a>    
-
-                </div>
-
-                <a class="shiftAuth" href="#showLog">I Already Have An Account</a>
+                <!--The div covering the image-->
+                <div class="logCovImg"></div>
 
             </div>
 
         </div>
 
-        <script>
+    </div>
 
-            let shiftLinks = document.querySelectorAll('.shiftAuth');
-
-            for(let link = 0; link < shiftLinks.length; link++){
-                shiftLinks[link].addEventListener('click', function (e) {
-                    e.preventDefault();
-            
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            }
+</div>
 
 
-        </script>
+<!--The notification sections-->
+
+<div class="notiication" id="notiication" >
+
+    <!--Handshake see section-->
+    <div class="handshakes">
+
+        <!--Received handshakes-->
+        <div class="receivedHands">
+
+            <!--This section heads-->
+            <div class="notHead">
+
+                <!--The top and x-->
+                <div class="topXNot">
+
+                    <h2>HandShakes</h2>
+
+                    <div class="hideX" id="hideX" >
+                        <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+                    </div>
+
+                </div>
 
 
+                <!--Change navigation section-->
+                <div class="changeHeadNav">
+
+                    <!--Received section-->
+                    <a href="#notRec">
+                        <div class="goReceived slideNotAct">
+
+                            <span>Received</span>
+    
+                            <div class="recNumber">
+                                <span id="AskingAcc" >{{current_request_count}}</span>
+                            </div>
+    
+                        </div>
+                    </a>
+
+                    <!--sent section-->
+                    <a href="#notSent">
+                        <div class="goReceived">
+
+                            <span>Sent</span>
+    
+                            <div class="recNumber">
+                                <span>13</span>
+                            </div>
+    
+                        </div>
+                    </a>
+                    
+                    <script>
+
+                        let link = document.querySelectorAll('.changeHeadNav a');
+
+                        let btnClasses = document.querySelectorAll('.goReceived');
+
+                        for(let a = 0; a < link.length; a++){
+
+                            link[a].addEventListener('click', function (e) {
+                                e.preventDefault();
+                        
+                                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            });
+
+                        }
+
+                        for(let a = 0; a < link.length; a++){
+
+                            btnClasses[0].addEventListener('click', function (e) {
+
+                                btnClasses[0].classList.add('slideNotAct');
+
+                                btnClasses[1].classList.remove('slideNotAct');
+                                
+                            });
+
+                            btnClasses[1].addEventListener('click', function (e) {
+
+                                btnClasses[1].classList.add('slideNotAct');
+
+                                btnClasses[0].classList.remove('slideNotAct');
+                                
+                            });
+
+
+                        }
+                   
+    
+                    </script>
+
+                </div>
+
+                <!--The sections containing the notifications-->
+                <div class="notPlace">
+
+                    <!--Received notifiation-->
+                    <div class="notRec" id="notRec" >
+
+                        <form method="post" id="acceptForm" >
+
+                            {% csrf_token %}
+
+                            {% for sent in current_request %}
+
+                            {% if sent.accepted == False %}
+
+                            <!--Indivividual notigfication-->
+                            <div class="recNotOne">
+
+                                <span class="reId" >{{sent.rel_id}}</span>
+
+                                <!--The section containing the notification-->
+                                <div class="innerRecPlace">
+
+                                    <!--The sender image-->
+                                    <div class="imgNot">
+                                        <img src="{{sent.sender.profile_url}}" alt="">
+                                    </div>
+
+                                    <!--The name and time-->
+                                    <div class="recNameTime">
+
+                                        <h4>{{sent.sender.full_name}}</h4>
+
+                                        <span>{{sent.time_since}}</span>
+
+                                    </div>
+
+
+                                    <!--The received controls-->
+                                    <div class="recControls">
+
+                                        <!--RecDec-->
+                                        <div class="recDec recAccept newrecDec recAccept1">
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m2.25 12.321 7.27 6.491c.143.127.321.19.499.19.206 0 .41-.084.559-.249l11.23-12.501c.129-.143.192-.321.192-.5 0-.419-.338-.75-.749-.75-.206 0-.411.084-.559.249l-10.731 11.945-6.711-5.994c-.144-.127-.322-.19-.5-.19-.417 0-.75.336-.75.749 0 .206.084.412.25.56" fill-rule="nonzero"/></svg>
+                                        </div>
+
+                                        <!--RecDec-->
+                                        <div class="recDec recDecline newrecDec recDec2">
+                                            <svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2"  width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg>
+                                        </div>
+
+                                        <!--RecDec-->
+                                        <div class="recDec recDetails">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 12c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm9 0c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm9 0c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"/></svg>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                
+
+                            </div>
+
+                            {% endif %}
+
+                            {% endfor %}
+
+                            <button type="submit" id="acceptClick" >Accept</button>
+
+                        </form>
+
+
+                        
+
+                    </div>
+
+                    <!--Sent notifications-->
+                    <div class="notSent" id="notSent" >
+
+                        <!--Indivividual notigfication-->
+                        <div class="recNotOne">
+
+                            <!--The section containing the notification-->
+                            <div class="innerRecPlace">
+
+                                <!--The sender image-->
+                                <div class="imgNot">
+                                    <img src="{% static '\Images\Users\user.jpg' %}" alt="">
+                                </div>
+
+                                <!--The name and time-->
+                                <div class="recNameTime">
+
+                                    <h4>Alex Meta Ndungu</h4>
+
+                                    <span>7hrs Ago</span>
+
+                                </div>
+
+
+                                <!--The received controls-->
+                                <div class="recControls">
+
+                                    <!--Status show-->
+                                    <div class="sendStatusS">
+                                        <span>Pending</span>
+                                    </div>
+
+                                    <!--RecDec-->
+                                    <div class="recDec">
+                                        <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M19 24h-14c-1.104 0-2-.896-2-2v-16h18v16c0 1.104-.896 2-2 2m3-19h-20v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2zm-12-2h4v-1h-4v1z"/></svg>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -358,8 +581,6 @@
 <!--Boostrap Link-->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
-    
-
 </body>
 
 {% block below %}
@@ -367,5 +588,7 @@
 
 <!--The js file-->
 <script src="{% static 'Js/index.js' %}"></script>
+<script src="{% static 'Js/accept.js' %}"></script>
+
 
 </html>

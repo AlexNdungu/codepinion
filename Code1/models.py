@@ -64,8 +64,8 @@ class Profile(models.Model):
 
     bio = models.TextField(verbose_name='Bio')
 
-    profile_pic = models.ImageField(upload_to = 'profiles')
-    info_picture = models.ImageField(upload_to = 'infoPicture')
+    profile_pic = models.ImageField(upload_to = 'profiles', default='user.png')
+    info_picture = models.ImageField(upload_to = 'infoPicture', default='info.jpg')
 
     update = models.DateTimeField(auto_now=True)
     created = models.DateField(auto_now_add=True)
@@ -102,10 +102,13 @@ class Tag(models.Model):
     tag_id = models.AutoField(primary_key=True)
 
     #One user has only one tag table
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE)
 
     #many languages can be in many users profile
     tags = models.ManyToManyField(Language, blank=True)
+
+    update = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.user.full_name

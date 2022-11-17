@@ -93,7 +93,20 @@
     align-items: center;
     justify-content: center;
     fill: #292929;
+    transition: 0.1s ease-in;
 
+}
+
+.greeting:hover {
+    background-color: #333682;
+    fill: #ECECEC;
+    transform: scale(1.2);
+}
+
+.sendEmail:hover {
+    background-color: #333682;
+    fill: #ECECEC;
+    transform: scale(1.2);
 }
 
 
@@ -546,4 +559,68 @@ pre {
 
 .ace_editor * {
     font-family: 'Inconsolata', monospace;
+}
+
+
+/* The modal section */
+
+.awesomeHand {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* User images */
+
+.reUser {
+    width: 100px;
+    height: 100px;
+}
+
+.reUser img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.handAwes svg {
+    transform: scale(2.5);
+    fill: #333682;
+}
+
+.modal-title {
+    color: #333682;
+    font-weight: 700 !important;
+}
+
+.btn-secondary {
+    background-color: #c53e3e !important;
+    border: none !important;
+}
+
+.btn-primary {
+    background-color: #3EA42D !important;
+    border: none !important;
+}
+
+#sendReqFormOwner {
+    display: none;
+}
+
+
+/* After sending friend request */
+
+.greetAct {
+    background-color: #333682;
+    fill: #ECECEC;
+    transform: scale(1.2);
+}
+
+
+.greetAccept {
+    background-color: #1d8928;
+    fill: #ECECEC;
+    transform: scale(1.2);
 }
