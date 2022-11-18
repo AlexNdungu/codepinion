@@ -86,3 +86,30 @@ requestOwnerForm.addEventListener('submit', e=> {
 
 
 })
+
+
+/* Sending request to the rest */
+
+let sendRestToOthers = document.getElementsByClassName('toGreetOther');
+
+let toBeSentToImg = document.getElementById('toBeSentToImg');
+
+let toBesentTo = document.getElementsByClassName('toSendImgProfSee');
+
+let toBeSendId = document.getElementsByClassName('toBeSendId');
+
+let ToBeSentInput = document.getElementById('receiverInOtehr');
+
+for(let a = 0; a < sendRestToOthers.length; a++){
+
+    sendRestToOthers[a].addEventListener('click', ()=> {
+
+        console.log(sendRestToOthers[a].parentNode.parentNode.getElementsByClassName('toBeSendId')[0].innerHTML)
+
+        toBeSentToImg.src = sendRestToOthers[a].parentNode.parentNode.parentNode.getElementsByClassName('toSendImgProfSee')[0].src;
+
+        ToBeSentInput.value = sendRestToOthers[a].parentNode.parentNode.getElementsByClassName('toBeSendId')[0].innerHTML;
+
+    });
+
+}

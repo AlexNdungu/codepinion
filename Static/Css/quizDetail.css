@@ -624,3 +624,8 @@ pre {
     fill: #ECECEC;
     transform: scale(1.2);
 }
+
+/* Hide id and form */
+.toBeSendId,#sendReqFormRest {
+    display: none;
+}
