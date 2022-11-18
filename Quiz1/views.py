@@ -1204,9 +1204,100 @@ def postAnswer(request):
 #This is the fuction for my questions page
 
 def myQuizs(request):
-    return render(request, 'myQuizs.html')    
+
+    if request.user.is_authenticated:
+
+        me = request.user.profile
+
+        my_questions = Question.objects.filter(profile = me).all().order_by('-created')
+
+        print(my_questions)
+
+        current_profile = request.user.profile
+
+        criterion1 = Q(receiver=current_profile)
+        criterion2 = Q(accepted=False)
+
+        current_request = Relationship.objects.filter(criterion1 & criterion2)
+
+        current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
+
+    else:
+        current_request = 'Cannot Request'
+        current_request_count = 0 
+
+    context = {
+        'quizs':my_questions,
+        'current_request':current_request,
+        'current_request_count':current_request_count
+    }
+
+    return render(request, 'myQuizs.html',context)    
 
 #My questions details
 
-def myQuizDetail(request):
-    return render(request, 'myQuizDetail.html')
+def myQuizDetail(request, pk):
+
+    if request.user.is_authenticated:
+
+        the_question = Question.objects.get(quiz_id = pk)
+
+        the_gallery = Gallery.objects.filter(question = the_question).all().order_by('-created')
+
+        answers = Answer.objects.filter(question = the_question).all().order_by('-created')
+
+        current_profile = request.user.profile
+
+        criterion1 = Q(receiver=current_profile)
+        criterion2 = Q(accepted=False)
+
+        current_request = Relationship.objects.filter(criterion1 & criterion2)
+
+        current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
+
+    else:
+        current_request = 'Cannot Request'
+        current_request_count = 0 
+
+    context = {
+        'the_question':the_question,
+        'the_gallery':the_gallery,
+        'answers':answers,
+        'current_request':current_request,
+        'current_request_count':current_request_count
+    }
+
+    return render(request, 'myQuizDetail.html',context)
+
+
+#My asnwers
+def myAnswers(request):
+
+    if request.user.is_authenticated:
+
+        me = request.user.profile
+
+        my_answers = Answer.objects.filter(profile = me).all().order_by('-created')
+
+        print(my_answers)
+
+        current_profile = request.user.profile
+
+        criterion1 = Q(receiver=current_profile)
+        criterion2 = Q(accepted=False)
+
+        current_request = Relationship.objects.filter(criterion1 & criterion2)
+
+        current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
+
+    else:
+        current_request = 'Cannot Request'
+        current_request_count = 0 
+
+    context = {
+        'answers':my_answers,
+        'current_request':current_request,
+        'current_request_count':current_request_count
+    }
+
+    return render(request, 'myAnswers.html',context)    

@@ -13,6 +13,10 @@
 <link rel="stylesheet" href="{% static '/Css/quizDetail.css' %}">
 <link rel="stylesheet" href="{% static '/Css/myQuizDetail.css' %}">
 
+<!--Highlight js link-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/base16/google-light.min.css" integrity="sha512-nzMhN+KUSkxA5L9h2BKKpaFw19+a1JufkYL6GEwKPxrsf5YFO8TBbI1Qppd72zZbHAA6RG2htrd2q7sHvcb4Ew==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 
 {% endblock %}
 
@@ -32,14 +36,14 @@
             <!--Owner profile picture-->
             <div class="posterImage">
 
-                <img src="{% static '\Images\Users\user.jpg' %}" alt="theUser">
+                <img src="{{the_question.profile.profile_pic.url}}" alt="theUser">
 
             </div>
 
             <!--owener Controls-->
             <div class="ownerCont">
 
-                <span>theMehta</span>
+                <span>{{the_question.profile.full_name}}</span>
 
                 <!--details Controls-->
                 <div class="contDetails">
@@ -86,9 +90,9 @@
                 <!--Detail Title and time-->
                 <div class="detDateTime">
 
-                    <h2>How to make print statement in python</h2>
+                    <h2>{{the_question.quiz_title}}</h2>
 
-                    <span>5hrs Ago</span>
+                    <span>{{the_question.created}}</span>
 
                 </div>
 
@@ -100,16 +104,17 @@
                     <div class="detTags">
 
                         <!--Individual tags-->
-
+                        {% for tag in the_question.tags.all %}
                         <div class="indDetTag">
-                            <span>Python</span>
+                            <span>{{tag}}</span>
                         </div>
+                        {% endfor %}
 
                         <!--Individual tags-->
 
-                        <div class="indDetTag">
+                        <!-- <div class="indDetTag">
                             <span>Html</span>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -170,29 +175,74 @@
 
                 <div class="body">
 
-                    <div class="detContent">
-
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
-    
-                    </div>
+                    <div class="detContent">{{the_question.body|safe}}</div>
     
                     <!--Code block-->
     
-                    <div class="codeBlockBody">
-    
-                        <p>print("Hellow World")</p>
-    
-                    </div>
+                    
+                {% if the_question.code_1 != 'undefined' %}
+
+                <!--Code block 1-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{the_question.code_1_type}}">{{the_question.code_1}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+                {% if the_question.code_2 != 'undefined' %}
+
+                <!--Code block 2-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{the_question.code_2_type}}">{{the_question.code_2}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+                {% if the_question.code_3 != 'undefined' %}
+
+                <!--Code block 3-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{the_question.code_3_type}}">{{the_question.code_3}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if the_question.code_4 != 'undefined' %}
+
+                <!--Code block 4-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{the_question.code_4_type}}">{{the_question.code_4}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
     
                     <!--The question media-->
+
+                    {% for picture in the_gallery %}
     
                     <div class="detailImages">
     
-                        <img src="{% static '\Images\Code\code1.jpg' %}" alt="codeImage">
+                        <img src="{{picture.body_media.url}}" alt="codeImage">
     
                         <span class="imgContName" >code1.png</span>
     
                     </div>
+
+                    {% endfor %}
 
                 </div>
 
@@ -200,37 +250,37 @@
 
                 <!--The separating line-->
 
-                <div class="detSepLine" style="margin-top: 20px;margin-bottom: 20px;" ></div>
+                <!-- <div class="detSepLine" style="margin-top: 20px;margin-bottom: 20px;" ></div> -->
 
 
 
-                <div class="trial">
+                <!-- <div class="trial"> -->
 
-                    <div class="detContent">
+                    <!-- <div class="detContent">
 
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
     
-                    </div>
+                    </div> -->
     
                     <!--Code block-->
     
-                    <div class="codeBlockBody">
+                    <!-- <div class="codeBlockBody">
     
                         <p>print("Hellow World")</p>
     
-                    </div>
+                    </div> -->
     
                     <!--The question media-->
     
-                    <div class="detailImages">
+                    <!-- <div class="detailImages">
     
                         <img src="{% static '\Images\Code\code2.jpg' %}" alt="codeImage">
     
                         <span class="imgContName" >code1.png</span>
     
-                    </div>
+                    </div> -->
 
-                </div>
+                <!-- </div> -->
 
                 <!--My detail question controls-->
 
@@ -270,6 +320,8 @@
 
 <!--Received answers-->
 
+{% for answer in answers %}
+
 <div class="detailAnsweres">
 
     <!--The user who posted the-->
@@ -278,14 +330,14 @@
         <!--Owner profile picture-->
         <div class="posterImage">
 
-            <img src="{% static '\Images\Users\user2.jpg' %}" alt="theUser">
+            <img src="{{answer.profile.profile_pic.url}}" alt="theUser">
 
         </div>
 
         <!--owener Controls-->
         <div class="ownerCont">
 
-            <span>theMehta</span>
+            <span>{{answer.profile.full_name}}</span>
 
             <!--details Controls-->
             <div class="contDetails">
@@ -351,7 +403,7 @@
 
                 <!--When the answere was uploaded-->
 
-                <span>5hrs Ago</span>
+                <span>{{answer.created}}</span>
 
             </div>
 
@@ -360,29 +412,73 @@
 
             <div class="itAnswer">
 
-                <div class="detContent">
-
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi eaque dolores illum facere voluptatem dolorem amet ipsa voluptas, est ea aliquid animi optio quibusdam saepe blanditiis placeat dolor! Rerum officiis facere doloremque voluptates doloribus esse, delectus quia nemo consectetur itaque alias adipisci eligendi. </p>
-
-                </div>
+                <div class="detContent">{{answer.body|safe}}</div>
 
                 <!--Code block-->
 
+                {% if answer.code_1 != 'undefined' %}
+
+                <!--Code block 1-->
+
                 <div class="codeBlockBody">
 
-                    <p>print("Hellow World")</p>
+                    <pre><code class="language-{{answer.code_1_type}}">{{answer.code_1}}</code></pre>
 
                 </div>
 
+                {% endif %}
+
+                {% if answer.code_2 != 'undefined' %}
+
+                <!--Code block 2-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{answer.code_2_type}}">{{answer.code_2}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+                {% if answer.code_3 != 'undefined' %}
+
+                <!--Code block 3-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{answer.code_3_type}}">{{answer.code_3}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if answer.code_4 != 'undefined' %}
+
+                <!--Code block 4-->
+
+                <div class="codeBlockBody">
+
+                    <pre><code class="language-{{answer.code_4_type}}">{{answer.code_4}}</code></pre>
+
+                </div>
+
+                {% endif %}
+
+                   
                 <!--The question media-->
+
+                {% for image in answer.Answerimages.all %}
 
                 <div class="detailImages">
 
-                    <img src="{% static '\Images\Code\code2.jpg' %}" alt="codeImage">
+                    <img src="{{image.answer_gallery_url}}" alt="codeImage">
 
                     <span class="imgContName" >code1.png</span>
 
                 </div>
+
+                {% endfor %}
 
             </div>
 
@@ -408,9 +504,13 @@
 
 </div>
 
+{% endfor %}
+
+<!--Highlight js lauch-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
 
 {% endblock %}
-
 
 
 <!--This is where the js links will be held-->
@@ -418,5 +518,8 @@
 
 <!--The js file-->
 <script src="{% static 'Js/quizDetail.js' %}"></script>
+
+<script src="{% static 'Js/lib/ace.js' %}"></script>
+<script src="{% static 'Js/lib/theme-monokai.js' %}"></script>
 
 {% endblock %}

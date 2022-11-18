@@ -306,19 +306,19 @@
     min-height: 100px;
     border: 2px solid #c9cbff;
     border-radius: 10px;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 
-.detContent p {
+/* .detContent p {
     width: 90%;
     font-size: 17px;
     font-weight: 500;
     margin-bottom: 20px;
     margin-top: 20px;
     color: #333682;
-}
+} */
 
 
 /* Body codeblock */

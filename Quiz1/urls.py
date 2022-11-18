@@ -56,6 +56,9 @@ urlpatterns = [
     path('My_Questions/', views.myQuizs, name='my_questions'),
 
     #This is my questions details
-    path('My_Questions_Details/', views.myQuizDetail, name='mt_quiz_details')
+    path('My_Questions_Details/<pk>/', views.myQuizDetail, name='mt_quiz_details'),
+
+    #This is my questions url
+    path('My_Answers/', views.myAnswers, name='my_answers'),
 
 ]
