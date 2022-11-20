@@ -53,21 +53,32 @@ def index(request):
 
         current_profile = request.user.profile
 
+        #Received Requests
         criterion1 = Q(receiver=current_profile)
         criterion2 = Q(accepted=False)
         criterion3 = Q(denied=False)
 
         current_request = Relationship.objects.filter(criterion1 & criterion2 & criterion3)
 
+        #Sent requests
+        criterion1 = Q(sender=current_profile)
+        criterion2 = Q(accepted=False)
+        criterion3 = Q(denied=False)
+
+        current_sent = Relationship.objects.filter(criterion1 & criterion2 & criterion3)
+
         print(current_request)
 
     else:
 
         current_request = 'Cannot Request'
+        current_sent = 'Cannot Request'
+
 
 
     context = {
-        'current_request':current_request
+        'current_request':current_request,
+        'current_sent':current_sent
     }
 
     return render(request, 'index.html', context)
@@ -906,12 +917,21 @@ def unansweredQuiz(request):
 
         all_user_tags = current_profile_tag.tags.all()
 
+        #Received Requests
         criterion1 = Q(receiver=current_profile)
         criterion2 = Q(accepted=False)
 
         current_request = Relationship.objects.filter(criterion1 & criterion2)
 
         current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
+
+        #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
 
         #print(datetime.datetime.now())
 
@@ -924,14 +944,20 @@ def unansweredQuiz(request):
         Questions = 0
         current_request = 'Cannot Request'
         current_request_count = 0 
+
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
     
     context = {
         'Questions': Questions,
         'current_request':current_request,
-        'current_request_count':current_request_count
+        'current_request_count':current_request_count,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
     }
 
-    return render(request, 'unansQuiz.html', context)   #
+    return render(request, 'unansQuiz.html', context)   
 
 
 def load_unans_quizs(request):
@@ -1021,62 +1047,138 @@ def load_unans_quizs(request):
 
 def quizDetail(request, pk):
 
-    #The question details
-    individualQuiz = Question.objects.get(quiz_id = pk)
+    if request.user.is_authenticated:
 
-    #The images of the question
-    the_gallery = Gallery.objects.filter(question = individualQuiz)
+        #Sending requests
+        current_profile = request.user.profile
 
-    #Get all the answers to this individual question
-    answers = Answer.objects.filter(question = individualQuiz).order_by('-created')
+        criterion1 = Q(receiver=current_profile)
+        criterion2 = Q(accepted=False)
 
-    #Lets get images related to an individual answer
+        current_request = Relationship.objects.filter(criterion1 & criterion2)
 
-    current = request.user.profile
-
-    current_receiver = individualQuiz.profile
-
-    #Get the room where the user is either receiver or sender
-
-    print(current_receiver)
-    print(current)
-
-    #NB
-    #POSSIBILITY WHERE THE CURRENT_RECEIVER IS THE ONE WHO HAS SENT THE REQUEST
+        current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
 
 
-    #existing_rel = Relationship.objects.get(sender=current,receiver=current_receiver)
+        #The question details
+        individualQuiz = Question.objects.get(quiz_id = pk)
 
-    if Relationship.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists():
+        #The images of the question
+        the_gallery = Gallery.objects.filter(question = individualQuiz)
 
-        existing_rel = Relationship.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
+        #Get all the answers to this individual question
+        answers = Answer.objects.filter(question = individualQuiz).order_by('-created')
 
-        existing_rel_status = Relationship.objects.get(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current))
+        new_answers = []
+
+        for answer in answers:
+
+            #Relationship
+            if Relationship.objects.filter(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile)).exists():
+                
+                rel_status = Relationship.objects.filter(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile)).exists()
+
+                rel_status_accept_list = Relationship.objects.get(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile))
+
+                #print(rel_status_accept_list.accepted)
+
+                rel_status_accept = rel_status_accept_list.accepted
+
+                
+
+            else:
+                rel_status = Relationship.objects.filter(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile)).exists()
+
+                rel_status_accept = 'none'
+
+            print(rel_status_accept)
+            #Room
+
+            if Room.objects.filter(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile)).exists():
+
+                rel_room_exist = Room.objects.filter(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile)).exists()
+
+                the_room_answer = Room.objects.get(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile))
+
+                room_answer_id = the_room_answer.room_id
+
+            else:
+
+                rel_room_exist = Room.objects.filter(Q(sender=current_profile,receiver=answer.profile) | Q(sender=answer.profile,receiver=current_profile)).exists()
+
+                the_room_answer = ''
+
+                room_answer_id = ''
 
 
+            rel_answer_status = {
+                'answer':answer,
+                'rel_status':rel_status,
+                'rel_room_exist':rel_room_exist,
+                'rel_status_accept':rel_status_accept,
+                'room_answer_id':room_answer_id
+            }
+
+
+            new_answers.append(rel_answer_status)
+
+            #now we get the relationship between the owner of the answer and question
+
+        #Lets get images related to an individual answer
+
+        current = request.user.profile
+
+        current_receiver = individualQuiz.profile
+
+        #Get the room where the user is either receiver or sender
+
+        cret1 = Q(receiver=current_profile)
+        cret2 = Q(sender=current_profile)
+
+        all_rels = Relationship.objects.filter(cret1 | cret2).all()
+        #NB
+        #POSSIBILITY WHERE THE CURRENT_RECEIVER IS THE ONE WHO HAS SENT THE REQUEST
+
+
+        #existing_rel = Relationship.objects.get(sender=current,receiver=current_receiver)
+
+        if Relationship.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists():
+
+            existing_rel = Relationship.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
+
+            existing_rel_status = Relationship.objects.get(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current))
+
+
+        else:
+            existing_rel = Relationship.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
+
+            existing_rel_status = ''
+
+
+
+        if Room.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists():
+
+            room_exist = Room.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
+
+            room = Room.objects.get(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current))
+
+        else:
+
+            room_exist = Room.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
+
+            room = ''
+
+        #print(existing_rel)
+    
     else:
-        existing_rel = Relationship.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
-
-        existing_rel_status = ''
-
-
-
-    if Room.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists():
-
-        room_exist = Room.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
-
-        room = Room.objects.get(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current))
-
-    else:
-
-        room_exist = Room.objects.filter(Q(sender=current,receiver=current_receiver) | Q(sender=current_receiver,receiver=current)).exists()
-
-        room = ''
-
-    print(existing_rel)
-   
+        current_request = 'Cannot Request'
+        current_request_count = 0 
 
     context = {
+        #Handshakes
+        'current_request':current_request,
+        'current_request_count':current_request_count,
+
         'QDetail': individualQuiz,
         'the_gallery':the_gallery,
 
@@ -1091,7 +1193,11 @@ def quizDetail(request, pk):
         #Lets pass room
         'room':room,
 
-        'room_exist':room_exist
+        'room_exist':room_exist,
+
+        'all_rels':all_rels,
+
+        'new_answers':new_answers
 
     }
 

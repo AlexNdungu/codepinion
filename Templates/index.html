@@ -399,7 +399,7 @@
                             <span>Sent</span>
     
                             <div class="recNumber">
-                                <span>13</span>
+                                <span>{{current_sent_count}}</span>
                             </div>
     
                         </div>
@@ -528,6 +528,10 @@
                     <div class="notSent" id="notSent" >
 
                         <!--Indivividual notigfication-->
+                        {% for sent in current_sent %}
+
+                        {% if sent.accepted == False %}
+
                         <div class="recNotOne">
 
                             <!--The section containing the notification-->
@@ -535,15 +539,15 @@
 
                                 <!--The sender image-->
                                 <div class="imgNot">
-                                    <img src="{% static '\Images\Users\user.jpg' %}" alt="">
+                                    <img src="{{sent.receiver.profile_url}}" alt="">
                                 </div>
 
                                 <!--The name and time-->
                                 <div class="recNameTime">
 
-                                    <h4>Alex Meta Ndungu</h4>
+                                    <h4>{{sent.receiver.full_name}}</h4>
 
-                                    <span>7hrs Ago</span>
+                                    <span>{{sent.created}}</span>
 
                                 </div>
 
@@ -567,6 +571,10 @@
                             
 
                         </div>
+
+                        {% endif %}
+
+                        {% endfor %}
 
                     </div>
 

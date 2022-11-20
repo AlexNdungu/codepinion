@@ -110,6 +110,80 @@ for(let a = 0; a < sendRestToOthers.length; a++){
 
         ToBeSentInput.value = sendRestToOthers[a].parentNode.parentNode.getElementsByClassName('toBeSendId')[0].innerHTML;
 
+        //now we create a request
+        let allRequest = document.getElementById('bostrapOwnSendAll');
+
+        let requestAllForm = document.getElementById('sendReqFormRest');
+
+        let senderInOther = document.getElementById('senderInOther');
+
+        let receiverInOtehr = document.getElementById('receiverInOtehr');
+
+        allRequest.addEventListener('click', ()=> {
+
+            document.getElementById('btnSendReqQuizOwnerOther').click();
+
+        });
+
+        requestAllForm.addEventListener('submit', e=> {
+            e.preventDefault();
+
+            let formData = new FormData();
+
+            //The request sender
+            formData.append('sender',senderInOther.value);
+            //The request receiver
+            formData.append('receiver',receiverInOtehr.value);
+
+            formData.append('csrfmiddlewaretoken', csrf[0].value);
+
+            //Now let use send the data
+            $.ajax({
+                type:'POST',
+                url:'/Room/handShake/',
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                //The success
+                success: function(response){
+
+                    console.log(response)
+
+                    requestAllForm.reset();
+
+                    sendRestToOthers[a].style.pointerEvents = "none";
+
+                    sendRestToOthers[a].classList.add('greetAct');
+
+                    setTimeout(function(){
+
+                        document.getElementById('requestCloseAll').click();
+                        
+                    },1000);
+
+
+
+                },
+                error: function(error){
+                    console.log(error)
+
+                    requestOwnerForm.reset();
+
+                    setTimeout(function(){
+
+                        document.getElementById('requestClose').click();
+                        
+                    },1000);
+
+                }
+            })
+
+
+        })
+
+
     });
 
 }
+
