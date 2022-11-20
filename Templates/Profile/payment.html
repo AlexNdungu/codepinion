@@ -1,0 +1,113 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>codePinion ::- {{request.user.username}} Premium</title>
+
+    <!--Font is poppins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!--The ajax link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--The css file-->
+    <link rel="stylesheet" href="{% static '/Css/prem.css' %}">
+
+
+    <!--Bootstrap css link-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+
+    <!--paypal script-->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZqsyOM0N6n42iCpjLN_0V3Pu4z9t83sUa5wVVS8MMm-CM5oFBZTLTSUDFhXu9qdt8Q974tje8Bygq6R&currency=USD"></script>
+
+
+    <div class="body_pay">
+
+
+        <!--Will contain paypal place -->
+        <div class="prem_place">
+
+            <!--Codepinion log-->
+            <div class="log">
+
+                <div class="log_img">
+
+                    <img src="{% static '\Images\Icon\csIcon.jpg' %}" alt="logo">
+
+                </div>
+
+
+            </div>
+
+            <!--Pat for premium-->
+
+            <div class="user">
+
+                <!--User profile icture-->
+                <div class="user_img">
+
+                    <img src="{{request.user.profile.profile_url}}" alt="">
+
+                </div>
+
+            </div>
+
+            <!--The paypal div-->
+            <div id="paypal-button-container"></div>
+
+            <!--the paypall script-->
+
+            <script>
+                paypal.Buttons({
+
+                    style: {
+                        color: 'blue',
+                        shape: 'pill',
+                        label: 'pay',
+                    },
+
+                    
+                    // Sets up the transaction when a payment button is clicked
+                    createOrder: (data, actions) => {
+                        return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                            value: '77.44' // Can also reference a variable or function
+                            }
+                        }]
+                        });
+                    },
+                    // Finalize the transaction after payer approval
+                    onApprove: (data, actions) => {
+                        return actions.order.capture().then(function(orderData) {
+                        // Successful capture! For dev/demo purposes:
+                        console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                        const transaction = orderData.purchase_units[0].payments.captures[0];
+                        alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                        // When ready to go live, remove the alert and show a success message within this page. For example:
+                        // const element = document.getElementById('paypal-button-container');
+                        // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                        // Or go to another URL:  actions.redirect('thank_you.html');
+                        });
+                    }
+                }).render('#paypal-button-container');
+              </script>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

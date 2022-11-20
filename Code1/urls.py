@@ -4,6 +4,9 @@ from . import views
 urlpatterns = [
     path('Profile/', views.Me, name='profile'),
 
+    path('payment/', views.prem, name='premium'),
+
+
     #Share screen
     path('share/', views.shareScreen, name='share'),
 

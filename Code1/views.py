@@ -24,6 +24,11 @@ def shareScreen(request):
     
     return render(request, 'share.html')
 
+#Premium
+def prem(request):
+
+    return render(request,'Profile/payment.html' )    
+
 def getTags(request):
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':

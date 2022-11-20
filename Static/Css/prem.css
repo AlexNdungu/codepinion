@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #c9cbff;
+}
+
+/* The body */
+.body_pay {
+    width: 100%;
+    min-height: 100vh;
+    height: max-content;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    background-color: #c9cbff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* The logo */
+
+.log {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log_img {
+    width: 80px;
+    height: 80px;
+}
+
+.log_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* heading */
+
+.pay {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333682;
+}
+
+/* The div containing the buttons */
+
+.prem_place {
+    border: 2px solid #333682;
+    border-radius: 20px;
+    width: 600px;
+    min-height: 400px;
+    height: max-content;
+    background-color: white;
+    padding: 20px;
+}
+
+/* The user section */
+
+.user {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.user_img {
+    width: 150px;
+    height: 150px;
+
+}
+
+.user_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+
+}
+
+.username span{
+    color: #333682;
+    font-size: 22px;
+    font-weight: 600;
+}
