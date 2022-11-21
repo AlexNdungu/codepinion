@@ -2,6 +2,8 @@ from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 
+
+
 # Create your models here.
 
 #Class Languages
@@ -106,6 +108,70 @@ class Tag(models.Model):
 
     #many languages can be in many users profile
     tags = models.ManyToManyField(Language, blank=True)
+
+    update = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.full_name
+
+
+
+#The prem amount
+class Amount(models.Model):
+
+    amount_id = models.AutoField(primary_key=True)  
+
+    amount = models.DecimalField(verbose_name='Amount', max_digits=10, decimal_places=2)
+
+    description = models.TextField(verbose_name='Amount Description')
+
+    period = models.CharField(max_length=10, verbose_name='Period')
+
+    update = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.period
+
+
+#The payment
+class Account(models.Model):
+
+    account_id = models.AutoField(primary_key=True)     
+
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE, null=True)
+
+    #Amount payed
+    amount = models.ForeignKey(Amount, on_delete=models.CASCADE, null=True)
+
+    #Date the payment
+    payment_date = models.DateTimeField(null=True)
+
+    #The expired date
+    expiry = models.DateTimeField(null=True)
+
+    active = models.BooleanField(default=False, verbose_name='Active Status')
+
+    update = models.DateTimeField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.full_name
+
+#The records
+class Record(models.Model):
+
+    rec_id = models.AutoField(primary_key=True) 
+
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE,null=True)
+
+    amount = models.ForeignKey(Amount, on_delete=models.CASCADE,null=True)
+
+    #Date the payment
+    payment_date = models.DateTimeField(null=True)
+
+    expiry = models.DateTimeField(null=True)
 
     update = models.DateTimeField(auto_now=True)
     created = models.DateField(auto_now_add=True)

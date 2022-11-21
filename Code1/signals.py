@@ -1,4 +1,4 @@
-from .models import Profile, Tag
+from .models import Profile, Tag, Account
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -15,6 +15,8 @@ def post_save_create_profile(sender, instance, created, *args, **kwargs):
         Tag.objects.create(user=new_user)
         #Lets create a friend model
         Friend.objects.create(profile=new_user)
+        #The prem account
+        Account.objects.create(user = new_user)
 
 
 @receiver(post_save, sender=Relationship)

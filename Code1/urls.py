@@ -6,7 +6,9 @@ urlpatterns = [
 
     path('payment/', views.prem, name='premium'),
 
-
+    #Update payment
+    path('updatePrem', views.UpdatePrem, name='update_prem'),
+    
     #Share screen
     path('share/', views.shareScreen, name='share'),
 

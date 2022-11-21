@@ -30,7 +30,7 @@
 <body>
 
     <!--paypal script-->
-    <script src="https://www.paypal.com/sdk/js?client-id=AZqsyOM0N6n42iCpjLN_0V3Pu4z9t83sUa5wVVS8MMm-CM5oFBZTLTSUDFhXu9qdt8Q974tje8Bygq6R&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ARXlOTyaFC_Hl93U4PpIISMe4vQbZdWOIs0zZVHnsDlvFkvWUtjmNMVte2a0dMoPygasWEb2m12jKt0P&currency=USD"></script>
 
 
     <div class="body_pay">
@@ -40,14 +40,14 @@
         <div class="prem_place">
 
             <!--Codepinion log-->
+
             <div class="log">
 
-                <div class="log_img">
+                <a class="log_img" href="{% url 'profile' %}">
 
                     <img src="{% static '\Images\Icon\csIcon.jpg' %}" alt="logo">
 
-                </div>
-
+                </a>
 
             </div>
 
@@ -64,12 +64,256 @@
 
             </div>
 
+
+            <!--The payment choice-->
+            <div class="choice">
+
+                <!--The heading-->
+                <div class="chHead">
+
+                    <span>Premium Packages</span>
+
+                </div>
+
+                <!--The actial choices-->
+                <div class="ch1">
+
+                    <!--The check-->
+                    <div class="chCheck" id="month_check" >
+
+                        <svg  id="month_svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z"/></svg>
+
+                    </div>
+
+                    <!--The description-->
+                    <div class="chDesx">
+
+                        <span>$13.00 Period of 1 Month</span>
+
+                    </div>
+
+                    <!-- <input type="checkbox" id="month_input" > -->
+
+                </div>
+
+                <div class="ch1">
+
+                    <!--The check-->
+                    <div class="chCheck" id="year_check" >
+
+                        <svg id="year_svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 21.035l-9-8.638 2.791-2.87 6.156 5.874 12.21-12.436 2.843 2.817z"/></svg>
+
+                    </div>
+
+                    <!--The description-->
+                    <div class="chDesx">
+
+                        <span>$112.00 Period of 1 Year</span>
+
+                    </div>
+
+                    <!-- <input type="checkbox" id="year_input" > -->
+
+                </div>
+
+            </div>
+
             <!--The paypal div-->
             <div id="paypal-button-container"></div>
 
             <!--the paypall script-->
 
             <script>
+
+                //Now we disable the 
+                $('#month_svg').hide();
+                $('#year_svg').hide();
+
+                //The amoubts
+                let final_amount = 0;
+                let final_amount_id = '';
+
+                let month_amount = '{{month}}';
+                let year_amount = '{{year}}';
+
+                let month_id = '{{mnth_id}}';
+                let year_id = '{{yr_id}}';
+
+
+                //Select the checks to be clicked
+                let month_check = document.getElementById('month_check');
+                let year_check = document.getElementById('year_check');
+
+                let yr_status = false;
+                let mth_status = false;
+
+                //Now we add event listiners
+
+                month_check.addEventListener('click', ()=> {
+
+                    if(mth_status == false){
+
+                       if(yr_status == true){
+
+                            $('#year_svg').hide(200);
+    
+                            yr_status = false;
+    
+                            final_amount = 0;
+
+                            final_amount_id = '';
+
+                            $('#year_check').css("border", "2px solid #292929");
+                            $('#year_svg').css("fill", "#292929");
+    
+                        }
+
+                        $('#month_svg').show(200);
+
+                        mth_status = true;
+
+                        final_amount = month_amount;
+
+                        final_amount_id = month_id;
+                        
+                        console.log(final_amount);
+
+                        console.log(final_amount_id);
+
+                        $('#month_check').css("border", "2px solid #333682");
+                        $('#month_svg').css("fill", "#333682");
+
+                    }
+
+                    else if(mth_status == true){
+
+                        $('#month_svg').hide(200);
+
+                        mth_status = false;
+
+                        final_amount = 0;
+
+                        final_amount_id = '';
+
+                        console.log(final_amount);
+
+                        console.log(final_amount_id);
+
+                        $('#month_check').css("border", "2px solid #292929");
+                        $('#month_svg').css("fill", "#292929");
+
+                    }
+
+                });
+
+                ///The year
+
+                year_check.addEventListener('click', ()=> {
+
+                    if(yr_status == false){
+
+                        //Incase month is checked uncheck it
+                        if(mth_status == true){
+
+                            $('#month_svg').hide(200);
+
+                            mth_status = false;
+
+                            final_amount = 0;
+
+                            final_amount_id = '';
+
+                            $('#month_check').css("border", "2px solid #292929");
+                            $('#month_svg').css("fill", "#292929");
+
+                        }
+
+                        $('#year_svg').show(200);
+
+                        yr_status = true;
+
+                        final_amount = year_amount;
+
+                        final_amount_id = year_id;
+
+                        console.log(final_amount);
+
+                        console.log(final_amount_id);
+
+                        $('#year_check').css("border", "2px solid #333682");
+                        $('#year_svg').css("fill", "#333682");
+
+                    }
+
+                    else if(yr_status == true){
+
+                        $('#year_svg').hide(200);
+
+                        yr_status = false;
+
+                        final_amount = 0;
+
+                        year_id = '';
+
+                        console.log(final_amount);
+
+                        console.log(final_amount_id);
+
+                        $('#year_check').css("border", "2px solid #292929");
+                        $('#year_svg').css("fill", "#292929");
+
+                    }
+
+                });
+
+
+                //A fuction we call afteter the transaction is complete
+
+                //The csrf token
+                function getCookie(name) {
+                    let cookieValue = null;
+                
+                    if (document.cookie && document.cookie !== '') {
+                        const cookies = document.cookie.split(';');
+                        for (let i = 0; i < cookies.length; i++) {
+                            const cookie = cookies[i].trim();
+                
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                
+                                break;
+                            }
+                        }
+                    }
+                
+                    return cookieValue;
+                }
+
+                //The csrf token
+                const csrftoken = getCookie('csrftoken');
+
+
+                function completePrem(){
+
+                    var url = "{% url 'update_prem' %}"
+
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-type':'application/json',
+                            'X-CSRFToken':csrftoken
+                        },
+                        body:JSON.stringify({
+                            'amount':final_amount,
+                            'amount_id':final_amount_id
+                        })
+                    })
+
+                }
+
+
+                //The paypal event
                 paypal.Buttons({
 
                     style: {
@@ -84,7 +328,7 @@
                         return actions.order.create({
                         purchase_units: [{
                             amount: {
-                            value: '77.44' // Can also reference a variable or function
+                            value: final_amount // Can also reference a variable or function
                             }
                         }]
                         });
@@ -96,6 +340,8 @@
                         console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                         const transaction = orderData.purchase_units[0].payments.captures[0];
                         alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                        //The fuction
+                        completePrem()
                         // When ready to go live, remove the alert and show a success message within this page. For example:
                         // const element = document.getElementById('paypal-button-container');
                         // element.innerHTML = '<h3>Thank you for your payment!</h3>';

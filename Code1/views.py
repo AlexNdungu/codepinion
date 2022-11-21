@@ -4,6 +4,7 @@ from unicodedata import name
 from django.shortcuts import render
 from . models import *
 from django.http import JsonResponse
+import json
 # Create your views here.
 
 #Profile Fuction
@@ -27,7 +28,38 @@ def shareScreen(request):
 #Premium
 def prem(request):
 
-    return render(request,'Profile/payment.html' )    
+    year = Amount.objects.get(period = '1 Year')
+    month = Amount.objects.get(period = '1 Month')
+
+    yr_am = year.amount
+    mnth_am = month.amount
+
+    yr_id = year.amount_id
+    mnth_id = month.amount_id
+
+    print(yr_am)
+    print(mnth_am)
+
+
+    context = {
+        'month':mnth_am,
+        'year':yr_am,
+        'yr_id':yr_id,
+        'mnth_id':mnth_id
+    }
+
+    return render(request,'Profile/payment.html',context)   
+    
+#update Prem
+def UpdatePrem(request):
+
+    body = json.loads(request.body)
+
+    print(body['amount_id'])
+
+    amount = Amount.objects.get()
+
+    return JsonResponse('Success', safe=False)    
 
 def getTags(request):
 
