@@ -1116,7 +1116,7 @@ def quizDetail(request, pk):
                 'rel_status':rel_status,
                 'rel_room_exist':rel_room_exist,
                 'rel_status_accept':rel_status_accept,
-                'room_answer_id':room_answer_id
+                'room_answer_id':room_answer_id,
             }
 
 
@@ -1168,11 +1168,19 @@ def quizDetail(request, pk):
 
             room = ''
 
-        #print(existing_rel)
+           #print(existing_rel)
     
     else:
         current_request = 'Cannot Request'
         current_request_count = 0 
+
+
+    #Now check premium
+    acc = Account.objects.get(user = current_profile)    
+
+    prem_status = acc.active
+
+
 
     context = {
         #Handshakes
@@ -1197,7 +1205,9 @@ def quizDetail(request, pk):
 
         'all_rels':all_rels,
 
-        'new_answers':new_answers
+        'new_answers':new_answers,
+
+        'prem_status':prem_status
 
     }
 
