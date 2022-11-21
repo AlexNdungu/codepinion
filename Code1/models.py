@@ -164,7 +164,7 @@ class Record(models.Model):
 
     rec_id = models.AutoField(primary_key=True) 
 
-    user = models.OneToOneField(Profile, on_delete=models.CASCADE,null=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE,null=True)
 
     amount = models.ForeignKey(Amount, on_delete=models.CASCADE,null=True)
 

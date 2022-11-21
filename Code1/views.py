@@ -5,6 +5,9 @@ from django.shortcuts import render
 from . models import *
 from django.http import JsonResponse
 import json
+
+import datetime
+
 # Create your views here.
 
 #Profile Fuction
@@ -37,8 +40,8 @@ def prem(request):
     yr_id = year.amount_id
     mnth_id = month.amount_id
 
-    print(yr_am)
-    print(mnth_am)
+    #print(yr_am)
+    #print(mnth_am)
 
 
     context = {
@@ -55,9 +58,50 @@ def UpdatePrem(request):
 
     body = json.loads(request.body)
 
-    print(body['amount_id'])
+    #print(body)
 
-    amount = Amount.objects.get()
+    am_id = body['amount_id']
+
+    #The subscription
+    amount = Amount.objects.get(amount_id = am_id)
+
+    #Now we get the user
+    user = request.user.profile
+
+    the_account = Account.objects.get(user = user)
+
+    #Update the accoute
+    the_account.amount = amount
+
+    #Now we update the dates
+    the_account.payment_date = datetime.datetime.now() 
+
+    #Now set the expiry
+    if body['amount'] == '112.00':
+
+        print('year subscription')
+
+        the_account.expiry = datetime.datetime.now() + datetime.timedelta(days=365)
+
+    elif body['amount'] == '13.00':    
+
+        print('month subscription')
+
+        the_account.expiry = datetime.datetime.now() + datetime.timedelta(days=30)
+
+    the_account.active = True
+
+    the_account.save()
+
+    #Now we create a new record
+    record = Record.objects.create(
+        user = user,
+        amount = amount,
+        payment_date = the_account.payment_date,
+        expiry = the_account.expiry
+    )
+
+    #print(record)
 
     return JsonResponse('Success', safe=False)    
 
