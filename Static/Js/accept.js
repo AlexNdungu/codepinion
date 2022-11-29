@@ -71,6 +71,8 @@ $('.recDec').click(function(event) {
     
         acceptClick.click();
 
+        console.log(acceptState)
+
     },1000); 
 
 });

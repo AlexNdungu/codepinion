@@ -49,6 +49,7 @@ def user_logout(request):
 #This is the page to be inherited
 def index(request):
 
+
     if request.user.is_authenticated:
 
         current_profile = request.user.profile
@@ -61,24 +62,30 @@ def index(request):
         current_request = Relationship.objects.filter(criterion1 & criterion2 & criterion3)
 
         #Sent requests
-        criterion1 = Q(sender=current_profile)
-        criterion2 = Q(accepted=False)
-        criterion3 = Q(denied=False)
+        # criterion1 = Q(sender=current_profile)
+        # criterion2 = Q(accepted=False)
+        # criterion3 = Q(denied=False)
 
-        current_sent = Relationship.objects.filter(criterion1 & criterion2 & criterion3)
+        # current_sent = Relationship.objects.filter(criterion1 & criterion2 & criterion3)
 
         print(current_request)
+
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
 
     else:
 
         current_request = 'Cannot Request'
         current_sent = 'Cannot Request'
-
+        prem_status = False
 
 
     context = {
         'current_request':current_request,
-        'current_sent':current_sent
+        'current_sent':current_sent,
+        'prem_status':prem_status
     }
 
     return render(request, 'index.html', context)
@@ -97,9 +104,9 @@ def Aindex(request):
 
         print(the_rel)
 
-        #the_rel.accepted = True
+        the_rel.accepted = True
 
-        #the_rel.save()
+        the_rel.save()
 
         print('saved successfully')
 
@@ -121,9 +128,9 @@ def Dindex(request):
 
         print(the_rel)
 
-        #the_rel.denied = True
+        the_rel.denied = True
 
-        #the_rel.save()
+        the_rel.save()
 
         print('saved successfully')  
 
@@ -458,7 +465,7 @@ def search(request):
             print("Title : ", stack_data.Title.iloc[i])
 
 
-    query = "Android"
+    query = "android"
     enter_queries(query)        
         
 
@@ -687,19 +694,44 @@ def newQuiz(request):
 
         current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
 
+        #Sent requests
+        #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
+
+        #print(current_sent.count())
+
         #print(datetime.datetime.now())
 
         Questions = Question.objects.filter(tags__in = all_user_tags).distinct().count()
+
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
 
     else:
         Questions = 0
         current_request = 'Cannot Request'
         current_request_count = 0 
+        prem_status = False
+
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
     
+
     context = {
         'Questions': Questions,
         'current_request':current_request,
-        'current_request_count':current_request_count
+        'current_request_count':current_request_count,
+        'prem_status':prem_status,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
     }
 
     return render(request, 'newQuiz.html', context)   #
@@ -808,15 +840,37 @@ def answeredQuiz(request):
 
         Questions = Question.objects.filter(criterion3 & criterion4).distinct().count()
 
+
+        #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
+
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
+
     else:
         Questions = 0
         current_request = 'Cannot Request'
         current_request_count = 0 
+        prem_status = False
+
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
     
     context = {
         'Questions': Questions,
         'current_request':current_request,
-        'current_request_count':current_request_count
+        'current_request_count':current_request_count,
+        'prem_status':prem_status,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
     }
 
     return render(request, 'ansQuiz.html', context)   #
@@ -940,6 +994,12 @@ def unansweredQuiz(request):
 
         Questions = Question.objects.filter(criterion3 & criterion4).distinct().count()
 
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
+
+
     else:
         Questions = 0
         current_request = 'Cannot Request'
@@ -947,6 +1007,8 @@ def unansweredQuiz(request):
 
         current_sent = 'Cannot Request'
         current_sent_count = 0
+
+        prem_status = False
     
     context = {
         'Questions': Questions,
@@ -954,7 +1016,9 @@ def unansweredQuiz(request):
         'current_request_count':current_request_count,
 
         'current_sent':current_sent,
-        'current_sent_count':current_sent_count
+        'current_sent_count':current_sent_count,
+
+        'prem_status':prem_status
     }
 
     return render(request, 'unansQuiz.html', context)   
@@ -1169,17 +1233,29 @@ def quizDetail(request, pk):
             room = ''
 
            #print(existing_rel)
-    
+
+
+
+         #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
+
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
+
     else:
         current_request = 'Cannot Request'
         current_request_count = 0 
+        prem_status = False
 
-
-    #Now check premium
-    acc = Account.objects.get(user = current_profile)    
-
-    prem_status = acc.active
-
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
 
 
     context = {
@@ -1207,7 +1283,10 @@ def quizDetail(request, pk):
 
         'new_answers':new_answers,
 
-        'prem_status':prem_status
+        'prem_status':prem_status,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
 
     }
 
@@ -1327,7 +1406,7 @@ def myQuizs(request):
 
         my_questions = Question.objects.filter(profile = me).all().order_by('-created')
 
-        print(my_questions)
+        #print(my_questions)
 
         current_profile = request.user.profile
 
@@ -1338,14 +1417,35 @@ def myQuizs(request):
 
         current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
 
+        #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
+        
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
+
     else:
         current_request = 'Cannot Request'
         current_request_count = 0 
+        prem_status = False
+
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
 
     context = {
         'quizs':my_questions,
         'current_request':current_request,
-        'current_request_count':current_request_count
+        'current_request_count':current_request_count,
+        'prem_status':prem_status,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
     }
 
     return render(request, 'myQuizs.html',context)    
@@ -1371,16 +1471,30 @@ def myQuizDetail(request, pk):
 
         current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
 
+        #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
+
     else:
         current_request = 'Cannot Request'
         current_request_count = 0 
+
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
 
     context = {
         'the_question':the_question,
         'the_gallery':the_gallery,
         'answers':answers,
         'current_request':current_request,
-        'current_request_count':current_request_count
+        'current_request_count':current_request_count,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
     }
 
     return render(request, 'myQuizDetail.html',context)
@@ -1406,14 +1520,37 @@ def myAnswers(request):
 
         current_request_count = Relationship.objects.filter(criterion1 & criterion2).count()
 
+        #Now check premium
+        acc = Account.objects.get(user = current_profile)    
+
+        prem_status = acc.active
+
+        #Sent requests
+        criterion5 = Q(sender=current_profile)
+        criterion6 = Q(accepted=False)
+
+        current_sent = Relationship.objects.filter(criterion5 & criterion6)
+
+        current_sent_count = Relationship.objects.filter(criterion5 & criterion6).count()
+
+
+
     else:
         current_request = 'Cannot Request'
         current_request_count = 0 
+        prem_status = False
+
+        current_sent = 'Cannot Request'
+        current_sent_count = 0
 
     context = {
         'answers':my_answers,
         'current_request':current_request,
-        'current_request_count':current_request_count
+        'current_request_count':current_request_count,
+        'prem_status':prem_status,
+
+        'current_sent':current_sent,
+        'current_sent_count':current_sent_count
     }
 
     return render(request, 'myAnswers.html',context)    

@@ -32,6 +32,50 @@
     <!--paypal script-->
     <script src="https://www.paypal.com/sdk/js?client-id=ARXlOTyaFC_Hl93U4PpIISMe4vQbZdWOIs0zZVHnsDlvFkvWUtjmNMVte2a0dMoPygasWEb2m12jKt0P&currency=USD"></script>
 
+    <!--Toast not Pdf-->
+    <!--The toast section failure-->
+    <!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+        <div id="notPDfToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+
+            <div class="d-flex">
+    
+              <div class="toast-body" id="payFailed" >
+    
+                
+    
+              </div>
+    
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    
+            </div>
+    
+        </div> 
+
+    </div> -->
+
+    <!--Toast is Pdf-->
+    <!--The toast section success-->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+        <div id="isPDfToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+
+            <div class="d-flex">
+    
+              <div class="toast-body" id="paySuccess" >
+    
+                
+    
+              </div>
+    
+              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    
+            </div>
+    
+        </div> 
+
+    </div>
+
 
     <div class="body_pay">
 
@@ -339,9 +383,21 @@
                         // Successful capture! For dev/demo purposes:
                         console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
                         const transaction = orderData.purchase_units[0].payments.captures[0];
-                        alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                        //alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
                         //The fuction
                         completePrem()
+
+                        //Now show toast
+
+                        let paySuccess = document.getElementById('paySuccess');
+
+                        paySuccess.innerHTML = "Payment for ID: " + transaction.id + "completed successfully";
+
+                        const isPDfToast = document.getElementById('isPDfToast');
+                        
+                        const toast = new bootstrap.Toast(isPDfToast);
+
+                        toast.show();
                         // When ready to go live, remove the alert and show a success message within this page. For example:
                         // const element = document.getElementById('paypal-button-container');
                         // element.innerHTML = '<h3>Thank you for your payment!</h3>';
