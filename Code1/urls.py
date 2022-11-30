@@ -2,6 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
+    #generate the pdfs
+    path('payPDF/', views.seePay, name='pdfPay'),
+
     path('Profile/', views.Me, name='profile'),
 
     path('payment/', views.prem, name='premium'),

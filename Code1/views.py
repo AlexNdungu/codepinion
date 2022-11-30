@@ -5,10 +5,27 @@ from django.shortcuts import render
 from . models import *
 from django.http import JsonResponse
 import json
+#from django.views.generic import View
+#from django.utils import render_to_pdf
 
 import datetime
 
 # Create your views here.
+
+#Lets generate the pfds
+def seePay(request):
+
+    now_user = request.user.profile
+
+    my_records = Record.objects.filter(user = now_user)
+
+    print(now_user)
+
+    context = {
+        'my_records':my_records
+    }
+
+    return render(request,'Pdf/pay.html',context)
 
 #Profile Fuction
 def Me(request):
