@@ -5,8 +5,10 @@ from django.shortcuts import render
 from . models import *
 from django.http import JsonResponse
 import json
-#from django.views.generic import View
-#from django.utils import render_to_pdf
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa#
 
 import datetime
 
@@ -26,6 +28,42 @@ def seePay(request):
     }
 
     return render(request,'Pdf/pay.html',context)
+
+def create_seePay(request):
+
+    now_user = request.user.profile
+
+    profile_pic = request.user.profile.profile_pic.path
+
+    my_records = Record.objects.filter(user = now_user)
+
+    today = datetime.date.today()
+
+    template_path = 'Pdf/payPDF.html'
+    context = {
+            'my_records': my_records,
+            'now_user':now_user,
+            'profile_pic':profile_pic,
+            'today':today
+        }
+
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="premium_report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
 
 #Profile Fuction
 def Me(request):

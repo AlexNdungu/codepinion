@@ -6,6 +6,8 @@ urlpatterns = [
     #generate the pdfs
     path('payPDF/', views.seePay, name='pdfPay'),
 
+    path('create_prem_rec_pdf/', views.create_seePay, name='create_pdf_rec_prem'),
+
     path('Profile/', views.Me, name='profile'),
 
     path('payment/', views.prem, name='premium'),
