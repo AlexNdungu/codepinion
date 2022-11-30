@@ -179,7 +179,7 @@ $(document).ready(function(){
 
         $('#loading').hide(100);
 
-    }, 10000);
+    }, 2000);
 
 
 });

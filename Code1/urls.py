@@ -8,6 +8,10 @@ urlpatterns = [
 
     path('create_prem_rec_pdf/', views.create_seePay, name='create_pdf_rec_prem'),
 
+    path('create_quiz_rec_pdf/', views.create_quiz_pdf, name='create_record_quiz_pdf'),
+
+    path('create_answer_rec_pdf/', views.create_answer_pdf, name='create_record_answer_pdf'),
+
     path('Profile/', views.Me, name='profile'),
 
     path('payment/', views.prem, name='premium'),

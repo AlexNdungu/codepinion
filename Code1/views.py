@@ -10,6 +10,8 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa#
 
+from Quiz1.models import *
+
 import datetime
 
 # Create your views here.
@@ -64,6 +66,73 @@ def create_seePay(request):
     return response
 
 
+def create_quiz_pdf(request):
+
+    now_user = request.user.profile
+
+    profile_pic = request.user.profile.profile_pic.path
+
+    my_questions = Question.objects.filter(profile = now_user)
+
+    today = datetime.date.today()
+
+    template_path = 'Pdf/quizPDF.html'
+    context = {
+            'my_questions': my_questions,
+            'now_user':now_user,
+            'profile_pic':profile_pic,
+            'today':today
+        }
+
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="questins_report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+def create_answer_pdf(request):
+
+    now_user = request.user.profile
+
+    profile_pic = request.user.profile.profile_pic.path
+
+    my_answers = Answer.objects.filter(profile = now_user)
+
+    today = datetime.date.today()
+
+    template_path = 'Pdf/answerPDF.html'
+    context = {
+            'my_answers': my_answers,
+            'now_user':now_user,
+            'profile_pic':profile_pic,
+            'today':today
+        }
+
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="answers_report.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+
+    html = template.render(context)
+
+    # create a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response    
 
 #Profile Fuction
 def Me(request):
