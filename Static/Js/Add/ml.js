@@ -36,7 +36,7 @@ mlSearchForm.addEventListener('submit', (e)=> {
     $.ajax({
         type:'POST',
         //url:'/search/',
-        url : '/search/',
+        url : '/minisearch/',
         data: formData,
         processData: false,
         contentType: false,

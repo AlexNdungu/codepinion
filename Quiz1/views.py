@@ -465,8 +465,14 @@ def search(request):
             print("Title : ", stack_data.Title.iloc[i])
 
 
-    query = "android"
-    enter_queries(query)        
+#Lets perform the search
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':  
+
+        search_title = request.POST.get('title')
+
+        #query = "working with fuctions"
+        query = search_title
+        enter_queries(query)        
         
 
     return JsonResponse({'message':'success'})
